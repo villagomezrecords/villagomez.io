@@ -27,7 +27,7 @@ Puis ouvrir http://localhost:8000. Vérifier aussi à la largeur d'un téléphon
 ## Mise en ligne
 
 - Domaine villagomez.io chez GoDaddy. Les courriels Microsoft 365 passent par ce domaine : ne jamais toucher aux enregistrements MX, TXT (SPF, vérification) ni autodiscover.
-- Hébergement visé : Cloudflare Pages, branché sur la branche `main` de ce dépôt. GitHub Pages est l'option de secours (`CNAME` et `.nojekyll` sont déjà là).
+- Hébergement : Cloudflare Workers (projet `villagomez-io`), déployé automatiquement à chaque push sur `main`. Réglages dans `wrangler.jsonc` ; `.assetsignore` liste les fichiers qui ne sont pas publiés (CLAUDE.md, README.md, etc.).
 - Samuel veut que le site reste hors ligne tant qu'il n'est pas fini : ne pas brancher le domaine sans son accord.
 
 ## Façon de travailler
