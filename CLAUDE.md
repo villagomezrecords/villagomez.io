@@ -28,7 +28,8 @@ Puis ouvrir http://localhost:8000. Vérifier aussi à la largeur d'un téléphon
 
 - Domaine villagomez.io chez GoDaddy. Les courriels Microsoft 365 passent par ce domaine : ne jamais toucher aux enregistrements MX, TXT (SPF, vérification) ni autodiscover.
 - Hébergement : Cloudflare Workers (projet `villagomez-io`), déployé automatiquement à chaque push sur `main`. Réglages dans `wrangler.jsonc` ; `.assetsignore` liste les fichiers qui ne sont pas publiés (CLAUDE.md, README.md, etc.).
-- Samuel veut que le site reste hors ligne tant qu'il n'est pas fini : ne pas brancher le domaine sans son accord.
+- DNS de villagomez.io gérés par Cloudflare depuis le 19 octobre 2026 (serveurs de noms changés chez GoDaddy ; l'ancien site Wix est abandonné). Le site est en ligne sur https://villagomez-io.villagomezrecords.workers.dev et branché sur villagomez.io et www.villagomez.io (onglet Domains du Worker).
+- Le site est public même s'il manque encore des photos : les dégradés tiennent la place.
 
 ## Façon de travailler
 
