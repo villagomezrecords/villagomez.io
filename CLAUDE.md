@@ -1,0 +1,36 @@
+# villagomez.io — consignes pour Claude
+
+Site de Villagomez Records : le label, les soirées LA VILLLA, le studio et l'artiste Villagomez. Fondateur : Samuel Villagomez. On travaille en français, au tutoiement.
+
+## Le site
+
+- Site statique, sans build : `index.html`, `styles.css`, `favicon.svg`. Polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, Archivo Black, licence OFL).
+- Direction visuelle « Cinema » : fond noir, texte crème, vidéo plein écran à l'ouverture, grille de sets inspirée de Boiler Room. Ne pas changer de direction sans que Samuel le demande.
+- Sections dans l'ordre : hero, LA VILLLA (`#soirees`), Les sets (`#sets`), Musique (`#musique`), Le studio (`#studio`), Villagomez (`#villagomez`), Contact (`#contact`).
+- Les noms à respecter : **LA VILLLA** (trois L) pour le collectif et les soirées DISCO, VINYL, ROOFTOP et GOMEZ ; **Villagomez Records** pour le label.
+- Aucune IA générative dans la musique : ne jamais écrire le contraire.
+
+## Règles de contenu
+
+- Le dépôt est **public**. N'ajouter aucun titre non sorti ni nom de collaborateur au site, ni dans ce dépôt, sans que Samuel le confirme dans la conversation.
+- Les photos et vidéos à déposer dans `images/` sont listées dans `README.md`, avec leur format. Tant qu'un fichier manque, un dégradé prend sa place : ne pas retirer ce comportement.
+- Préparation des photos : JPG, sRGB, environ 2400 px côté long, moins de 500 Ko, métadonnées GPS retirées et copyright conservé.
+
+## Aperçu local
+
+```
+python3 -m http.server 8000
+```
+
+Puis ouvrir http://localhost:8000. Vérifier aussi à la largeur d'un téléphone (390 px).
+
+## Mise en ligne
+
+- Domaine villagomez.io chez GoDaddy. Les courriels Microsoft 365 passent par ce domaine : ne jamais toucher aux enregistrements MX, TXT (SPF, vérification) ni autodiscover.
+- Hébergement visé : Cloudflare Pages, branché sur la branche `main` de ce dépôt. GitHub Pages est l'option de secours (`CNAME` et `.nojekyll` sont déjà là).
+- Samuel veut que le site reste hors ligne tant qu'il n'est pas fini : ne pas brancher le domaine sans son accord.
+
+## Façon de travailler
+
+- Une modification = un commit clair, en français.
+- Montrer le résultat avant d'enchaîner les changements visuels.

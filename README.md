@@ -1,6 +1,6 @@
-# lavilla
+# villagomez.io
 
-Site web de Villagomez Records (label, soirées LA VILLLA, studio), destiné à villagomez.io. En ligne sur villagomez.io (GitHub Pages).
+Site web de Villagomez Records (label, soirées LA VILLLA, studio), destiné à villagomez.io. Pas encore en ligne : la mise en ligne visée est Cloudflare Pages. Consignes de travail dans `CLAUDE.md`.
 
 Site statique : `index.html`, `styles.css`, polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, licence OFL).
 
