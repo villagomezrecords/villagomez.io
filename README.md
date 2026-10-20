@@ -1,6 +1,6 @@
 # villagomez.io
 
-Site web de Villagomez Records (label, soirées LA VILLLA, studio), destiné à villagomez.io. Pas encore en ligne : la mise en ligne visée est Cloudflare Pages. Consignes de travail dans `CLAUDE.md`.
+Site web de Villagomez (recherche en son spatial, label Villagomez Records, studio, soirées LA VILLLA), en ligne sur villagomez.io via Cloudflare Workers. Consignes de travail dans `CLAUDE.md`.
 
 Site statique : `index.html`, `styles.css`, polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, licence OFL).
 
