@@ -475,12 +475,20 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 /* Recherche : son spatial */
 .research { padding-top: var(--section); }
-.research__grid { display: grid; gap: 2.5rem 4rem; align-items: start; }
-@media (min-width: 60rem) { .research__grid { grid-template-columns: minmax(18rem, 30rem) 1fr; } }
-.research__photo { aspect-ratio: 4 / 5; }
-.research__photo img { object-position: center 62%; }
+.research__photo, .bio__wide { margin: 0 0 clamp(2.5rem, 5vw, 4rem); }
+.research__photo .ph { aspect-ratio: 4 / 3; }
+@media (min-width: 52rem) { .research__photo .ph { aspect-ratio: 16 / 9; } }
+.research__photo img { object-position: center 35%; }
+.bio__wide { margin-top: clamp(3.5rem, 7vw, 5rem); }
+.bio__wide .ph { aspect-ratio: 4 / 3; }
+@media (min-width: 52rem) { .bio__wide .ph { aspect-ratio: 21 / 9; } .bio__wide img { object-position: center 40%; } }
+.research__photo figcaption, .bio__wide figcaption { margin-top: .7rem; color: var(--dim); font-size: .9rem; }
 .pillars { display: grid; gap: 2rem 2.5rem; }
 @media (min-width: 40rem) { .pillars { grid-template-columns: 1fr 1fr; } }
+.research__grid { display: grid; gap: 2.5rem 4rem; align-items: start; }
+@media (min-width: 60rem) { .research__grid { grid-template-columns: minmax(18rem, 28rem) 1fr; } }
+.research__side { aspect-ratio: 3 / 4; }
+.research__side img { object-position: center 30%; }
 .pillars article { padding-top: 1.1rem; border-top: 1px solid var(--line); }
 .pillars h3 { font-family: var(--display); font-weight: 700; font-size: 1.9rem; line-height: 1; text-transform: uppercase; }
 .pillars h3::before { content: ""; display: block; width: 1.6rem; height: 3px; margin-bottom: .9rem; background: var(--amber); }
@@ -508,7 +516,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 /* Parcours : crédits */
 .prose__lede { font-family: var(--serif); font-size: 1.5rem; line-height: 1.25; }
 .prose p:not(.prose__lede) { color: #d6ccbf; }
-.credits__head { margin: clamp(3.5rem, 7vw, 5rem) 0 .5rem; font-family: var(--serif); font-size: 1.9rem; color: var(--amber); }
+.credits__head { margin: 0 0 .5rem; font-family: var(--serif); font-size: 1.9rem; color: var(--amber); }
 .credits-list { list-style: none; margin: 0; padding: 0; display: grid; }
 @media (min-width: 60rem) { .credits-list { grid-template-columns: 1fr 1fr; column-gap: 3rem; } }
 .credits-list li { padding: 1rem 0; border-bottom: 1px solid var(--line); }
