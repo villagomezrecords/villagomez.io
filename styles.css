@@ -515,5 +515,4 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .credits-list strong { display: block; font-family: var(--display); font-weight: 600; font-size: 1.7rem; line-height: 1.05; text-transform: uppercase; }
 .credits-list span { display: block; margin-top: .25rem; color: var(--dim); font-size: .95rem; }
 
-.music { padding-top: 0; }
 .studio-band { margin-top: var(--section); }
