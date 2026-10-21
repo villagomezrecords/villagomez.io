@@ -378,6 +378,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .session:nth-child(even) .session__grid { grid-template-columns: 1fr 2fr; }
   .session:nth-child(even) .session__grid .ph:first-child { grid-column: 2; }
 }
+.session__wide { margin-top: .5rem; aspect-ratio: 3 / 2; }
+.session__wide img { object-position: center 45%; }
+@media (min-width: 52rem) { .session__wide { aspect-ratio: 21 / 9; } }
 .session__caption { margin: .9rem 0 0; color: #5d5246; font-size: .95rem; }
 .session__caption strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.5rem; color: var(--ink); }
 .studio .ph:not(:has(img))::after { color: rgba(239, 231, 220, .6); }
