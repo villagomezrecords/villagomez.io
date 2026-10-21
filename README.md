@@ -14,7 +14,8 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 | `hero.jpg` | Image d'ouverture (avant la vidéo) | horizontal 16:9 |
 | `collectif.jpg` | Grande photo du collectif sous le titre LA VILLLA | horizontal 3:2 |
 | `disco.jpg`, `vinyl.jpg`, `rooftop.jpg`, `gomez.jpg` | Les quatre soirées LA VILLLA | vertical 4:5 |
-| `soiree-01.jpg` à `-04` | Bande photo sous les soirées | vertical 4:5 |
+| `soiree-01.jpg` à `-05` | Bande photo sous les soirées (LA VILLLA ROOFTOP) | vertical 4:5 |
+| `soiree-07.jpg` | Bande photo : grande photo à côté de `soiree-05` | horizontal 3:2 |
 | `set-rooftop-2021.jpg`, `set-vinyl-01.jpg`, `set-03.jpg` | Vignettes des sets filmés | carré |
 | `sessions-01.jpg` à `sessions-06.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-06 en rangée | 
 | `studio-01.jpg` à `-03` | Studio : Studio Villagomez | 01 large, 02-03 libres |
