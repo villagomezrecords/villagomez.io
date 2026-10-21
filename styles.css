@@ -444,6 +444,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .session__grid .ph:first-child img { object-position: center 12%; }
 .session__grid .ph[data-file="images/sessions-01.jpg"] img { object-position: center 62%; }
 .session__grid .ph[data-file="images/sessions-02.jpg"] img { object-position: 60% 22%; }
+.session__grid .ph[data-file="images/sessions-03.jpg"] img { object-position: center 50%; }
 
 .session__row {
   display: grid;
