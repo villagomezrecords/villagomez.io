@@ -538,3 +538,22 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .credits-list span { display: block; margin-top: .25rem; color: var(--dim); font-size: .95rem; }
 
 .studio-band { margin-top: var(--section); }
+
+/* Les collaborateurs */
+.collabs { padding-top: var(--section); }
+.collabs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.collab { margin: 0; }
+.collab .ph { aspect-ratio: 4 / 5; }
+.collab--wide, .collab--last { grid-column: 1 / -1; }
+.collab--wide .ph, .collab--last .ph { aspect-ratio: 3 / 2; }
+.collab--last img { object-position: center 45%; }
+.collab figcaption { margin-top: .6rem; color: var(--dim); font-size: .9rem; }
+.collab figcaption strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--paper); }
+@media (min-width: 52rem) {
+  .collabs__grid { grid-template-columns: repeat(12, 1fr); gap: .75rem; align-items: start; }
+  .collab { grid-column: span 3; }
+  .collab--wide { grid-column: span 6; }
+  .collab--wide .ph { aspect-ratio: 8 / 5; }
+  .collab:nth-child(n+4) { grid-column: span 4; }
+  .collab--last .ph { aspect-ratio: 4 / 5; }
+}
