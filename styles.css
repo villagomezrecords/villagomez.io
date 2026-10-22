@@ -574,3 +574,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .feature__text h3 { margin: 0; font-family: var(--display); font-weight: 600; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1; text-transform: uppercase; }
 .feature__who { margin: .5rem 0 1rem; font-weight: 600; }
 .feature__text p:not(.feature__kicker):not(.feature__who) { margin: 0 0 1rem; color: var(--dim); }
+.feature__photo { margin: 0; grid-column: 1 / -1; }
+.feature__photo .ph { aspect-ratio: 3 / 2; }
+.feature__photo img { object-position: center 25%; }
+@media (min-width: 52rem) { .feature__photo .ph { aspect-ratio: 21 / 9; } }
+.feature__photo figcaption { margin-top: .7rem; color: var(--dim); font-size: .9rem; }
