@@ -500,6 +500,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 @media (min-width: 52rem) { .research__photo .ph { aspect-ratio: 16 / 9; } }
 .research__photo img { object-position: center 35%; }
 .bio__wide { margin-top: clamp(3.5rem, 7vw, 5rem); }
+.bio__wide--next { margin-top: 0; }
 .bio__wide .ph { aspect-ratio: 4 / 3; }
 @media (min-width: 52rem) { .bio__wide .ph { aspect-ratio: 21 / 9; } .bio__wide img { object-position: center 40%; } }
 .research__photo figcaption, .bio__wide figcaption { margin-top: .7rem; color: var(--dim); font-size: .9rem; }
