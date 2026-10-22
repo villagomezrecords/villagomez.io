@@ -394,6 +394,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 @media (min-width: 52rem) { .bio__photos { grid-template-columns: 1fr; gap: .75rem; } }
 .bio__photo { aspect-ratio: 4 / 5; }
 .bio__photo--cello img { object-position: center 55%; }
+.bio__photo.bio__photo--direction { aspect-ratio: 4 / 3; grid-column: 1 / -1; }
+.bio__photo--direction img { object-position: center 50%; }
 .bio__photo img { object-position: center 20%; }
 .bio h2 {
   font-family: var(--display);
