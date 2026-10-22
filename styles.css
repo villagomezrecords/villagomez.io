@@ -727,3 +727,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .launch__ph { break-inside: avoid; margin: 0 0 .5rem; }
 @media (min-width: 52rem) { .launch__ph { margin-bottom: .75rem; } }
 .launch__ph img { display: block; width: 100%; height: auto; }
+
+/* Rangée « même geste » : photos à hauteur égale, chacune selon son format */
+.launch__row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.launch__row .launch__ph { margin: 0; flex: 1 1 calc(50% - .25rem); }
+.launch__row .launch__ph img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
+@media (min-width: 52rem) {
+  .launch__row { flex-wrap: nowrap; gap: .75rem; margin-top: 0; }
+  .launch__row .launch__ph { flex: 1.5 1 0; }
+  .launch__row .launch__ph img { aspect-ratio: auto; height: clamp(14rem, 20vw, 18rem); }
+  .launch__row .launch__ph:nth-child(2) { flex: .667 1 0; }
+}
