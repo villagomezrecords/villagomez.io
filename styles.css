@@ -556,6 +556,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .collab--wide .ph, .collab--last .ph { aspect-ratio: 3 / 2; }
 .collab--last img { object-position: center 45%; }
 .collab figcaption { margin-top: .6rem; color: var(--dim); font-size: .9rem; }
+.collab__names { display: block; margin-top: .2rem; }
+.collab__names a { color: var(--amber); text-underline-offset: .15em; }
 .collab figcaption strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.35rem; color: var(--paper); }
 @media (min-width: 52rem) {
   .collabs__grid { grid-template-columns: repeat(12, 1fr); gap: .75rem; align-items: start; }
