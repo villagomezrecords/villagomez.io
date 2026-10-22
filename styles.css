@@ -696,3 +696,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   .pano__canvas, .pano__hint { transition: none; }
 }
+
+/* Crédits photo au survol, dans le même style que les descriptions des collaborateurs */
+.ph__credit {
+  position: absolute; inset: auto 0 0 0; z-index: 2;
+  padding: 2.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(10, 8, 6, .92), rgba(10, 8, 6, .55) 65%, transparent);
+  color: var(--amber);
+  font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+  text-decoration: none;
+  opacity: 0; transform: translateY(.5rem);
+  transition: opacity .25s ease, transform .25s ease;
+}
+a.ph__credit:hover { text-decoration: underline; text-underline-offset: .15em; }
+.ph:hover .ph__credit, .ph:focus-within .ph__credit, .ph.is-open .ph__credit { opacity: 1; transform: none; }
+.collab__info .collab__credit a { color: inherit; pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .ph__credit { transition: none; } }

@@ -219,8 +219,8 @@
             </ul>
           </div>
           <figure class="music__photo">
-            <div class="ph" data-file="images/lancement-love-in-miami.jpg"><img src="images/lancement-love-in-miami.jpg" alt="Villagomez, en lunettes de soleil et t-shirt blanc, à côté de Julian Vega Peña en chemise à motifs d'ananas, sur un toit au coucher du soleil, au lancement de Love in Miami" loading="lazy" onerror="this.remove()"></div>
-            <figcaption>Villagomez et Julian Vega Peña au lancement de Love in Miami, sur un toit, en juin 2022 · Photo : <a href="https://www.instagram.com/joellercphotographie/" rel="noopener">Joëlle Roy-Chevarier</a></figcaption>
+            <div class="ph" data-file="images/lancement-love-in-miami.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lancement-love-in-miami.jpg" alt="Villagomez, en lunettes de soleil et t-shirt blanc, à côté de Julian Vega Peña en chemise à motifs d'ananas, sur un toit au coucher du soleil, au lancement de Love in Miami" loading="lazy" onerror="this.remove()"></div>
+            <figcaption>Villagomez et Julian Vega Peña au lancement de Love in Miami, sur un toit, en juin 2022</figcaption>
           </figure>
         </div>
       </div>
@@ -725,6 +725,34 @@
         }, { rootMargin: '400px 0px' });
         panos.forEach(function (f) { io.observe(f); });
       } else { panos.forEach(setup); }
+    })();
+  </script>
+  <script>
+    // Crédits photo : toute photo .ph avec data-credit affiche « Photo : NOM » au survol (toujours visible sur écran tactile).
+    (function () {
+      var touch = window.matchMedia('(hover: none)').matches;
+      document.querySelectorAll('.ph[data-credit]').forEach(function (ph) {
+        var name = ph.getAttribute('data-credit'), url = ph.getAttribute('data-credit-url');
+        var info = ph.querySelector('.collab__info');
+        var tag = document.createElement(url ? 'a' : 'span');
+        tag.textContent = 'Photo : ' + name;
+        if (url) { tag.href = url; tag.rel = 'noopener'; }
+        if (info) {
+          var line = document.createElement('span');
+          line.className = 'collab__credit';
+          line.appendChild(tag);
+          info.appendChild(line);
+          return;
+        }
+        tag.className = 'ph__credit';
+        ph.appendChild(tag);
+        if (touch && !ph.classList.contains('collab__ph')) {
+          ph.addEventListener('click', function (e) {
+            if (e.target === tag) return;
+            ph.classList.toggle('is-open');
+          });
+        }
+      });
     })();
   </script>
 </body>
