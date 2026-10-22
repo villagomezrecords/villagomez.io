@@ -489,6 +489,9 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 /* Recherche : son spatial */
 .research { padding-top: var(--section); }
+.origin { margin: 0 0 clamp(2.5rem, 5vw, 4rem); padding: 1.25rem 0 1.25rem 1.25rem; border-left: 2px solid var(--amber); max-width: 52rem; }
+.origin__kicker { margin: 0 0 .5rem; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; color: var(--amber); }
+.origin__text { margin: 0 0 .9rem; font-family: var(--serif); font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.3; }
 .research__photo, .bio__wide { margin: 0 0 clamp(2.5rem, 5vw, 4rem); }
 .research__photo .ph { aspect-ratio: 4 / 3; }
 @media (min-width: 52rem) { .research__photo .ph { aspect-ratio: 16 / 9; } }
