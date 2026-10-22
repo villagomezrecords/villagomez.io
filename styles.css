@@ -320,6 +320,12 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 }
 .releases-wrap h3:first-child { margin-top: 0; }
 .releases { list-style: none; margin: 0; padding: 0; }
+.music__bottom { display: grid; gap: 2.5rem; align-items: start; }
+.music__bottom > * { min-width: 0; }
+.music__photo { margin: 0; }
+.music__photo .ph { aspect-ratio: 3 / 2; }
+.music__photo figcaption { margin-top: .7rem; color: var(--dim); font-size: .9rem; }
+@media (min-width: 60rem) { .music__bottom { grid-template-columns: 1.25fr 1fr; gap: 4rem; } }
 .releases li {
   display: grid;
   gap: .15rem 2rem;
