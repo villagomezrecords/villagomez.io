@@ -25,6 +25,7 @@
       <a href="#musique">Musique</a>
       <a href="#studio">Studio</a>
       <a href="#villagomez">Villagomez</a>
+      <a href="#live">Live 360</a>
       <a class="topbar__cta" href="#contact">Booking</a>
     </nav>
   </header>
@@ -388,6 +389,33 @@
       </div>
     </section>
 
+    <!-- Live 360 : sets filmés en 360°, à regarder dans toutes les directions -->
+    <section id="live" class="live">
+      <div class="wrap">
+        <header class="section-head">
+          <div>
+            <h2>Live<br>360</h2>
+            <p class="slogan">Choisis où tu regardes</p>
+          </div>
+          <p>Les sets LA VILLLA filmés en 360°. Glisse dans l'image pour regarder autour de toi : les platines, les percussions, la foule, l'église derrière. Bientôt en vidéo, avec plusieurs caméras et un son qui change selon la place que tu choisis.</p>
+        </header>
+
+        <figure class="pano" data-pano="images/live-360-balcon.jpg">
+          <div class="pano__view">
+            <img class="pano__still" src="images/live-360-balcon.jpg" alt="Photo 360 de Villagomez aux platines, la nuit, sur la terrasse du Balcon à Montréal, devant une église éclairée en rose et violet, entre deux parasols, avec un percussionniste et des gens qui dansent" loading="lazy" onerror="this.remove()">
+            <canvas class="pano__canvas" aria-hidden="true"></canvas>
+            <p class="pano__hint">Glisse pour regarder autour</p>
+            <div class="pano__bar" role="group" aria-label="Contrôles de la vue 360">
+              <button type="button" class="pano__btn" data-act="planet" aria-pressed="false">Petite planète</button>
+              <button type="button" class="pano__btn" data-act="reset">Recentrer</button>
+              <button type="button" class="pano__btn" data-act="full">Plein écran</button>
+            </div>
+          </div>
+          <figcaption>Villagomez au Balcon, Montréal · photo 360°</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact" class="contact">
       <div class="wrap">
@@ -479,6 +507,205 @@
           if (!open) ph.classList.add('is-open');
         });
       });
+    })();
+  </script>
+  <script>
+    // Live 360 : visionneuse WebGL pour les photos 360 (équirectangulaires).
+    // d = 0 : vue normale ; d = 1 : projection stéréographique (petite planète).
+    (function () {
+      var panos = document.querySelectorAll('.pano[data-pano]');
+      if (!panos.length) return;
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var DEG = Math.PI / 180;
+
+      var VS = 'attribute vec2 p; varying vec2 ndc; void main(){ ndc = p; gl_Position = vec4(p, 0.0, 1.0); }';
+      var FS = [
+        'precision highp float;',
+        'varying vec2 ndc;',
+        'uniform sampler2D tex;',
+        'uniform float aspect, scale, d, yaw, pitch;',
+        'const float PI = 3.141592653589793;',
+        'void main(){',
+        '  float u = ndc.x * aspect * scale; float v = ndc.y * scale;',
+        '  float k = u*u + v*v;',
+        '  float t = (d + sqrt(max(d*d - (k + 1.0)*(d*d - 1.0), 0.0))) / (k + 1.0);',
+        '  vec3 r = normalize(vec3(t*u, t*v, d - t));',
+        '  float cp = cos(pitch), sp = sin(pitch);',
+        '  r = vec3(r.x, r.y*cp + r.z*sp, -r.y*sp + r.z*cp);',
+        '  float cy = cos(yaw), sy = sin(yaw);',
+        '  r = vec3(r.x*cy - r.z*sy, r.y, r.x*sy + r.z*cy);',
+        '  float lon = atan(r.x, -r.z); float lat = asin(clamp(r.y, -1.0, 1.0));',
+        '  gl_FragColor = texture2D(tex, vec2(lon / (2.0*PI) + 0.5, 0.5 - lat / PI));',
+        '}'
+      ].join('\n');
+
+      function setup(fig) {
+        var canvas = fig.querySelector('.pano__canvas');
+        var view = fig.querySelector('.pano__view');
+        var hint = fig.querySelector('.pano__hint');
+        var gl = canvas.getContext('webgl2', { antialias: false });
+        var gl2 = !!gl;
+        if (!gl) gl = canvas.getContext('webgl', { antialias: false });
+        if (!gl) return;
+
+        function sh(type, src) {
+          var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+          return s;
+        }
+        var prog = gl.createProgram();
+        gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS));
+        gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS));
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+        gl.useProgram(prog);
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        var loc = gl.getAttribLocation(prog, 'p');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        var U = {};
+        ['aspect', 'scale', 'd', 'yaw', 'pitch', 'tex'].forEach(function (n) { U[n] = gl.getUniformLocation(prog, n); });
+
+        var tex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl2 ? gl.REPEAT : gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.uniform1i(U.tex, 0);
+
+        var img = new Image();
+        img.onload = function () {
+          gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+          fig.classList.add('is-live');
+          kick();
+        };
+        img.src = fig.getAttribute('data-pano');
+
+        var NORMAL = { d: 0, scale: Math.tan(50 * DEG), pitch: 4 * DEG };
+        var PLANET = { d: 1, scale: 4.2, pitch: 90 * DEG };
+        var cur = { d: 0, scale: NORMAL.scale, pitch: NORMAL.pitch, yaw: 0 };
+        var tgt = { d: 0, scale: NORMAL.scale, pitch: NORMAL.pitch, yaw: null };
+        var planet = false, lastInput = -1e9, visible = false, running = false, last = 0;
+
+        function clampScale(s) { return planet ? Math.max(1.2, Math.min(7, s)) : Math.max(0.3, Math.min(2.2, s)); }
+        function input() { lastInput = performance.now(); if (hint) hint.classList.add('is-gone'); kick(); }
+
+        fig.querySelectorAll('.pano__btn').forEach(function (b) {
+          b.addEventListener('click', function () { if (hint) hint.classList.add('is-gone'); });
+        });
+        var bPlanet = fig.querySelector('[data-act="planet"]');
+        bPlanet.addEventListener('click', function () {
+          planet = !planet;
+          bPlanet.setAttribute('aria-pressed', String(planet));
+          tgt.d = planet ? PLANET.d : NORMAL.d;
+          tgt.scale = planet ? PLANET.scale : NORMAL.scale;
+          tgt.pitch = planet ? PLANET.pitch : NORMAL.pitch;
+          lastInput = -1e9; kick();
+        });
+        fig.querySelector('[data-act="reset"]').addEventListener('click', function () {
+          planet = false; bPlanet.setAttribute('aria-pressed', 'false');
+          tgt.d = 0; tgt.scale = NORMAL.scale; tgt.pitch = NORMAL.pitch;
+          var tw = 2 * Math.PI; cur.yaw = ((cur.yaw % tw) + tw) % tw; if (cur.yaw > Math.PI) cur.yaw -= tw;
+          tgt.yaw = 0; lastInput = -1e9; kick();
+        });
+        var bFull = fig.querySelector('[data-act="full"]');
+        if (!view.requestFullscreen) { bFull.hidden = true; }
+        bFull.addEventListener('click', function () {
+          if (document.fullscreenElement) { document.exitFullscreen().catch(function () {}); }
+          else { view.requestFullscreen().catch(function () {}); }
+        });
+        document.addEventListener('fullscreenchange', function () {
+          bFull.textContent = document.fullscreenElement === view ? 'Quitter' : 'Plein écran';
+          kick();
+        });
+
+        var pts = new Map(), pinch0 = 0, scale0 = 0;
+        canvas.addEventListener('pointerdown', function (e) {
+          pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+          canvas.classList.add('is-drag'); tgt.yaw = null;
+          if (pts.size === 2) {
+            var a = Array.from(pts.values());
+            pinch0 = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y); scale0 = tgt.scale;
+          }
+          input();
+        });
+        canvas.addEventListener('pointermove', function (e) {
+          var p = pts.get(e.pointerId); if (!p) return;
+          if (pts.size === 1) {
+            var k = 2 * cur.scale / canvas.clientHeight;
+            cur.yaw -= (e.clientX - p.x) * k;
+            if (!planet) {
+              tgt.pitch = Math.max(-85 * DEG, Math.min(85 * DEG, tgt.pitch + (e.clientY - p.y) * k));
+              cur.pitch = tgt.pitch;
+            }
+          }
+          p.x = e.clientX; p.y = e.clientY;
+          if (pts.size === 2 && pinch0 > 0) {
+            var a = Array.from(pts.values());
+            tgt.scale = clampScale(scale0 * pinch0 / Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y));
+          }
+          input();
+        });
+        function up(e) { pts.delete(e.pointerId); pinch0 = 0; if (!pts.size) canvas.classList.remove('is-drag'); }
+        canvas.addEventListener('pointerup', up);
+        canvas.addEventListener('pointercancel', up);
+        canvas.addEventListener('keydown', function (e) {
+          var s = 6 * DEG;
+          if (e.key === 'ArrowLeft') cur.yaw -= s;
+          else if (e.key === 'ArrowRight') cur.yaw += s;
+          else if (e.key === 'ArrowUp' && !planet) tgt.pitch = Math.min(85 * DEG, tgt.pitch + s);
+          else if (e.key === 'ArrowDown' && !planet) tgt.pitch = Math.max(-85 * DEG, tgt.pitch - s);
+          else return;
+          e.preventDefault(); input();
+        });
+
+        function frame(now) {
+          if (!visible && !document.fullscreenElement) { running = false; return; }
+          var dt = Math.min(0.05, (now - (last || now)) / 1000); last = now;
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var w = Math.round(canvas.clientWidth * dpr), h = Math.round(canvas.clientHeight * dpr);
+          if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+          gl.viewport(0, 0, w, h);
+          var ease = calm ? 1 : 1 - Math.pow(0.0009, dt);
+          cur.d += (tgt.d - cur.d) * ease;
+          cur.scale += (tgt.scale - cur.scale) * ease;
+          cur.pitch += (tgt.pitch - cur.pitch) * ease;
+          if (tgt.yaw !== null) {
+            cur.yaw += (tgt.yaw - cur.yaw) * ease;
+            if (Math.abs(tgt.yaw - cur.yaw) < 0.001) tgt.yaw = null;
+          } else if (!calm && now - lastInput > 3000) {
+            cur.yaw += dt * (planet ? 0.22 : 0.07);
+          }
+          gl.uniform1f(U.aspect, w / Math.max(h, 1));
+          gl.uniform1f(U.scale, cur.scale);
+          gl.uniform1f(U.d, cur.d);
+          gl.uniform1f(U.yaw, cur.yaw);
+          gl.uniform1f(U.pitch, cur.pitch);
+          gl.drawArrays(gl.TRIANGLES, 0, 3);
+          requestAnimationFrame(frame);
+        }
+        function kick() { if (!running) { running = true; last = 0; requestAnimationFrame(frame); } }
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) {
+            visible = es[0].isIntersecting; if (visible) kick();
+          }).observe(view);
+        } else { visible = true; kick(); }
+        canvas.tabIndex = 0;
+        canvas.setAttribute('aria-hidden', 'false');
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute('aria-label', 'Vue 360 interactive. Glisse ou utilise les flèches du clavier pour regarder autour.');
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); setup(e.target); } });
+        }, { rootMargin: '400px 0px' });
+        panos.forEach(function (f) { io.observe(f); });
+      } else { panos.forEach(setup); }
     })();
   </script>
 </body>

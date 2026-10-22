@@ -19,6 +19,7 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 | `set-rooftop-2021.jpg`, `set-vinyl-01.jpg`, `set-03.jpg` | Vignettes des sets filmés | carré |
 | `sessions-01.jpg` à `sessions-06.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-06 en rangée | 
 | `studio-01.jpg` à `-03` | Studio : Studio Villagomez | 01 large, 02-03 libres |
+| `live-360-*.jpg` | Live 360 : photos 360° équirectangulaires (rapport 2:1) | 2:1, environ 2500-4000 px de large |
 | `portrait.jpg` | Section Villagomez | vertical 4:5 |
 | `recherche-spatialisation.jpg` | Le son spatial : grande photo (studio de Huddersfield) | horizontal |
 | `recherche-captation.jpg` | Le son spatial : à côté des quatre piliers | vertical 3:4 |
