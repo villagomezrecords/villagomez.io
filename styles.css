@@ -446,6 +446,8 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   border-top: 1px solid var(--line);
 }
 .footer p { margin: 0; }
+.footer__credits { margin-top: .6rem !important; max-width: 48rem; }
+.footer__credits a, .music__photo figcaption a { color: var(--amber); text-underline-offset: .15em; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
