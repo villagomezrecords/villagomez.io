@@ -223,6 +223,24 @@
             <figcaption>Villagomez et Julian Vega Peña au lancement de Love in Miami, sur un toit, en juin 2022</figcaption>
           </figure>
         </div>
+        <div class="launch">
+          <header class="launch__head">
+            <h3>Lancement de Love in Miami</h3>
+            <p>Juin 2022, sur le toit du Carré de Gaspé, dans le Mile End. Du monde qui vibe au coucher du soleil, un set live et des amis venus de partout.</p>
+          </header>
+          <div class="launch__grid">
+            <figure class="ph launch__ph" data-file="images/lim-01.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-01.jpg" alt="Le toit du Carré de Gaspé plein de monde au coucher du soleil, ciel orangé au-dessus de la foule" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-02.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-02.jpg" alt="Vue depuis derrière les platines : la foule lève les bras devant Villagomez, sous les lanternes colorées" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-05.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/" data-desc="Jana Sokolova, dans la lumière du coucher du soleil"><img src="images/lim-05.jpg" alt="Jana Sokolova, les yeux fermés, dans la lumière du coucher du soleil" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-03.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/" data-desc="La photo repartagée par Allen &amp; Heath Xone"><img src="images/lim-03.jpg" alt="Villagomez de profil derrière la console Xone:96, à contre-jour dans la lumière dorée, la foule floue devant" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-06.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-06.jpg" alt="Des gens dansent en contre-jour sur le toit, le soleil entre eux" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-09.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-09.jpg" alt="Une invitée aux cheveux roses et lunettes roses sourit, cheveux au vent" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-07.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-07.jpg" alt="Villagomez chante au micro, casque sur les oreilles, avec la ville derrière" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-10.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-10.jpg" alt="Une bande d'amis pose sur le toit avec des verres roses et des lunettes colorées" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-04.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/"><img src="images/lim-04.jpg" alt="Villagomez aux platines dans la lumière dorée, un caméraman filme le set derrière lui" loading="lazy" onerror="this.remove()"></figure>
+            <figure class="ph launch__ph" data-file="images/lim-11.jpg" data-credit="Joëlle Roy-Chevarier" data-credit-url="https://www.instagram.com/joellercphotographie/" data-desc="Des amis de Radio-Canada et de DJMTL, venus fêter Love in Miami"><img src="images/lim-11.jpg" alt="Trois invités en veston d'été et lunettes de soleil sourient à la caméra" loading="lazy" onerror="this.remove()"></figure>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -734,6 +752,7 @@
       document.querySelectorAll('.ph[data-credit]').forEach(function (ph) {
         var name = ph.getAttribute('data-credit'), url = ph.getAttribute('data-credit-url');
         var info = ph.querySelector('.collab__info');
+        var desc = ph.getAttribute('data-desc');
         var tag = document.createElement(url ? 'a' : 'span');
         tag.textContent = 'Crédit photo : ' + name;
         if (url) { tag.href = url; tag.rel = 'noopener'; }
@@ -744,8 +763,16 @@
           info.appendChild(line);
           return;
         }
-        tag.className = 'ph__credit';
-        ph.appendChild(tag);
+        var box = document.createElement('span');
+        box.className = 'ph__credit';
+        if (desc) {
+          var d = document.createElement('span');
+          d.className = 'ph__desc';
+          d.innerHTML = desc;
+          box.appendChild(d);
+        }
+        box.appendChild(tag);
+        ph.appendChild(box);
         if (touch && !ph.classList.contains('collab__ph')) {
           ph.addEventListener('click', function (e) {
             if (e.target === tag) return;

@@ -20,6 +20,7 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 | `sessions-01.jpg` à `sessions-06.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-06 en rangée | 
 | `studio-01.jpg` à `-03` | Studio : Studio Villagomez | 01 large, 02-03 libres |
 | `live-360-*.jpg` | Live 360 : photos 360° équirectangulaires (rapport 2:1) | 2:1, environ 2500-4000 px de large |
+| `lim-01.jpg` à `lim-11.jpg` | Musique : galerie du lancement de Love in Miami (juin 2022), photos de Joëlle Roy-Chevarier | format d'origine, environ 1800 px côté long |
 | `portrait.jpg` | Section Villagomez | vertical 4:5 |
 | `recherche-spatialisation.jpg` | Le son spatial : grande photo (studio de Huddersfield) | horizontal |
 | `recherche-captation.jpg` | Le son spatial : à côté des quatre piliers | vertical 3:4 |
