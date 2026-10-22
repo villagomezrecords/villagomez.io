@@ -560,6 +560,6 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   .collab { grid-column: span 3; }
   .collab--wide { grid-column: span 6; }
   .collab--wide .ph { aspect-ratio: 8 / 5; }
-  .collab:nth-child(n+4) { grid-column: span 4; }
-  .collab--last .ph { aspect-ratio: 4 / 5; }
+  .collab--last { grid-column: 1 / -1; }
+  .collab--last .ph { aspect-ratio: 21 / 9; }
 }
