@@ -472,6 +472,14 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 .session__row .ph { aspect-ratio: 1; }
 @media (min-width: 52rem) { .session__row .ph { aspect-ratio: 3 / 2; } }
 
+.session__pair { display: grid; gap: .5rem; margin-top: .5rem; }
+.session__pair .ph:first-child { aspect-ratio: 4 / 3; }
+.session__pair .ph:last-child { aspect-ratio: 4 / 5; }
+@media (min-width: 52rem) {
+  .session__pair { grid-template-columns: 16fr 9fr; }
+  .session__pair .ph:last-child { aspect-ratio: 3 / 4; }
+}
+
 /* Extraits vidéo */
 .ph video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .ph.is-clip::after { content: none; }
