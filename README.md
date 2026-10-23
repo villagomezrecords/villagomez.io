@@ -17,7 +17,7 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 | `soiree-01.jpg` à `-05` | Bande photo sous les soirées (LA VILLLA ROOFTOP) | vertical 4:5 |
 | `soiree-07.jpg` | Bande photo : grande photo à côté de `soiree-05` | horizontal 3:2 |
 | `set-rooftop-2021.jpg`, `set-vinyl-01.jpg`, `set-03.jpg` | Vignettes des sets filmés | carré |
-| `sessions-01.jpg` à `sessions-06.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-06 en rangée | 
+| `sessions-01.jpg` à `sessions-07.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-07 en rangée de quatre photos verticales 4:5 | 
 | `sessions-voix-01.jpg`, `sessions-voix-02.jpg` | Studio : session de voix, sous la photo de la cabine | horizontal 4:3 et vertical 3:4 |
 | `studio-01.jpg` à `-03` | Studio : Studio Villagomez | 01 large, 02-03 libres |
 | `live-360-*.jpg` | Live 360 : photos 360° équirectangulaires (rapport 2:1) | 2:1, environ 2500-4000 px de large |
@@ -32,6 +32,6 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 
 La rangée du bas de la série sessions accepte des extraits vidéo : `sessions-04.mp4`, `sessions-05.mp4`, `sessions-06.mp4`.
 Ils jouent en boucle sans son quand ils sont à l'écran ; un bouton « Activer le son » permet d'écouter (un seul à la fois).
-Format : MP4 (H.264 + AAC), 8 à 15 s, 1080p ou 720p, 3 à 8 Mo. Optionnel : une image `sessions-0X.jpg` affichée avant la lecture.
+Format : MP4 (H.264 + AAC), 8 à 15 s, 1080p ou 720p, 3 à 8 Mo. Les photos `sessions-04.jpg` à `sessions-06.jpg` sont affichées tant qu'il n'y a pas de vidéo, puis servent d'image avant la lecture.
 
 Le clip complet va sur YouTube ; il sera intégré dans la section Musique.
