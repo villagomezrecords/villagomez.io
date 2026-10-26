@@ -27,8 +27,17 @@
       <a href="#villagomez">Villagomez</a>
       <a href="#live">Live 360</a>
       <a class="topbar__cta" href="#contact">Booking</a>
+      <button class="topbar__burger" type="button" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </nav>
   </header>
+
+  <!-- Menu mobile : rempli par le script en bas de page à partir des liens du menu du haut -->
+  <div class="menu" id="menu" hidden>
+    <nav class="menu__links" aria-label="Menu"></nav>
+    <p class="menu__foot"><a href="mailto:info@villagomez.io">info@villagomez.io</a></p>
+  </div>
 
   <main id="top">
 
@@ -813,6 +822,38 @@
           });
         }
       });
+    })();
+  </script>
+  <script>
+    // Menu mobile : reprend les liens du menu du haut, s'ouvre avec le bouton, se ferme au choix d'une section ou avec Échap.
+    (function () {
+      var btn = document.querySelector('.topbar__burger');
+      var menu = document.getElementById('menu');
+      var list = menu.querySelector('.menu__links');
+      var n = 0;
+      document.querySelectorAll('.topbar nav a').forEach(function (a) {
+        var link = a.cloneNode(true);
+        link.className = a.classList.contains('topbar__cta') ? 'is-cta' : '';
+        link.setAttribute('data-n', String(++n).padStart(2, '0'));
+        list.appendChild(link);
+      });
+      function setOpen(open) {
+        btn.setAttribute('aria-expanded', open);
+        btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        document.body.classList.toggle('menu-open', open);
+        if (open) {
+          menu.hidden = false;
+          requestAnimationFrame(function () { menu.classList.add('is-open'); });
+        } else {
+          menu.classList.remove('is-open');
+          menu.hidden = true;
+        }
+      }
+      btn.addEventListener('click', function () { setOpen(menu.hidden); });
+      menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+      document.querySelector('.topbar nav .topbar__cta').addEventListener('click', function () { setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); } });
+      window.matchMedia('(min-width: 56.01rem)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
     })();
   </script>
 </body>

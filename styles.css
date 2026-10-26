@@ -169,8 +169,85 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
   color: var(--ink);
   font-weight: 600;
 }
+/* Menu mobile : bouton à deux traits qui devient un X, panneau plein écran */
+.topbar__burger {
+  display: none;
+  position: relative;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-right: -.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--paper);
+  cursor: pointer;
+}
+.topbar__burger span {
+  position: absolute;
+  left: .6rem;
+  right: .6rem;
+  height: 2px;
+  background: currentColor;
+  transition: transform .25s ease, top .25s ease;
+}
+.topbar__burger span:first-child { top: calc(50% - 4px); }
+.topbar__burger span:last-child { top: calc(50% + 3px); }
+.topbar__burger[aria-expanded="true"] span:first-child { top: calc(50% - 1px); transform: rotate(45deg); }
+.topbar__burger[aria-expanded="true"] span:last-child { top: calc(50% - 1px); transform: rotate(-45deg); }
+.topbar__burger:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem var(--gutter) 2rem;
+  background: var(--ink);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.menu[hidden] { display: none; }
+.menu.is-open { opacity: 1; }
+.menu__links { display: grid; }
+.menu__links a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 12vw, 4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.menu__links a::before {
+  content: attr(data-n);
+  font-family: var(--body);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  color: var(--dim);
+}
+.menu__links a:active, .menu__links a:hover { color: var(--amber); }
+.menu__links a.is-cta { color: var(--amber); border-bottom: 0; }
+.menu__foot { margin: 2rem 0 0; color: var(--dim); font-size: .95rem; }
+.menu__foot a { text-decoration: none; }
+body.menu-open { overflow: hidden; }
+
 @media (max-width: 56rem) {
   .topbar nav a:not(.topbar__cta) { display: none; }
+  .topbar nav { gap: .75rem; }
+  .topbar__burger { display: block; }
+}
+@media (min-width: 56.01rem) {
+  .menu { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu, .topbar__burger span { transition: none; }
 }
 
 /* Hero */
