@@ -161,7 +161,19 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 
 .topbar nav { display: flex; align-items: center; gap: 1.4rem; font-size: .92rem; }
 .topbar nav a { text-decoration: none; }
-.topbar nav a:not(.topbar__cta):hover { color: var(--amber); }
+.topbar nav a:not(.topbar__cta):not(.topbar__lang):hover { color: var(--amber); }
+/* Bouton de langue FR / EN : discret, toujours visible, même sur téléphone */
+.topbar__lang {
+  padding: .3rem .6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--dim);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  transition: color .2s, border-color .2s;
+}
+.topbar__lang:hover { color: var(--paper); border-color: var(--paper); }
 .topbar__cta {
   padding: .45rem 1rem;
   border-radius: 999px;
@@ -239,7 +251,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 body.menu-open { overflow: hidden; }
 
 @media (max-width: 56rem) {
-  .topbar nav a:not(.topbar__cta) { display: none; }
+  .topbar nav a:not(.topbar__cta):not(.topbar__lang) { display: none; }
   .topbar nav { gap: .75rem; }
   .topbar__burger { display: block; }
 }

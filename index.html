@@ -10,6 +10,11 @@
   <meta property="og:url" content="https://villagomez.io/">
   <meta property="og:image" content="https://villagomez.io/images/portrait-modulaire.jpg">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CA">
+  <link rel="canonical" href="https://villagomez.io/">
+  <link rel="alternate" hreflang="fr-CA" href="https://villagomez.io/">
+  <link rel="alternate" hreflang="en" href="https://villagomez.io/en/">
+  <link rel="alternate" hreflang="x-default" href="https://villagomez.io/">
   <meta name="theme-color" content="#16120e">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/big-shoulders-display.woff2" as="font" type="font/woff2" crossorigin>
@@ -26,6 +31,7 @@
       <a href="#studio">Studio</a>
       <a href="#villagomez">Villagomez</a>
       <a href="#live">Live 360</a>
+      <a class="topbar__lang" href="en/" hreflang="en" lang="en" aria-label="English version">EN</a>
       <a class="topbar__cta" href="#contact">Booking</a>
       <button class="topbar__burger" type="button" aria-controls="menu" aria-expanded="false" aria-label="Ouvrir le menu">
         <span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -831,7 +837,12 @@
       var menu = document.getElementById('menu');
       var list = menu.querySelector('.menu__links');
       var n = 0;
-      document.querySelectorAll('.topbar nav a').forEach(function (a) {
+      // Le bouton de langue garde la section où on est rendu (#musique, #studio…).
+      var lang = document.querySelector('.topbar__lang');
+      if (lang) lang.addEventListener('click', function () {
+        if (location.hash) lang.href = lang.getAttribute('href').split('#')[0] + location.hash;
+      });
+      document.querySelectorAll('.topbar nav a:not(.topbar__lang)').forEach(function (a) {
         var link = a.cloneNode(true);
         link.className = a.classList.contains('topbar__cta') ? 'is-cta' : '';
         link.setAttribute('data-n', String(++n).padStart(2, '0'));

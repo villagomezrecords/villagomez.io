@@ -7,6 +7,7 @@ Site de Villagomez Records : le label, les soirées LA VILLLA, le studio et l'ar
 - Site statique, sans build : `index.html`, `styles.css`, `favicon.svg`. Polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, Archivo Black, licence OFL).
 - Direction visuelle « Cinema » : fond noir, texte crème, vidéo plein écran à l'ouverture, grille de sets inspirée de Boiler Room. Ne pas changer de direction sans que Samuel le demande.
 - Sections dans l'ordre (mélange du 20 octobre 2026 entre l'ancien site et la refonte pour la SAT) : hero, LA VILLLA (`#soirees`), Le son spatial (`#recherche`), Musique (`#musique`), Les collaborateurs (`#collaborateurs`, ajoutée le 21 octobre 2026 ; on ne nomme que les personnes que Samuel a confirmées), Le studio (`#studio`), Villagomez et crédits (`#villagomez`), Les sets (`#sets`), Contact (`#contact`).
+- Site bilingue (29 octobre 2026) : le français est à la racine (`index.html`), l'anglais dans `en/index.html` (villagomez.io/en/). Mêmes sections et mêmes `id`, chemins en `../`. Le bouton FR/EN (`.topbar__lang`) garde la section courante. **Toute modification de contenu dans une version se reporte dans l'autre**, dans le même commit. Anglais canadien (« colour », « Montreal »), au « you ».
 - Courriel de contact : info@villagomez.io.
 - Les noms à respecter : **LA VILLLA** (trois L) pour le collectif et les soirées DISCO, VINYL, ROOFTOP et GOMEZ ; **Villagomez Records** pour le label.
 - Aucune IA générative dans la musique : ne jamais écrire le contraire.
