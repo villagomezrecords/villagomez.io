@@ -241,6 +241,66 @@
     .collective-photo { margin: 0 0 clamp(1.5rem, 3vw, 2.5rem); aspect-ratio: 3 / 1.25; overflow: hidden; background: #1a1717; }
     .collective-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
     .collective-photo figcaption { display: none; }
+
+    /* Artistes, façon ADE */
+    .afilters { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; margin-bottom: 1.6rem; padding-bottom: 1.2rem; border-bottom: 2px solid var(--white); }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .chip { font: 700 .9rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; color: var(--white); background: none; border: 1px solid var(--line); padding: .55rem .8rem; cursor: pointer; }
+    .chip b { font-weight: 600; color: var(--dim); margin-left: .35rem; }
+    .chip[aria-pressed="true"] { background: var(--white); color: var(--night); border-color: var(--white); }
+    .chip[aria-pressed="true"] b { color: var(--night); }
+    .chip:disabled { cursor: default; color: #5e5852; }
+    .chip:disabled b { color: #5e5852; font-size: .75em; }
+    .az { display: flex; flex-wrap: wrap; gap: .15rem; font: 700 .95rem/1 var(--meta); }
+    .az a, .az span { width: 1.45rem; text-align: center; padding: .3rem 0; }
+    .az a { color: var(--lime); text-decoration: none; }
+    .az a:hover { background: var(--lime); color: var(--night); }
+    .az span { color: #3d3833; }
+    .agrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: clamp(1rem, 2vw, 1.6rem) clamp(.75rem, 1.6vw, 1.25rem); }
+    .agrid li[hidden] { display: none; }
+    .ac { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: .5rem; width: 100%; cursor: pointer; }
+    .ac:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
+    .ac__img { display: block; aspect-ratio: 1; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); }
+    .ac__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .4s, transform .6s; }
+    .ac:hover .ac__img img, .ac:focus-visible .ac__img img { filter: none; transform: scale(1.04); }
+    .ac__img--init { display: grid; place-items: center; font: 400 clamp(3rem, 6vw, 4.5rem)/1 var(--head); color: var(--rose); letter-spacing: -.04em; }
+    .ac__name { font: 400 1.35rem/1.05 var(--head); text-transform: uppercase; }
+    .cc { font-family: var(--meta); font-weight: 700; font-size: .8em; letter-spacing: .06em; color: var(--rose); }
+    .ac__tags { font: 600 .85rem/1.2 var(--meta); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+    .agrid__call a { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; width: 100%; aspect-ratio: 1; padding: 1.3rem; background: var(--rose); color: var(--night); text-decoration: none; }
+    .agrid__call b { font: 400 1.4rem/1.05 var(--head); text-transform: uppercase; }
+    .agrid__call em { font: 700 1rem/1 var(--meta); font-style: normal; letter-spacing: .14em; text-transform: uppercase; }
+    .agrid__call a:hover { background: var(--lime); }
+
+    /* Fiche d'artiste */
+    .ad { padding: 0; border: 0; background: var(--night); color: var(--white); width: min(64rem, 94vw); max-height: 90svh; }
+    .ad::backdrop { background: rgba(5,4,4,.82); backdrop-filter: blur(4px); }
+    .ad__in { display: grid; grid-template-columns: 1fr 1.15fr; min-height: 100%; }
+    .ad__img { background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); display: grid; place-items: center; min-height: 20rem; overflow: hidden; }
+    .ad__img img { width: 100%; height: 100%; object-fit: cover; }
+    .ad__img span { font: 400 clamp(5rem, 12vw, 9rem)/1 var(--head); color: var(--rose); }
+    .ad__txt { position: relative; padding: clamp(1.4rem, 3vw, 2.4rem); overflow-y: auto; }
+    .ad__x { position: absolute; top: 1rem; right: 1rem; background: none; border: 1px solid var(--line); color: var(--dim); font: 700 .8rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .45rem .6rem; cursor: pointer; }
+    .ad__x:hover { color: var(--white); border-color: var(--white); }
+    .ad__kick { margin: 0 0 .8rem; font: 600 .82rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; color: var(--lime); }
+    .ad h3 { margin: 0; font: 400 clamp(2rem, 4.5vw, 3.4rem)/.95 var(--head); text-transform: uppercase; }
+    .ad__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 0; }
+    .ad__tags span { font: 700 .78rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; border: 1px solid var(--line); padding: .4rem .55rem; }
+    .ad__meta { margin: 1.4rem 0 0; display: grid; gap: .1rem; }
+    .ad__meta div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .5rem 0; border-top: 1px solid var(--line); }
+    .ad__meta dt { font: 600 .82rem/1.4 var(--meta); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+    .ad__meta dd { margin: 0; }
+    .ad__bio { margin: 1.4rem 0 0; color: #d6cfc6; }
+    .ad__bio--soon { color: var(--dim); font: italic 400 1.2rem/1.3 var(--serif); }
+    .ad h4 { margin: 1.8rem 0 .6rem; font: 700 .9rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; }
+    .ap { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--white); }
+    .ap li { display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+    .ap__y { font: 700 1rem/1 var(--meta); color: var(--lime); }
+    .ap__e { font: 400 1rem/1.1 var(--head); text-transform: uppercase; }
+    .ap__n { color: var(--dim); font-size: .88rem; text-align: right; }
+    .ad__links { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.4rem 0 0; font: 700 .95rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    .ad__links a { color: var(--rose); text-decoration: none; } .ad__links a:hover { color: var(--lime); }
+    @media (max-width: 760px) { .ad__in { grid-template-columns: 1fr; } .ad__img { min-height: 0; aspect-ratio: 4 / 3; } .ap li { grid-template-columns: 3rem 1fr; } .ap__n { grid-column: 2; text-align: left; } }
   </style>
 </head>
 <body>
@@ -393,7 +453,7 @@
       </div>
     </section>
 
-    <!-- Artistes : une fiche par artiste. On n'ajoute que les noms que Samuel a confirmés. -->
+    <!-- Artistes, façon ADE : Nom (code pays), étiquettes, fiche détaillée. On n'ajoute que les personnes et les infos que Samuel a confirmées. -->
     <section id="artistes">
       <div class="wrap">
         <header class="head">
@@ -402,41 +462,50 @@
           <p>Celles et ceux qui ont joué à la viLLLa. DJ, musiciens, artistes visuels et numériques, d'ici et d'ailleurs : les fiches s'ajoutent à chaque édition.</p>
         </header>
 
-        <div class="artists">
-          <article class="artist">
-            <figure><img src="/images/set-rooftop-2021.jpg" alt="Villagomez aux platines sur un toit de Montréal" loading="lazy" onerror="this.remove()"></figure>
-            <span class="artist__role">DJ · fondateur</span>
-            <h3>Villagomez</h3>
-            <p class="artist__from">Montréal</p>
-            <p class="artist__played">Rooftop 2021 · Disco 2025</p>
-          </article>
-          <article class="artist">
-            <figure><img src="/images/set-vinyl-01.jpg" alt="Roman Martinez aux platines vinyle" loading="lazy" onerror="this.remove()"></figure>
-            <span class="artist__role">DJ</span>
-            <h3>Roman Martinez</h3>
-            <p class="artist__from">New York</p>
-            <p class="artist__played">Disco 2025 · Vinyl, épisode 1</p>
-          </article>
-          <article class="artist">
-            <div class="artist__init" aria-hidden="true">AD</div>
-            <span class="artist__role">DJ</span>
-            <h3>Antho Decks</h3>
-            <p class="artist__from">France</p>
-            <p class="artist__played">Disco 2025</p>
-          </article>
-          <article class="artist">
-            <div class="artist__init" aria-hidden="true">SC</div>
-            <span class="artist__role">DJ</span>
-            <h3>Sam Chef</h3>
-            <p class="artist__from">Montréal</p>
-            <p class="artist__played">Disco 2025</p>
-          </article>
-          <article class="artist artist--call">
-            <h3>Tu veux jouer à la viLLLa&nbsp;?</h3>
-            <p>DJ, musicien, chanteuse, artiste visuel ou numérique : envoie-nous ton travail.</p>
-            <a href="#contact">Écrire à la viLLLa</a>
-          </article>
+        <div class="afilters">
+          <div class="chips" role="group" aria-label="Filtrer par discipline">
+            <button type="button" class="chip" data-f="all" aria-pressed="true">Tous <b>4</b></button>
+            <button type="button" class="chip" data-f="dj" aria-pressed="false">DJ <b>4</b></button>
+            <button type="button" class="chip" disabled>Musiciens <b>bientôt</b></button>
+            <button type="button" class="chip" disabled>Arts visuels <b>bientôt</b></button>
+            <button type="button" class="chip" disabled>Numérique <b>bientôt</b></button>
+          </div>
+          <nav class="az" aria-label="Artistes de A à Z"><a href="#artiste-antho-decks">A</a><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><a href="#artiste-roman-martinez">R</a><a href="#artiste-sam-chef">S</a><span>T</span><span>U</span><a href="#artiste-villagomez">V</a><span>W</span><span>X</span><span>Y</span><span>Z</span></nav>
         </div>
+
+        <ul class="agrid">
+          <li data-disc="dj" id="artiste-antho-decks">
+            <button type="button" class="ac" data-open="d-antho-decks" aria-haspopup="dialog">
+              <span class="ac__img ac__img--init" aria-hidden="true">AD</span>
+              <span class="ac__name">Antho Decks <span class="cc">(FR)</span></span>
+              <span class="ac__tags">DJ</span>
+            </button>
+          </li>
+          <li data-disc="dj" id="artiste-roman-martinez">
+            <button type="button" class="ac" data-open="d-roman-martinez" aria-haspopup="dialog">
+              <span class="ac__img"><img src="/images/set-vinyl-01.jpg" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="ac__name">Roman Martinez <span class="cc">(US)</span></span>
+              <span class="ac__tags">DJ · Disco · Funk</span>
+            </button>
+          </li>
+          <li data-disc="dj" id="artiste-sam-chef">
+            <button type="button" class="ac" data-open="d-sam-chef" aria-haspopup="dialog">
+              <span class="ac__img ac__img--init" aria-hidden="true">SC</span>
+              <span class="ac__name">Sam Chef</span>
+              <span class="ac__tags">DJ</span>
+            </button>
+          </li>
+          <li data-disc="dj" id="artiste-villagomez">
+            <button type="button" class="ac" data-open="d-villagomez" aria-haspopup="dialog">
+              <span class="ac__img"><img src="/images/set-rooftop-2021.jpg" alt="" loading="lazy" onerror="this.remove()"></span>
+              <span class="ac__name">Villagomez <span class="cc">(CA)</span></span>
+              <span class="ac__tags">DJ · Producteur · Afro · Latin · Disco · House</span>
+            </button>
+          </li>
+          <li class="agrid__call">
+            <a href="#contact"><b>Tu veux jouer à la viLLLa&nbsp;?</b><span>DJ, musicien, chanteuse, artiste visuel ou numérique : envoie-nous ton travail.</span><em>Écrire à la viLLLa →</em></a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -517,6 +586,72 @@
     </section>
   </main>
 
+    <dialog class="ad" id="d-antho-decks" aria-labelledby="d-antho-decks-t">
+      <div class="ad__in">
+        <div class="ad__img"><span aria-hidden="true">AD</span></div>
+        <div class="ad__txt">
+          <button type="button" class="ad__x" data-close aria-label="Fermer">Fermer ✕</button>
+          <p class="ad__kick">Artiste · la viLLLa</p>
+          <h3 id="d-antho-decks-t">Antho Decks <span class="cc">(FR)</span></h3>
+          <p class="ad__tags"><span>DJ</span></p>
+          <dl class="ad__meta"><div><dt>Discipline</dt><dd>DJ</dd></div><div><dt>Basé à</dt><dd>France</dd></div></dl>
+          <p class="ad__bio ad__bio--soon">Biographie à venir.</p>
+          <h4>À la viLLLa</h4>
+          <ol class="ap"><li><span class="ap__y">2025</span><span class="ap__e">la viLLLa Disco</span><span class="ap__n">Première édition</span></li></ol>
+          
+        </div>
+      </div>
+    </dialog>
+    <dialog class="ad" id="d-roman-martinez" aria-labelledby="d-roman-martinez-t">
+      <div class="ad__in">
+        <div class="ad__img"><img src="/images/set-vinyl-01.jpg" alt="Roman Martinez aux platines vinyle" loading="lazy" onerror="this.remove()"></div>
+        <div class="ad__txt">
+          <button type="button" class="ad__x" data-close aria-label="Fermer">Fermer ✕</button>
+          <p class="ad__kick">Artiste · la viLLLa</p>
+          <h3 id="d-roman-martinez-t">Roman Martinez <span class="cc">(US)</span></h3>
+          <p class="ad__tags"><span>DJ</span><span>Disco</span><span>Funk</span></p>
+          <dl class="ad__meta"><div><dt>Discipline</dt><dd>DJ</dd></div><div><dt>Basé à</dt><dd>New York</dd></div><div><dt>Styles</dt><dd>Disco, funk</dd></div></dl>
+          <p class="ad__bio ad__bio--soon">Biographie à venir.</p>
+          <h4>À la viLLLa</h4>
+          <ol class="ap"><li><span class="ap__y">2025</span><span class="ap__e">la viLLLa Disco</span><span class="ap__n">Première édition</span></li><li><span class="ap__y">—</span><span class="ap__e">la viLLLa Vinyl</span><span class="ap__n">Épisode 1, set filmé</span></li></ol>
+          
+        </div>
+      </div>
+    </dialog>
+    <dialog class="ad" id="d-sam-chef" aria-labelledby="d-sam-chef-t">
+      <div class="ad__in">
+        <div class="ad__img"><span aria-hidden="true">SC</span></div>
+        <div class="ad__txt">
+          <button type="button" class="ad__x" data-close aria-label="Fermer">Fermer ✕</button>
+          <p class="ad__kick">Artiste · la viLLLa</p>
+          <h3 id="d-sam-chef-t">Sam Chef</h3>
+          <p class="ad__tags"><span>DJ</span></p>
+          <dl class="ad__meta"><div><dt>Discipline</dt><dd>DJ</dd></div></dl>
+          <p class="ad__bio ad__bio--soon">Biographie à venir.</p>
+          <h4>À la viLLLa</h4>
+          <ol class="ap"><li><span class="ap__y">2025</span><span class="ap__e">la viLLLa Disco</span><span class="ap__n">Première édition</span></li></ol>
+          
+        </div>
+      </div>
+    </dialog>
+    <dialog class="ad" id="d-villagomez" aria-labelledby="d-villagomez-t">
+      <div class="ad__in">
+        <div class="ad__img"><img src="/images/set-rooftop-2021.jpg" alt="Villagomez aux platines sur un toit de Montréal" loading="lazy" onerror="this.remove()"></div>
+        <div class="ad__txt">
+          <button type="button" class="ad__x" data-close aria-label="Fermer">Fermer ✕</button>
+          <p class="ad__kick">Artiste · la viLLLa</p>
+          <h3 id="d-villagomez-t">Villagomez <span class="cc">(CA)</span></h3>
+          <p class="ad__tags"><span>DJ</span><span>Producteur</span><span>Afro</span><span>Latin</span><span>Disco</span><span>House</span></p>
+          <dl class="ad__meta"><div><dt>Discipline</dt><dd>DJ · producteur · fondateur</dd></div><div><dt>Basé à</dt><dd>Montréal</dd></div><div><dt>Styles</dt><dd>Afro, latin, disco, tech house</dd></div></dl>
+          <p class="ad__bio">DJ, producteur, sound designer et ingénieur de mastering montréalais. Formé au violon puis au violoncelle en orchestre symphonique, il commence à mixer à quatorze ans. Fondateur de Villagomez Records et de la viLLLa, il pense chaque set comme une performance : pour lui, chaque geste est un geste musical.</p>
+          <h4>À la viLLLa</h4>
+          <ol class="ap"><li><span class="ap__y">2021</span><span class="ap__e">la viLLLa Rooftop</span><span class="ap__n">Lancement de Let Love Be</span></li><li><span class="ap__y">2025</span><span class="ap__e">la viLLLa Disco</span><span class="ap__n">Première édition</span></li></ol>
+          <p class="ad__links"><a href="https://www.instagram.com/villagomez.music/" rel="noopener">Instagram</a><a href="/records/">Villagomez Records</a></p>
+        </div>
+      </div>
+    </dialog>
+
+
   <footer class="eco">
     <div class="wrap">
       <p class="eco__title">villagomez.io</p>
@@ -544,6 +679,28 @@
           info.querySelector('[data-desc]').textContent = b.dataset.desc;
           now.textContent = b.dataset.name;
         });
+      });
+    })();
+
+    // Artistes : filtres et fiches
+    (function () {
+      var chips = document.querySelectorAll('.chip[data-f]');
+      var items = document.querySelectorAll('.agrid li[data-disc]');
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          chips.forEach(function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+          var f = c.dataset.f;
+          items.forEach(function (li) { li.hidden = !(f === 'all' || li.dataset.disc.indexOf(f) > -1); });
+        });
+      });
+      document.querySelectorAll('[data-open]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var d = document.getElementById(b.dataset.open);
+          if (d && d.showModal) { d.showModal(); }
+        });
+      });
+      document.querySelectorAll('dialog.ad').forEach(function (d) {
+        d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('[data-close]')) { d.close(); } });
       });
     })();
   </script>
