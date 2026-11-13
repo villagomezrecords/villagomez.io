@@ -6,7 +6,7 @@ villagomez.io regroupe trois sites distincts, chacun avec sa propre direction vi
 
 - `/` : page d'accueil à trois portes vers les sites ci-dessous (`index.html`, styles intégrés).
 - `/records/` : **Villagomez Records**, le label (son spatial, musique, collaborateurs, studio, Villagomez, Live 360, contact). C'est l'adresse à mettre dans la fiche Google Maps du label. Fichier `records/index.html` + `styles.css` à la racine.
-- `/lavillla/` : **la viLLLa**, le collectif (agenda façon Resident Advisor, soirées, fiches d'artistes façon ADE, sets, contact lavillla.club@gmail.com). Fichier `lavillla/index.html`, styles intégrés. Direction « magazine de la nuit » : le noir domine, rose #FF2E93 et lime #C6DD36. Agenda : la date la plus proche en premier ; les fiches d'artistes ne nomment que des personnes confirmées par Samuel.
+- `/lavillla/` : **la viLLLa**, le collectif (agenda façon Resident Advisor, soirées, fiches d'artistes façon ADE, sets, contact lavillla.club@gmail.com). Fichier `lavillla/index.html`, styles intégrés. Direction visuelle : le noir domine, rose #FF2E93 et lime #C6DD36. Agenda : la date la plus proche en premier ; les fiches d'artistes ne nomment que des personnes confirmées par Samuel.
 - `/sanfronteras/` : **San Fronteras**, le média Sound & Mindset (FR/EN/ES, jour/nuit). Styles intégrés.
 - Chaque site garde des liens vers les deux autres (pied de page). Dans les sous-dossiers, toujours des chemins absolus (`/images/...`, `/fonts/...`).
 
