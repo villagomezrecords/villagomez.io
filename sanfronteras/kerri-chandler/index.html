@@ -44,8 +44,8 @@ a{color:inherit}
 .theme-nuit .mast{background:#151515;border-bottom:1px solid #3A3631}
 .mast-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nf{display:flex;align-items:flex-end;font-weight:800;font-size:40px;line-height:1;color:#151515}
-.nf .smile{margin:0 2px 4px}
+.nf{display:flex;align-items:baseline;font-weight:800;font-size:40px;line-height:1;color:#151515}
+.nf .smile{margin:0 2px -.08em}
 .wm{display:flex;flex-direction:column;gap:2px}
 .wm b{font-weight:800;font-size:20px}
 .wm span{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
@@ -225,8 +225,8 @@ nav.rubs a{cursor:pointer}
 .theme-nuit .about-l{color:#F0EADF}
 .about{padding-top:48px;padding-bottom:40px;max-width:900px}
 .about-logo{margin-bottom:28px}
-.bignf{display:inline-flex;align-items:flex-end;font-weight:800;font-size:150px;line-height:.8;font-family:'Inter',sans-serif}
-.bignf svg{margin:0 6px 14px}
+.bignf{display:inline-flex;align-items:baseline;font-weight:800;font-size:150px;line-height:.8;font-family:'Inter',sans-serif}
+.bignf svg{margin:0 6px -.08em}
 .theme-jour .bignf{color:#151515}
 .theme-nuit .bignf{color:#F0EADF}
 .about-prose{margin:40px 0 0;max-width:720px}
@@ -238,7 +238,7 @@ nav.rubs a{cursor:pointer}
 .theme-nuit .rb-t{color:#C6DD36}
 .rb-d{font-size:16px;line-height:1.5}
 .prose .ab-contact{font-family:'Inter',Helvetica,Arial,sans-serif !important;font-size:16px !important;font-weight:600}
-@media (max-width:700px){.bignf{font-size:96px}.bignf svg{width:78px;height:52px;margin-bottom:8px}}
+@media (max-width:700px){.bignf{font-size:96px}.bignf svg{width:78px;height:52px;margin-bottom:-.08em}}
 
 /* clip vidéo */
 .clip{margin:36px 0}
@@ -284,7 +284,7 @@ nav.rubs a{text-decoration:none}
   <header class="mast">
     <div class="wrap mast-in">
       <a href="/sanfronteras/" class="logo only-jour" aria-label="san_fronteras">
-        <span class="nf">n<svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true" class="smile"><path d="M3 4 Q15 22 27 4 Z" fill="#FF6B5E"></path></svg>f</span>
+        <span class="nf">n<svg width="30" height="20" viewBox="0 0 30 20" aria-hidden="true" class="smile"><path d="M3 9 Q15 29 27 9 Z" fill="#FF6B5E"></path></svg>f</span>
         <span class="wm"><b>san_fronteras</b><span>Sound &amp; Mindset</span></span>
       </a>
       <div class="only-nuit">
@@ -640,7 +640,7 @@ nav.rubs a{text-decoration:none}
   <section class="wrap about" data-view="about" id="about" aria-labelledby="about-h"></section>
   <footer class="foot">
     <div class="wrap foot-in">
-      <span class="nf only-jour">n<svg width="22" height="15" viewBox="0 0 30 20" aria-hidden="true" class="smile"><path d="M3 4 Q15 22 27 4 Z" fill="#FF6B5E"></path></svg>f</span>
+      <span class="nf only-jour">n<svg width="22" height="15" viewBox="0 0 30 20" aria-hidden="true" class="smile"><path d="M3 9 Q15 29 27 9 Z" fill="#FF6B5E"></path></svg>f</span>
       <span class="foot-nuit only-nuit">LA VILLLA · SAN FRONTERAS</span>
       <span class="links"><a href="#about" data-go="about" data-t="about">À propos</a><a href="https://www.instagram.com/san_fronteras/" rel="noopener" target="_blank">@san_fronteras</a><a href="https://www.instagram.com/la.villla/" rel="noopener" target="_blank">@la.villla</a><a href="https://www.youtube.com/@SanFronteras" rel="noopener" target="_blank">YouTube</a><a href="/">villagomez.io</a></span>
     </div>
@@ -743,7 +743,7 @@ var ABOUT = {
   }
   function renderAbout(){
     var A = ABOUT[lang];
-    $('about').innerHTML = '<div class="about-logo" role="img" aria-label="n_f"><span class="bignf">n<svg width="120" height="80" viewBox="0 0 30 20" aria-hidden="true"><path d="M3 4 Q15 22 27 4 Z" fill="#FF6B5E"></path></svg>f</span></div>'
+    $('about').innerHTML = '<div class="about-logo" role="img" aria-label="n_f"><span class="bignf">n<svg width="120" height="80" viewBox="0 0 30 20" aria-hidden="true"><path d="M3 9 Q15 29 27 9 Z" fill="#FF6B5E"></path></svg>f</span></div>'
       + '<p class="rub">'+esc(A.badge)+'</p><h1 class="h1" id="about-h">'+esc(A.title)+'</h1><p class="chapo">'+esc(A.lead)+'</p><div class="prose about-prose">'
       + A.sections.map(function(x){ return '<h2>'+esc(x.h)+'</h2>' + x.ps.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join(''); }).join('')
       + '<h2>'+esc(A.rubsH)+'</h2><div class="rubs-list">' + A.rubs.map(function(r){ return '<div class="rb"><span class="rb-t">'+esc(r.t)+'</span><span class="rb-d">'+esc(r.d)+'</span></div>'; }).join('') + '</div>'
