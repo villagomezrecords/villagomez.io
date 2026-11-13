@@ -1,6 +1,6 @@
 # villagomez.io
 
-Site web de Villagomez (recherche en son spatial, label Villagomez Records, studio, soirées LA VILLLA), en ligne sur villagomez.io via Cloudflare Workers. Consignes de travail dans `CLAUDE.md`.
+villagomez.io regroupe trois sites : `/records/` (Villagomez Records, le label), `/lavillla/` (la viLLLa, le collectif) et `/sanfronteras/` (San Fronteras, le média). La racine est une page d'accueil vers les trois. En ligne via Cloudflare Workers. Consignes de travail dans `CLAUDE.md`.
 
 Site statique : `index.html`, `styles.css`, polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, licence OFL).
 

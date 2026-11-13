@@ -830,3 +830,8 @@ body.menu-open { overflow: hidden; }
   .launch__row .launch__ph img { aspect-ratio: auto; height: clamp(14rem, 20vw, 18rem); }
   .launch__row .launch__ph:nth-child(2) { flex: .667 1 0; }
 }
+
+/* Les trois maisons de villagomez.io (label, collectif, média) */
+.footer__eco { margin-top: 1rem !important; font-size: .9rem; }
+.footer__eco a { color: var(--dim); text-underline-offset: .15em; }
+.footer__eco a:hover, .footer__eco a[aria-current] { color: var(--amber); }

@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>la viLLLa | Collectif de la nuit, Montréal</title>
+  <meta name="description" content="la viLLLa, collectif montréalais de DJ, de musiciens et de chanteurs. Soirées Disco, Vinyl, Rooftop et Gomez, agenda, artistes et sets filmés.">
+  <link rel="canonical" href="https://villagomez.io/lavillla/">
+  <meta property="og:site_name" content="la viLLLa">
+  <meta property="og:title" content="la viLLLa · Latin Lime Lovers">
+  <meta property="og:description" content="Collectif de la nuit à Montréal. DJ, musiciens et chanteurs, quatre formats de soirées, un invité chaque fois.">
+  <meta property="og:url" content="https://villagomez.io/lavillla/">
+  <meta property="og:image" content="https://villagomez.io/images/collectif.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0a0a">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Archivo Black"; src: url("/fonts/archivo-black.woff2") format("woff2"); font-display: swap; }
+    @font-face { font-family: "Big Shoulders"; src: url("/fonts/big-shoulders-display.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Hanken Grotesk"; src: url("/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Instrument Serif"; font-style: italic; src: url("/fonts/instrument-serif-italic.woff2") format("woff2"); font-display: swap; }
+
+    :root {
+      --night: #0b0a0a;
+      --night-2: #151313;
+      --white: #f4efe8;
+      --dim: #9b948c;
+      --line: #2a2626;
+      --rose: #ff2e93;
+      --lime: #c6dd36;
+      --head: "Archivo Black", "Arial Black", sans-serif;
+      --meta: "Big Shoulders", "Arial Narrow", sans-serif;
+      --body: "Hanken Grotesk", system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+      --gutter: clamp(1rem, 4vw, 2.75rem);
+      --section: clamp(4rem, 9vw, 7.5rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { margin: 0; background: var(--night); color: var(--white); font: 400 1rem/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .wrap { width: 100%; max-width: 88rem; margin-inline: auto; padding-inline: var(--gutter); }
+
+    /* Barre du haut */
+    .top { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem var(--gutter); background: linear-gradient(var(--night), rgba(11,10,10,.82)); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
+    .top__logo img { height: 1.6rem; width: auto; }
+    .top nav { display: flex; gap: clamp(.9rem, 2vw, 1.8rem); font: 600 1rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    .top nav a { text-decoration: none; color: var(--dim); }
+    .top nav a:hover { color: var(--lime); }
+    .top nav .top__cta { color: var(--night); background: var(--rose); padding: .45rem .8rem; }
+    .top nav .top__cta:hover { color: var(--night); background: var(--lime); }
+    @media (max-width: 760px) { .top nav a:not(.top__cta) { display: none; } }
+
+    /* Une */
+    .hero { position: relative; min-height: 100svh; display: grid; align-items: end; padding: 7rem 0 clamp(2rem, 5vw, 3.5rem); overflow: hidden; }
+    .hero__bg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 70% 30%, #3a1027, var(--night) 70%); }
+    .hero__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.08) contrast(1.05); }
+    .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,10,.25) 0%, rgba(11,10,10,.15) 35%, rgba(11,10,10,.92) 82%, var(--night) 100%); }
+    .hero .wrap { position: relative; }
+    .kicker { font: 600 .95rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; color: var(--lime); margin: 0 0 1.4rem; }
+    .hero h1 { margin: 0; line-height: 0; }
+    .hero h1 img { width: min(44rem, 82vw); height: auto; }
+    .hero__slogan { margin: 1.4rem 0 0; font: italic 400 clamp(1.6rem, 3.4vw, 2.6rem)/1.1 var(--serif); }
+    .hero__lede { max-width: 34rem; margin: 1rem 0 0; color: #d6cfc6; font-size: 1.05rem; }
+    .hero__credit { position: absolute; right: var(--gutter); bottom: 1rem; margin: 0; font-size: .72rem; color: var(--dim); }
+    .hero__credit a { text-decoration: none; }
+
+    /* Titres de section, façon journal */
+    section { padding-block: var(--section); border-top: 1px solid var(--line); }
+    .head { display: grid; grid-template-columns: auto 1fr; gap: .4rem 2rem; align-items: end; margin-bottom: clamp(2rem, 4vw, 3rem); }
+    .head__num { grid-row: span 2; font: 800 clamp(3rem, 8vw, 6rem)/.8 var(--meta); color: var(--rose); }
+    .head h2 { margin: 0; font: 400 clamp(2rem, 5.5vw, 4.2rem)/.95 var(--head); text-transform: uppercase; letter-spacing: -.01em; }
+    .head p { margin: 0; max-width: 40rem; color: var(--dim); }
+
+    /* Agenda, façon Resident Advisor */
+    .agenda { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--white); }
+    .agenda li { display: grid; grid-template-columns: 8.5rem 1fr auto; gap: 1.5rem; align-items: baseline; padding: 1.2rem 0; border-bottom: 1px solid var(--line); }
+    .agenda__date { font: 700 1.25rem/1.1 var(--meta); letter-spacing: .06em; text-transform: uppercase; }
+    .agenda__date small { display: block; font-size: .85rem; color: var(--dim); letter-spacing: .14em; }
+    .agenda h3 { margin: 0; font: 400 1.35rem/1.15 var(--head); text-transform: uppercase; }
+    .agenda h3 b { color: var(--rose); font-weight: 400; }
+    .agenda p { margin: .3rem 0 0; color: var(--dim); }
+    .agenda__tag { font: 600 .85rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .45rem .7rem; border: 1px solid currentColor; text-decoration: none; white-space: nowrap; }
+    .agenda__tag--soon { color: var(--lime); }
+    .agenda__tag--past { color: var(--dim); }
+    .agenda .is-empty { grid-template-columns: 1fr; }
+    .agenda .is-empty p { color: var(--white); font: italic 400 1.5rem/1.3 var(--serif); margin: 0; }
+    .agenda .is-empty a { color: var(--lime); }
+    .subhead { margin: 3rem 0 0; font: 600 .95rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; color: var(--dim); }
+    @media (max-width: 640px) {
+      .agenda li { grid-template-columns: 1fr; gap: .5rem; }
+      .agenda__tag { justify-self: start; }
+    }
+
+    /* Formats de soirées */
+    .formats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.75rem, 1.6vw, 1.25rem); }
+    .format figure { margin: 0 0 1rem; aspect-ratio: 4 / 5; overflow: hidden; background: linear-gradient(160deg, #2b0f1e, #11100f); }
+    .format figure img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .format:hover figure img { transform: scale(1.04); }
+    .format h3 { margin: 0; font: 400 1.4rem/1 var(--head); text-transform: uppercase; }
+    .format h3 span { color: var(--lime); }
+    .format p { margin: .5rem 0 0; color: var(--dim); font-size: .95rem; }
+    @media (max-width: 900px) { .formats { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Artistes, façon ADE */
+    .artists { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .artist { background: var(--night); padding: 1.4rem; display: flex; flex-direction: column; gap: .35rem; min-height: 14rem; }
+    .artist figure { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; overflow: hidden; background: linear-gradient(140deg, #1d1a1a, #2b0f1e); }
+    .artist figure img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .4s; }
+    .artist:hover figure img { filter: none; }
+    .artist__role { font: 600 .82rem/1 var(--meta); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); }
+    .artist h3 { margin: 0; font: 400 1.45rem/1.05 var(--head); text-transform: uppercase; }
+    .artist__from { margin: 0; color: var(--dim); font-size: .92rem; }
+    .artist__played { margin: auto 0 0; padding-top: .9rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--dim); }
+    .artist__init { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; display: grid; place-items: center; background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); font: 400 clamp(3rem, 7vw, 5rem)/1 var(--head); color: var(--rose); letter-spacing: -.04em; }
+    .artist--call { grid-column: 1 / -1; min-height: 0; background: var(--rose); color: var(--night); display: grid; grid-template-columns: 1fr 1.4fr auto; align-items: center; gap: 1rem 2rem; }
+    @media (max-width: 760px) { .artist--call { grid-template-columns: 1fr; } }
+    .artist--call h3 { font-size: 1.35rem; }
+    .artist--call p { margin: 0; }
+    .artist--call a { font: 700 1rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    @media (max-width: 1000px) { .artists { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .artists { grid-template-columns: 1fr; } }
+
+    /* Sets */
+    .sets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.75rem, 1.6vw, 1.25rem); }
+    .set { position: relative; }
+    .set figure { margin: 0 0 .9rem; aspect-ratio: 1; overflow: hidden; background: linear-gradient(140deg, #1d1a1a, #2b0f1e); }
+    .set figure img { width: 100%; height: 100%; object-fit: cover; }
+    .set__badge { position: absolute; top: .7rem; left: .7rem; background: var(--lime); color: var(--night); font: 700 .8rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .35rem .55rem; }
+    .set h3 { margin: 0; font: 400 1.25rem/1.1 var(--head); text-transform: uppercase; }
+    .set p { margin: .3rem 0 0; color: var(--dim); font-size: .92rem; }
+    .set a { color: var(--lime); }
+    @media (max-width: 760px) { .sets { grid-template-columns: 1fr; } }
+
+    /* Bande photo */
+    .strip { display: grid; grid-template-columns: repeat(4, 1fr) 1.5fr; gap: 4px; padding: 0; border-top: 0; }
+    .strip figure { margin: 0; aspect-ratio: 4 / 5; overflow: hidden; background: #1a1717; }
+    .strip figure:last-child { aspect-ratio: auto; }
+    .strip img { width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 760px) { .strip { grid-template-columns: repeat(2, 1fr); } .strip figure:last-child { grid-column: span 2; aspect-ratio: 3 / 2; } }
+
+    /* Contact */
+    .contact h2 { margin: 0; font: 400 clamp(2.2rem, 7vw, 5.5rem)/.92 var(--head); text-transform: uppercase; }
+    .contact h2 em { font: italic 400 1em/1 var(--serif); text-transform: none; color: var(--lime); }
+    .contact__lede { max-width: 36rem; color: #d6cfc6; margin: 1.5rem 0; }
+    .contact__mail { font: 400 clamp(1.2rem, 3vw, 2rem)/1.2 var(--head); color: var(--rose); text-decoration: none; word-break: break-all; }
+    .contact__mail:hover { color: var(--lime); }
+    .socials { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 2rem 0 0; padding: 0; font: 600 1rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    .socials a { text-decoration: none; color: var(--dim); }
+    .socials a:hover { color: var(--lime); }
+
+    /* Pied de page : les trois maisons */
+    .eco { border-top: 2px solid var(--white); padding: 2.5rem 0 3rem; }
+    .eco__title { margin: 0 0 1rem; font: 600 .85rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; color: var(--dim); }
+    .eco__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+    .eco__list a { display: block; height: 100%; padding: 1.1rem 1.2rem; background: var(--night); text-decoration: none; }
+    .eco__list a:hover { background: var(--night-2); }
+    .eco__list b { display: block; font: 400 1.1rem/1.1 var(--head); text-transform: uppercase; }
+    .eco__list span { color: var(--dim); font-size: .88rem; }
+    .eco__list [aria-current] b { color: var(--rose); }
+    .eco__credits { margin: 2rem 0 0; color: var(--dim); font-size: .8rem; }
+    @media (max-width: 640px) { .eco__list { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <a class="top__logo" href="/lavillla/" aria-label="la viLLLa, accueil"><img src="/images/la-villla-logo-rose.svg" alt="" width="2042" height="840"></a>
+    <nav aria-label="Sections">
+      <a href="#agenda">Agenda</a>
+      <a href="#soirees">Soirées</a>
+      <a href="#artistes">Artistes</a>
+      <a href="#sets">Sets</a>
+      <a class="top__cta" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="titre">
+      <div class="hero__bg"><img src="/images/collectif.jpg" alt="" onerror="this.remove()"></div>
+      <div class="wrap">
+        <p class="kicker">Collectif de la nuit · Montréal</p>
+        <h1 id="titre"><img src="/images/la-villla-logo-rose.svg" alt="la viLLLa" width="2042" height="840"></h1>
+        <p class="hero__slogan">Latin Lime Lovers</p>
+        <p class="hero__lede">Des DJ, des musiciens et des chanteurs réunis autour de la diversité, de l'inclusion et des voyages sonores. Quatre formats de soirées, un invité chaque fois : la vie live.</p>
+      </div>
+      <p class="hero__credit">Photo : <a href="https://www.instagram.com/philippemanh/" rel="noopener">Philippe Manh Nguyen</a></p>
+    </section>
+
+    <!-- Agenda : à remplir à chaque annonce, la plus proche en premier -->
+    <section id="agenda">
+      <div class="wrap">
+        <header class="head">
+          <span class="head__num" aria-hidden="true">01</span>
+          <h2>Agenda</h2>
+          <p>Les prochaines soirées de la viLLLa, avec les invités, le lieu et les billets.</p>
+        </header>
+
+        <ul class="agenda">
+          <li class="is-empty">
+            <p>Les prochaines dates s'en viennent. Suis <a href="https://www.instagram.com/la.villla/" rel="noopener">@la.villla</a> pour les annonces et la liste d'invités.</p>
+          </li>
+        </ul>
+
+        <h3 class="subhead">Archives</h3>
+        <ul class="agenda">
+          <li>
+            <p class="agenda__date">2025<small>Montréal</small></p>
+            <div>
+              <h3>la viLLLa <b>Disco</b>, première édition</h3>
+              <p>Antho Decks (FR), Roman Martinez (NYC), Sam Chef</p>
+            </div>
+            <span class="agenda__tag agenda__tag--past">Passé</span>
+          </li>
+          <li>
+            <p class="agenda__date">2021<small>Toit de Montréal</small></p>
+            <div>
+              <h3>la viLLLa <b>Rooftop</b></h3>
+              <p>Lancement de Let Love Be, avec Villagomez aux platines</p>
+            </div>
+            <span class="agenda__tag agenda__tag--past">Passé</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="soirees">
+      <div class="wrap">
+        <header class="head">
+          <span class="head__num" aria-hidden="true">02</span>
+          <h2>Les soirées</h2>
+          <p>Quatre formats, quatre façons de vivre la nuit.</p>
+        </header>
+
+        <div class="formats">
+          <article class="format">
+            <figure><img src="/images/disco.jpg" alt="Soirée la viLLLa Disco" loading="lazy" onerror="this.remove()"></figure>
+            <h3>la viLLLa <span>Disco</span></h3>
+            <p>Disco, funk et house jusqu'à la fermeture.</p>
+          </article>
+          <article class="format">
+            <figure><img src="/images/vinyl.jpg" alt="Set la viLLLa Vinyl" loading="lazy" onerror="this.remove()"></figure>
+            <h3>la viLLLa <span>Vinyl</span></h3>
+            <p>Des sets 100 % vinyle, plus lents et plus intimes. Pour écouter autant que pour danser.</p>
+          </article>
+          <article class="format">
+            <figure><img src="/images/rooftop.jpg" alt="Musiciens live sur un toit de Montréal au coucher du soleil, la viLLLa Rooftop" loading="lazy" onerror="this.remove()"></figure>
+            <h3>la viLLLa <span>Rooftop</span></h3>
+            <p>DJ et musiciens live sur un toit de Montréal, du coucher du soleil jusqu'à la nuit.</p>
+          </article>
+          <article class="format">
+            <figure><img src="/images/gomez.jpg" alt="Party la viLLLa Gomez" loading="lazy" onerror="this.remove()"></figure>
+            <h3>la viLLLa <span>Gomez</span></h3>
+            <p>Le gros party. L'événement phare de l'année, avec musiciens live, percussions et invités.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artistes : une fiche par artiste. On n'ajoute que les noms que Samuel a confirmés. -->
+    <section id="artistes">
+      <div class="wrap">
+        <header class="head">
+          <span class="head__num" aria-hidden="true">03</span>
+          <h2>Les artistes</h2>
+          <p>Celles et ceux qui ont joué à la viLLLa. DJ, musiciens, artistes visuels et numériques, d'ici et d'ailleurs : les fiches s'ajoutent à chaque édition.</p>
+        </header>
+
+        <div class="artists">
+          <article class="artist">
+            <figure><img src="/images/set-rooftop-2021.jpg" alt="Villagomez aux platines sur un toit de Montréal" loading="lazy" onerror="this.remove()"></figure>
+            <span class="artist__role">DJ · fondateur</span>
+            <h3>Villagomez</h3>
+            <p class="artist__from">Montréal</p>
+            <p class="artist__played">Rooftop 2021 · Disco 2025</p>
+          </article>
+          <article class="artist">
+            <figure><img src="/images/set-vinyl-01.jpg" alt="Roman Martinez aux platines vinyle" loading="lazy" onerror="this.remove()"></figure>
+            <span class="artist__role">DJ</span>
+            <h3>Roman Martinez</h3>
+            <p class="artist__from">New York</p>
+            <p class="artist__played">Disco 2025 · Vinyl, épisode 1</p>
+          </article>
+          <article class="artist">
+            <div class="artist__init" aria-hidden="true">AD</div>
+            <span class="artist__role">DJ</span>
+            <h3>Antho Decks</h3>
+            <p class="artist__from">France</p>
+            <p class="artist__played">Disco 2025</p>
+          </article>
+          <article class="artist">
+            <div class="artist__init" aria-hidden="true">SC</div>
+            <span class="artist__role">DJ</span>
+            <h3>Sam Chef</h3>
+            <p class="artist__from">Montréal</p>
+            <p class="artist__played">Disco 2025</p>
+          </article>
+          <article class="artist artist--call">
+            <h3>Tu veux jouer à la viLLLa&nbsp;?</h3>
+            <p>DJ, musicien, chanteuse, artiste visuel ou numérique : envoie-nous ton travail.</p>
+            <a href="#contact">Écrire au collectif</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sets">
+      <div class="wrap">
+        <header class="head">
+          <span class="head__num" aria-hidden="true">04</span>
+          <h2>Les sets</h2>
+          <p>Des sets filmés à la viLLLa, archives et nouveautés mélangées. Un nouvel épisode chaque vendredi sur YouTube, SoundCloud et Mixcloud.</p>
+        </header>
+
+        <ul class="sets">
+          <li class="set">
+            <figure><img src="/images/set-rooftop-2021.jpg" alt="Villagomez de dos aux platines, bras levés devant la foule, sur un toit de Montréal la nuit" loading="lazy" onerror="this.remove()"></figure>
+            <span class="set__badge">Bientôt</span>
+            <h3>Villagomez</h3>
+            <p>la viLLLa Rooftop, lancement de Let Love Be, 2021 · Disco, House, Afro</p>
+          </li>
+          <li class="set">
+            <figure><img src="/images/set-vinyl-01.jpg" alt="Roman Martinez aux platines vinyle, la viLLLa Vinyl" loading="lazy" onerror="this.remove()"></figure>
+            <span class="set__badge">Bientôt</span>
+            <h3>Roman Martinez</h3>
+            <p>la viLLLa Vinyl, épisode 1 · Disco, Funk</p>
+          </li>
+          <li class="set">
+            <figure><img src="/images/set-03.jpg" alt="Set la viLLLa" loading="lazy" onerror="this.remove()"></figure>
+            <h3>Prochain épisode</h3>
+            <p>Chaque vendredi · <a href="https://www.youtube.com/@VillagomezRecords" rel="noopener">S'abonner sur YouTube</a></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="strip" aria-label="Photos de la viLLLa Rooftop">
+      <figure><img src="/images/soiree-01.jpg" alt="Soirée la viLLLa Rooftop sur un toit de Montréal" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="/images/soiree-02.jpg" alt="Soirée la viLLLa Rooftop sur un toit de Montréal" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="/images/soiree-03.jpg" alt="Soirée la viLLLa Rooftop sur un toit de Montréal" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="/images/soiree-05.jpg" alt="DJ aux platines pendant la viLLLa Rooftop" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="/images/soiree-07.jpg" alt="Deux percussionnistes aux congas et aux bongos sur un toit de Montréal, la viLLLa Rooftop" loading="lazy" onerror="this.remove()"></figure>
+    </div>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Viens danser,<br><em>ou viens jouer.</em></h2>
+        <p class="contact__lede">Une soirée à organiser, un lieu à proposer, un artiste à présenter, une liste d'invités : écris au collectif.</p>
+        <a class="contact__mail" href="mailto:lavillla.club@gmail.com">lavillla.club@gmail.com</a>
+        <ul class="socials">
+          <li><a href="https://www.instagram.com/la.villla/" rel="noopener">Instagram @la.villla</a></li>
+          <li><a href="https://www.facebook.com/lavillla.club" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.youtube.com/@VillagomezRecords" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="eco">
+    <div class="wrap">
+      <p class="eco__title">villagomez.io</p>
+      <ul class="eco__list">
+        <li><a href="/records/"><b>Villagomez Records</b><span>Le label</span></a></li>
+        <li><a href="/lavillla/" aria-current="page"><b>la viLLLa</b><span>Le collectif</span></a></li>
+        <li><a href="/sanfronteras/"><b>San Fronteras</b><span>Le média · Sound &amp; Mindset</span></a></li>
+      </ul>
+      <p class="eco__credits">Photos : <a href="https://www.instagram.com/philippemanh/" rel="noopener">Philippe Manh Nguyen</a>, Adrian Villagomez, Adrien Tarêt.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

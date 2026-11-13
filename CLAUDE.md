@@ -1,14 +1,22 @@
 # villagomez.io — consignes pour Claude
 
-Site de Villagomez Records : le label, les soirées LA VILLLA, le studio et l'artiste Villagomez. Fondateur : Samuel Villagomez. On travaille en français, au tutoiement.
+villagomez.io regroupe trois sites distincts, chacun avec sa propre direction visuelle. Fondateur : Samuel Villagomez. On travaille en français, au tutoiement.
 
-## Le site
+## Les trois sites (depuis le 12 novembre 2026)
 
-- Site statique, sans build : `index.html`, `styles.css`, `favicon.svg`. Polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, Archivo Black, licence OFL).
+- `/` : page d'accueil à trois portes vers les sites ci-dessous (`index.html`, styles intégrés).
+- `/records/` : **Villagomez Records**, le label (son spatial, musique, collaborateurs, studio, Villagomez, Live 360, contact). C'est l'adresse à mettre dans la fiche Google Maps du label. Fichier `records/index.html` + `styles.css` à la racine.
+- `/lavillla/` : **la viLLLa**, le collectif (agenda façon Resident Advisor, soirées, fiches d'artistes façon ADE, sets, contact lavillla.club@gmail.com). Fichier `lavillla/index.html`, styles intégrés. Direction « magazine de la nuit » : le noir domine, rose #FF2E93 et lime #C6DD36. Agenda : la date la plus proche en premier ; les fiches d'artistes ne nomment que des personnes confirmées par Samuel.
+- `/sanfronteras/` : **San Fronteras**, le média Sound & Mindset (FR/EN/ES, jour/nuit). Styles intégrés.
+- Chaque site garde des liens vers les deux autres (pied de page). Dans les sous-dossiers, toujours des chemins absolus (`/images/...`, `/fonts/...`).
+
+## Le site du label (`/records/`)
+
+- Site statique, sans build : `records/index.html`, `styles.css`, `favicon.svg`. Polices locales dans `fonts/` (Big Shoulders Display, Instrument Serif, Hanken Grotesk, Archivo Black, licence OFL).
 - Direction visuelle « Cinema » : fond noir, texte crème, vidéo plein écran à l'ouverture, grille de sets inspirée de Boiler Room. Ne pas changer de direction sans que Samuel le demande.
-- Sections dans l'ordre (mélange du 20 octobre 2026 entre l'ancien site et la refonte pour la SAT) : hero, LA VILLLA (`#soirees`), Le son spatial (`#recherche`), Musique (`#musique`), Les collaborateurs (`#collaborateurs`, ajoutée le 21 octobre 2026 ; on ne nomme que les personnes que Samuel a confirmées), Le studio (`#studio`), Villagomez et crédits (`#villagomez`), Les sets (`#sets`), Contact (`#contact`).
+- Sections dans l'ordre : hero, renvoi vers la viLLLa (`#soirees`), Le son spatial (`#recherche`), Musique (`#musique`), Les collaborateurs (`#collaborateurs` ; on ne nomme que les personnes que Samuel a confirmées), Le studio (`#studio`), Villagomez et crédits (`#villagomez`), Live 360 (`#live`), Contact (`#contact`). Les soirées et les sets sont passés sur `/lavillla/`.
 - Courriel de contact : info@villagomez.io.
-- Les noms à respecter : **LA VILLLA** (trois L) pour le collectif et les soirées DISCO, VINYL, ROOFTOP et GOMEZ ; **Villagomez Records** pour le label.
+- Les noms à respecter : **la viLLLa** (« la » en minuscules, trois L majuscules) pour le collectif et ses soirées Disco, Vinyl, Rooftop et Gomez ; **Villagomez Records** pour le label (Villagomez en un mot) ; **San Fronteras** pour le média.
 - Aucune IA générative dans la musique : ne jamais écrire le contraire.
 
 ## Règles de contenu
