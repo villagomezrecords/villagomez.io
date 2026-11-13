@@ -15,6 +15,7 @@
   <meta name="theme-color" content="#0b0a0a">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/fonts/archivo-black.woff2" as="font" type="font/woff2" crossorigin>
+  <script>(function(){var t=null;try{t=sessionStorage.getItem('lv-mode');}catch(e){}var h=new Date().getHours();var nuit=t?t==='nuit':(h>=18||h<6);if(!nuit){document.documentElement.classList.add('jour');}})();</script>
   <style>
     @font-face { font-family: "Archivo Black"; src: url("/fonts/archivo-black.woff2") format("woff2"); font-display: swap; }
     @font-face { font-family: "Big Shoulders"; src: url("/fonts/big-shoulders-display.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
@@ -29,6 +30,18 @@
       --line: #2a2626;
       --rose: #ff2e93;
       --lime: #c6dd36;
+      --lime-bg: #c6dd36;
+      --on-accent: #0b0a0a;
+      --soft: #d6cfc6;
+      --tile-a: #4a1430;
+      --tile-b: #120f0f;
+      --dots: rgba(244,239,232,.22);
+      --arc: #c6dd36;
+      --wheel: rgba(255,255,255,.04);
+      --st2: #f4efe8;
+      --off: #3d3833;
+      --top-bg: rgba(11,10,10,.82);
+      --sky: #2a0d1d;
       --head: "Archivo Black", "Arial Black", sans-serif;
       --meta: "Big Shoulders", "Arial Narrow", sans-serif;
       --body: "Hanken Grotesk", system-ui, sans-serif;
@@ -36,6 +49,27 @@
       --gutter: clamp(1rem, 4vw, 2.75rem);
       --section: clamp(4rem, 9vw, 7.5rem);
     }
+    /* Jour : l'esprit Piknic, Latin Lime Lovers en plein soleil */
+    :root.jour {
+      --night: #dcf14a;
+      --night-2: #d0e63f;
+      --white: #141212;
+      --dim: #4a5214;
+      --line: rgba(20,18,18,.16);
+      --lime: #d10f6e;
+      --lime-bg: #ffffff;
+      --soft: #22260d;
+      --tile-a: #ffffff;
+      --tile-b: #eef7b0;
+      --dots: rgba(20,18,18,.28);
+      --arc: #141212;
+      --wheel: rgba(20,18,18,.06);
+      --st2: #ffffff;
+      --off: rgba(20,18,18,.28);
+      --top-bg: rgba(220,241,74,.9);
+      --sky: #ffe45c;
+    }
+    body { transition: background .4s, color .4s; }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -46,26 +80,26 @@
     .wrap { width: 100%; max-width: 88rem; margin-inline: auto; padding-inline: var(--gutter); }
 
     /* Barre du haut */
-    .top { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem var(--gutter); background: linear-gradient(var(--night), rgba(11,10,10,.82)); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
+    .top { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem var(--gutter); background: var(--top-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(8px); }
     .top__logo img { height: 1.6rem; width: auto; }
     .top nav { display: flex; gap: clamp(.9rem, 2vw, 1.8rem); font: 600 1rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
     .top nav a { text-decoration: none; color: var(--dim); }
     .top nav a:hover { color: var(--lime); }
-    .top nav .top__cta { color: var(--night); background: var(--rose); padding: .45rem .8rem; }
-    .top nav .top__cta:hover { color: var(--night); background: var(--lime); }
+    .top nav .top__cta { color: var(--on-accent); background: var(--rose); padding: .45rem .8rem; }
+    .top nav .top__cta:hover { color: var(--on-accent); background: var(--lime-bg); }
     @media (max-width: 760px) { .top nav a:not(.top__cta) { display: none; } }
 
     /* Une */
     .hero { position: relative; min-height: 100svh; display: grid; align-items: end; padding: 7rem 0 clamp(2rem, 5vw, 3.5rem); overflow: hidden; }
     .hero__bg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 70% 30%, #3a1027, var(--night) 70%); }
     .hero__bg img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.08) contrast(1.05); }
-    .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,10,10,.25) 0%, rgba(11,10,10,.15) 35%, rgba(11,10,10,.92) 82%, var(--night) 100%); }
+    .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, transparent 60%, var(--night) 100%); }
     .hero .wrap { position: relative; }
     .kicker { font: 600 .95rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; color: var(--lime); margin: 0 0 1.4rem; }
     .hero h1 { margin: 0; line-height: 0; }
     .hero h1 img { width: min(44rem, 82vw); height: auto; }
     .hero__slogan { margin: 1.4rem 0 0; font: italic 400 clamp(1.6rem, 3.4vw, 2.6rem)/1.1 var(--serif); }
-    .hero__lede { max-width: 34rem; margin: 1rem 0 0; color: #d6cfc6; font-size: 1.05rem; }
+    .hero__lede { max-width: 34rem; margin: 1rem 0 0; color: var(--soft); font-size: 1.05rem; }
     .hero__credit { position: absolute; right: var(--gutter); bottom: 1rem; margin: 0; font-size: .72rem; color: var(--dim); }
     .hero__credit a { text-decoration: none; }
 
@@ -98,7 +132,7 @@
 
     /* Formats de soirées */
     .formats { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.75rem, 1.6vw, 1.25rem); }
-    .format figure { margin: 0 0 1rem; aspect-ratio: 4 / 5; overflow: hidden; background: linear-gradient(160deg, #2b0f1e, #11100f); }
+    .format figure { margin: 0 0 1rem; aspect-ratio: 4 / 5; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); }
     .format figure img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
     .format:hover figure img { transform: scale(1.04); }
     .format h3 { margin: 0; font: 400 1.4rem/1 var(--head); text-transform: uppercase; }
@@ -109,14 +143,14 @@
     /* Artistes, façon ADE */
     .artists { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
     .artist { background: var(--night); padding: 1.4rem; display: flex; flex-direction: column; gap: .35rem; min-height: 14rem; }
-    .artist figure { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; overflow: hidden; background: linear-gradient(140deg, #1d1a1a, #2b0f1e); }
+    .artist figure { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); }
     .artist figure img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .4s; }
     .artist:hover figure img { filter: none; }
     .artist__role { font: 600 .82rem/1 var(--meta); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); }
     .artist h3 { margin: 0; font: 400 1.45rem/1.05 var(--head); text-transform: uppercase; }
     .artist__from { margin: 0; color: var(--dim); font-size: .92rem; }
     .artist__played { margin: auto 0 0; padding-top: .9rem; border-top: 1px solid var(--line); font-size: .85rem; color: var(--dim); }
-    .artist__init { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; display: grid; place-items: center; background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); font: 400 clamp(3rem, 7vw, 5rem)/1 var(--head); color: var(--rose); letter-spacing: -.04em; }
+    .artist__init { margin: -1.4rem -1.4rem 1rem; aspect-ratio: 1; display: grid; place-items: center; background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); font: 400 clamp(3rem, 7vw, 5rem)/1 var(--head); color: var(--rose); letter-spacing: -.04em; }
     .artist--call { grid-column: 1 / -1; min-height: 0; background: var(--rose); color: var(--night); display: grid; grid-template-columns: 1fr 1.4fr auto; align-items: center; gap: 1rem 2rem; }
     @media (max-width: 760px) { .artist--call { grid-template-columns: 1fr; } }
     .artist--call h3 { font-size: 1.35rem; }
@@ -128,9 +162,9 @@
     /* Sets */
     .sets { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.75rem, 1.6vw, 1.25rem); }
     .set { position: relative; }
-    .set figure { margin: 0 0 .9rem; aspect-ratio: 1; overflow: hidden; background: linear-gradient(140deg, #1d1a1a, #2b0f1e); }
+    .set figure { margin: 0 0 .9rem; aspect-ratio: 1; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); }
     .set figure img { width: 100%; height: 100%; object-fit: cover; }
-    .set__badge { position: absolute; top: .7rem; left: .7rem; background: var(--lime); color: var(--night); font: 700 .8rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .35rem .55rem; }
+    .set__badge { position: absolute; top: .7rem; left: .7rem; background: var(--lime-bg); color: var(--on-accent); font: 700 .8rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .35rem .55rem; }
     .set h3 { margin: 0; font: 400 1.25rem/1.1 var(--head); text-transform: uppercase; }
     .set p { margin: .3rem 0 0; color: var(--dim); font-size: .92rem; }
     .set a { color: var(--lime); }
@@ -146,7 +180,7 @@
     /* Contact */
     .contact h2 { margin: 0; font: 400 clamp(2.2rem, 7vw, 5.5rem)/.92 var(--head); text-transform: uppercase; }
     .contact h2 em { font: italic 400 1em/1 var(--serif); text-transform: none; color: var(--lime); }
-    .contact__lede { max-width: 36rem; color: #d6cfc6; margin: 1.5rem 0; }
+    .contact__lede { max-width: 36rem; color: var(--soft); margin: 1.5rem 0; }
     .contact__mail { font: 400 clamp(1.2rem, 3vw, 2rem)/1.2 var(--head); color: var(--rose); text-decoration: none; word-break: break-all; }
     .contact__mail:hover { color: var(--lime); }
     .socials { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem 1.6rem; margin: 2rem 0 0; padding: 0; font: 600 1rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
@@ -167,15 +201,15 @@
 
     /* Air Villagomez : la carte d'ouverture */
     .hero { align-items: stretch; grid-template-rows: 1fr auto; padding-top: 5rem; }
-    .hero__bg { background: radial-gradient(70% 60% at 32% 30%, #2a0d1d 0%, var(--night) 70%); }
+    .hero__bg { background: radial-gradient(70% 60% at 32% 30%, var(--sky) 0%, var(--night) 70%); }
     .hero__map { position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
     .atlas { width: 100%; max-width: 78rem; height: auto; max-height: 54svh; display: block; overflow: visible; flex-shrink: 0; }
-    .atlas__land { fill: none; stroke: rgba(244,239,232,.22); stroke-width: 3.2; stroke-linecap: round; }
+    .atlas__land { fill: none; stroke: var(--dots); stroke-width: 3.2; stroke-linecap: round; }
     .atlas__arr { fill: none; stroke: var(--rose); stroke-width: 1.6; }
     .atlas__city { fill: var(--rose); }
     .atlas__dep { fill: none; stroke-width: 1.8; stroke-dasharray: 3 6; animation: flow 1.6s linear infinite; }
     @keyframes flow { to { stroke-dashoffset: -18; } }
-    .atlas__q { font: 700 14px var(--meta); fill: rgba(198,221,54,.55); animation: blink 2.4s ease-in-out infinite; }
+    .atlas__q { font: 700 14px var(--meta); fill: var(--arc); fill-opacity: .6; animation: blink 2.4s ease-in-out infinite; }
     @keyframes blink { 50% { fill-opacity: .25; } }
     .atlas__hq { fill: var(--lime); }
     .atlas__ping { fill: none; stroke: var(--lime); stroke-width: 1.5; transform-origin: center; transform-box: fill-box; animation: ping 2.4s ease-out infinite; }
@@ -212,15 +246,15 @@
 
     /* la viLLLa Radio, façon GTA */
     .radio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-    .wheel { position: relative; width: min(30rem, 100%); aspect-ratio: 1; margin-inline: auto; border-radius: 50%; background: radial-gradient(circle, rgba(11,10,10,.2) 34%, rgba(255,255,255,.04) 35%, rgba(255,255,255,.04) 64%, transparent 65%); }
+    .wheel { position: relative; width: min(30rem, 100%); aspect-ratio: 1; margin-inline: auto; border-radius: 50%; background: radial-gradient(circle, rgba(11,10,10,.2) 34%, var(--wheel) 35%, var(--wheel) 64%, transparent 65%); }
     .wheel::before { content: ""; position: absolute; inset: 17%; border-radius: 50%; border: 1px solid var(--line); }
-    .st-btn { position: absolute; width: 26%; aspect-ratio: 1; border-radius: 50%; border: 2px solid transparent; transform: translate(-50%, -50%); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; font: 400 clamp(.62rem, 1.6vw, .8rem)/1 var(--head); text-transform: uppercase; color: var(--night); transition: transform .25s, box-shadow .25s, border-color .25s, filter .25s; filter: saturate(.7) brightness(.8); }
+    .st-btn { position: absolute; width: 26%; aspect-ratio: 1; border-radius: 50%; border: 2px solid transparent; transform: translate(-50%, -50%); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; font: 400 clamp(.62rem, 1.6vw, .8rem)/1 var(--head); text-transform: uppercase; color: var(--on-accent); transition: transform .25s, box-shadow .25s, border-color .25s, filter .25s; filter: saturate(.7) brightness(.8); }
     .st-btn small { display: block; margin-top: .25rem; font: 700 .7em/1 var(--meta); letter-spacing: .14em; }
     .st-btn:hover, .st-btn[aria-pressed="true"] { transform: translate(-50%, -50%) scale(1.12); filter: none; border-color: var(--white); box-shadow: 0 0 0 6px rgba(244,239,232,.08), 0 0 40px var(--glow); }
     .st-btn:nth-of-type(1) { top: 15%; left: 50%; background: var(--rose); --glow: rgba(255,46,147,.55); }
-    .st-btn:nth-of-type(2) { top: 50%; left: 85%; background: #f4efe8; --glow: rgba(244,239,232,.4); }
+    .st-btn:nth-of-type(2) { top: 50%; left: 85%; background: var(--st2); --glow: rgba(244,239,232,.4); }
     .st-btn:nth-of-type(3) { top: 85%; left: 50%; background: #ff8a3d; --glow: rgba(255,138,61,.5); }
-    .st-btn:nth-of-type(4) { top: 50%; left: 15%; background: var(--lime); --glow: rgba(198,221,54,.5); }
+    .st-btn:nth-of-type(4) { top: 50%; left: 15%; background: var(--lime-bg); --glow: rgba(198,221,54,.5); }
     .wheel__core { position: absolute; inset: 31%; border-radius: 50%; display: grid; place-content: center; text-align: center; gap: .35rem; padding: .5rem; }
     .wheel__core img { width: 70%; margin: 0 auto; height: auto; }
     .wheel__now { font: 700 clamp(.7rem, 1.8vw, .9rem)/1.1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
@@ -231,8 +265,8 @@
     @media (prefers-reduced-motion: reduce) { .wheel__eq i { animation: none; height: 60%; } }
     .radio__info h3 { margin: 0; font: 400 clamp(1.6rem, 3.6vw, 2.6rem)/1 var(--head); text-transform: uppercase; }
     .radio__freq { margin: .6rem 0 0; font: 700 1rem/1 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--lime); }
-    .radio__desc { color: #d6cfc6; margin: 1rem 0 0; max-width: 30rem; }
-    .radio__air { display: inline-block; margin-top: 1.4rem; font: 700 .85rem/1 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--night); background: var(--lime); padding: .5rem .7rem; }
+    .radio__desc { color: var(--soft); margin: 1rem 0 0; max-width: 30rem; }
+    .radio__air { display: inline-block; margin-top: 1.4rem; font: 700 .85rem/1 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--on-accent); background: var(--lime-bg); padding: .5rem .7rem; }
     .radio__links { margin: 1.2rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font: 600 .95rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
     .radio__links a { color: var(--dim); text-decoration: none; } .radio__links a:hover { color: var(--lime); }
     .prog { margin-top: clamp(2.5rem, 5vw, 4rem); }
@@ -254,29 +288,29 @@
     .az { display: flex; flex-wrap: wrap; gap: .15rem; font: 700 .95rem/1 var(--meta); }
     .az a, .az span { width: 1.45rem; text-align: center; padding: .3rem 0; }
     .az a { color: var(--lime); text-decoration: none; }
-    .az a:hover { background: var(--lime); color: var(--night); }
-    .az span { color: #3d3833; }
+    .az a:hover { background: var(--lime-bg); color: var(--on-accent); }
+    .az span { color: var(--off); }
     .agrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: clamp(1rem, 2vw, 1.6rem) clamp(.75rem, 1.6vw, 1.25rem); }
     .agrid li[hidden] { display: none; }
     .ac { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: .5rem; width: 100%; cursor: pointer; }
     .ac:focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
-    .ac__img { display: block; aspect-ratio: 1; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); }
+    .ac__img { display: block; aspect-ratio: 1; overflow: hidden; background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); }
     .ac__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .4s, transform .6s; }
     .ac:hover .ac__img img, .ac:focus-visible .ac__img img { filter: none; transform: scale(1.04); }
     .ac__img--init { display: grid; place-items: center; font: 400 clamp(3rem, 6vw, 4.5rem)/1 var(--head); color: var(--rose); letter-spacing: -.04em; }
     .ac__name { font: 400 1.35rem/1.05 var(--head); text-transform: uppercase; }
     .cc { font-family: var(--meta); font-weight: 700; font-size: .8em; letter-spacing: .06em; color: var(--rose); }
     .ac__tags { font: 600 .85rem/1.2 var(--meta); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
-    .agrid__call a { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; width: 100%; aspect-ratio: 1; padding: 1.3rem; background: var(--rose); color: var(--night); text-decoration: none; }
+    .agrid__call a { box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; width: 100%; aspect-ratio: 1; padding: 1.3rem; background: var(--rose); color: var(--on-accent); text-decoration: none; }
     .agrid__call b { font: 400 1.4rem/1.05 var(--head); text-transform: uppercase; }
     .agrid__call em { font: 700 1rem/1 var(--meta); font-style: normal; letter-spacing: .14em; text-transform: uppercase; }
-    .agrid__call a:hover { background: var(--lime); }
+    .agrid__call a:hover { background: var(--lime-bg); }
 
     /* Fiche d'artiste */
     .ad { padding: 0; border: 0; background: var(--night); color: var(--white); width: min(64rem, 94vw); max-height: 90svh; }
     .ad::backdrop { background: rgba(5,4,4,.82); backdrop-filter: blur(4px); }
     .ad__in { display: grid; grid-template-columns: 1fr 1.15fr; min-height: 100%; }
-    .ad__img { background: radial-gradient(90% 90% at 30% 20%, #4a1430, #120f0f 75%); display: grid; place-items: center; min-height: 20rem; overflow: hidden; }
+    .ad__img { background: radial-gradient(90% 90% at 30% 20%, var(--tile-a), var(--tile-b) 75%); display: grid; place-items: center; min-height: 20rem; overflow: hidden; }
     .ad__img img { width: 100%; height: 100%; object-fit: cover; }
     .ad__img span { font: 400 clamp(5rem, 12vw, 9rem)/1 var(--head); color: var(--rose); }
     .ad__txt { position: relative; padding: clamp(1.4rem, 3vw, 2.4rem); overflow-y: auto; }
@@ -290,7 +324,7 @@
     .ad__meta div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .5rem 0; border-top: 1px solid var(--line); }
     .ad__meta dt { font: 600 .82rem/1.4 var(--meta); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
     .ad__meta dd { margin: 0; }
-    .ad__bio { margin: 1.4rem 0 0; color: #d6cfc6; }
+    .ad__bio { margin: 1.4rem 0 0; color: var(--soft); }
     .ad__bio--soon { color: var(--dim); font: italic 400 1.2rem/1.3 var(--serif); }
     .ad h4 { margin: 1.8rem 0 .6rem; font: 700 .9rem/1 var(--meta); letter-spacing: .22em; text-transform: uppercase; }
     .ap { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--white); }
@@ -301,6 +335,16 @@
     .ad__links { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.4rem 0 0; font: 700 .95rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
     .ad__links a { color: var(--rose); text-decoration: none; } .ad__links a:hover { color: var(--lime); }
     @media (max-width: 760px) { .ad__in { grid-template-columns: 1fr; } .ad__img { min-height: 0; aspect-ratio: 4 / 3; } .ap li { grid-template-columns: 3rem 1fr; } .ap__n { grid-column: 2; text-align: left; } }
+
+    /* Bascule jour / nuit */
+    .mode { display: inline-flex; border: 1px solid var(--line); }
+    .mode button { background: none; border: 0; color: var(--dim); font: 700 .8rem/1 var(--meta); letter-spacing: .16em; text-transform: uppercase; padding: .45rem .6rem; cursor: pointer; }
+    .mode button[aria-pressed="true"] { background: var(--white); color: var(--night); }
+    .top nav { align-items: center; }
+    @media (max-width: 760px) { .top nav .mode { display: inline-flex; } }
+    :root.jour .ad::backdrop { background: rgba(20,18,18,.55); }
+    :root.jour .atlas__ping { stroke: var(--rose); }
+    :root.jour .atlas__hq { fill: var(--rose); }
   </style>
 </head>
 <body>
@@ -313,6 +357,7 @@
       <a href="#soirees">Soirées</a>
       <a href="#artistes">Artistes</a>
       <a href="#radio">Radio</a>
+      <span class="mode" role="group" aria-label="Jour ou nuit"><button type="button" data-mode="jour" aria-pressed="false">Jour</button><button type="button" data-mode="nuit" aria-pressed="true">Nuit</button></span>
       <a class="top__cta" href="#contact">Contact</a>
     </nav>
   </header>
@@ -324,9 +369,9 @@
       <div class="hero__map">
 <svg class="atlas" viewBox="0 0 1000 480" role="img" aria-labelledby="atlas-t"><title id="atlas-t">Carte du monde Air Villagomez : Montréal au centre, un invité arrivé de France, et des vols à venir qui partent de Montréal vers des destinations encore secrètes.</title>
 <defs>
-<linearGradient id="fade0" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="401" y2="185.2"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
-<linearGradient id="fade1" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="338.0" y2="214.0"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
-<linearGradient id="fade2" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="120.1" y2="159.9"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade0" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="401" y2="185.2"><stop offset="0" style="stop-color:var(--arc)"/><stop offset=".55" style="stop-color:var(--arc)" stop-opacity=".7"/><stop offset="1" style="stop-color:var(--arc)" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade1" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="338.0" y2="214.0"><stop offset="0" style="stop-color:var(--arc)"/><stop offset=".55" style="stop-color:var(--arc)" stop-opacity=".7"/><stop offset="1" style="stop-color:var(--arc)" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade2" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="120.1" y2="159.9"><stop offset="0" style="stop-color:var(--arc)"/><stop offset=".55" style="stop-color:var(--arc)" stop-opacity=".7"/><stop offset="1" style="stop-color:var(--arc)" stop-opacity="0"/></linearGradient>
 </defs>
 <path class="atlas__land" d="M14.5 6.0h0M329.0 6.0h0M337.5 6.0h0M346.0 6.0h0M354.5 6.0h0M371.5 6.0h0M380.0 6.0h0M388.5 6.0h0M397.0 6.0h0M405.5 6.0h0M414.0 6.0h0M422.5 6.0h0M431.0 6.0h0M439.5 6.0h0M448.0 6.0h0M456.5 6.0h0M524.5 6.0h0M533.0 6.0h0M694.5 6.0h0M966.5 6.0h0M983.5 6.0h0M992.0 6.0h0M14.5 40.0h0M329.0 40.0h0M337.5 40.0h0M354.5 40.0h0M363.0 40.0h0M380.0 40.0h0M388.5 40.0h0M397.0 40.0h0M405.5 40.0h0M414.0 40.0h0M422.5 40.0h0M431.0 40.0h0M439.5 40.0h0M448.0 40.0h0M456.5 40.0h0M533.0 40.0h0M541.5 40.0h0M669.0 40.0h0M677.5 40.0h0M992.0 40.0h0M6.0 48.5h0M14.5 48.5h0M23.0 48.5h0M269.5 48.5h0M320.5 48.5h0M329.0 48.5h0M337.5 48.5h0M346.0 48.5h0M371.5 48.5h0M380.0 48.5h0M388.5 48.5h0M397.0 48.5h0M405.5 48.5h0M414.0 48.5h0M422.5 48.5h0M431.0 48.5h0M439.5 48.5h0M448.0 48.5h0M456.5 48.5h0M626.5 48.5h0M694.5 48.5h0M703.0 48.5h0M711.5 48.5h0M958.0 48.5h0M6.0 57.0h0M14.5 57.0h0M31.5 57.0h0M252.5 57.0h0M261.0 57.0h0M286.5 57.0h0M303.5 57.0h0M312.0 57.0h0M337.5 57.0h0M346.0 57.0h0M397.0 57.0h0M405.5 57.0h0M414.0 57.0h0M422.5 57.0h0M431.0 57.0h0M439.5 57.0h0M448.0 57.0h0M609.5 57.0h0M660.5 57.0h0M669.0 57.0h0M677.5 57.0h0M686.0 57.0h0M694.5 57.0h0M703.0 57.0h0M711.5 57.0h0M720.0 57.0h0M728.5 57.0h0M745.5 57.0h0M754.0 57.0h0M975.0 57.0h0M6.0 65.5h0M14.5 65.5h0M23.0 65.5h0M31.5 65.5h0M40.0 65.5h0M48.5 65.5h0M57.0 65.5h0M65.5 65.5h0M74.0 65.5h0M82.5 65.5h0M167.5 65.5h0M176.0 65.5h0M184.5 65.5h0M193.0 65.5h0M201.5 65.5h0M244.0 65.5h0M261.0 65.5h0M269.5 65.5h0M278.0 65.5h0M286.5 65.5h0M303.5 65.5h0M329.0 65.5h0M346.0 65.5h0M354.5 65.5h0M388.5 65.5h0M397.0 65.5h0M405.5 65.5h0M414.0 65.5h0M422.5 65.5h0M431.0 65.5h0M439.5 65.5h0M448.0 65.5h0M541.5 65.5h0M550.0 65.5h0M558.5 65.5h0M643.5 65.5h0M652.0 65.5h0M660.5 65.5h0M669.0 65.5h0M677.5 65.5h0M686.0 65.5h0M694.5 65.5h0M703.0 65.5h0M711.5 65.5h0M720.0 65.5h0M728.5 65.5h0M737.0 65.5h0M745.5 65.5h0M754.0 65.5h0M762.5 65.5h0M771.0 65.5h0M779.5 65.5h0M788.0 65.5h0M796.5 65.5h0M805.0 65.5h0M813.5 65.5h0M822.0 65.5h0M907.0 65.5h0M915.5 65.5h0M924.0 65.5h0M932.5 65.5h0M941.0 65.5h0M975.0 65.5h0M6.0 74.0h0M14.5 74.0h0M23.0 74.0h0M31.5 74.0h0M40.0 74.0h0M48.5 74.0h0M57.0 74.0h0M65.5 74.0h0M74.0 74.0h0M82.5 74.0h0M91.0 74.0h0M99.5 74.0h0M108.0 74.0h0M116.5 74.0h0M125.0 74.0h0M133.5 74.0h0M159.0 74.0h0M167.5 74.0h0M176.0 74.0h0M184.5 74.0h0M193.0 74.0h0M201.5 74.0h0M210.0 74.0h0M218.5 74.0h0M227.0 74.0h0M235.5 74.0h0M244.0 74.0h0M252.5 74.0h0M261.0 74.0h0M269.5 74.0h0M278.0 74.0h0M286.5 74.0h0M295.0 74.0h0M303.5 74.0h0M312.0 74.0h0M320.5 74.0h0M346.0 74.0h0M354.5 74.0h0M363.0 74.0h0M388.5 74.0h0M397.0 74.0h0M405.5 74.0h0M414.0 74.0h0M422.5 74.0h0M533.0 74.0h0M541.5 74.0h0M550.0 74.0h0M558.5 74.0h0M567.0 74.0h0M575.5 74.0h0M584.0 74.0h0M601.0 74.0h0M609.5 74.0h0M618.0 74.0h0M626.5 74.0h0M635.0 74.0h0M643.5 74.0h0M660.5 74.0h0M669.0 74.0h0M677.5 74.0h0M686.0 74.0h0M694.5 74.0h0M703.0 74.0h0M711.5 74.0h0M720.0 74.0h0M728.5 74.0h0M737.0 74.0h0M745.5 74.0h0M754.0 74.0h0M762.5 74.0h0M771.0 74.0h0M779.5 74.0h0M788.0 74.0h0M796.5 74.0h0M805.0 74.0h0M813.5 74.0h0M822.0 74.0h0M830.5 74.0h0M839.0 74.0h0M847.5 74.0h0M856.0 74.0h0M864.5 74.0h0M873.0 74.0h0M881.5 74.0h0M890.0 74.0h0M924.0 74.0h0M932.5 74.0h0M941.0 74.0h0M949.5 74.0h0M958.0 74.0h0M966.5 74.0h0M975.0 74.0h0M983.5 74.0h0M992.0 74.0h0M6.0 82.5h0M14.5 82.5h0M23.0 82.5h0M31.5 82.5h0M40.0 82.5h0M48.5 82.5h0M57.0 82.5h0M65.5 82.5h0M74.0 82.5h0M82.5 82.5h0M91.0 82.5h0M99.5 82.5h0M159.0 82.5h0M167.5 82.5h0M176.0 82.5h0M184.5 82.5h0M193.0 82.5h0M201.5 82.5h0M210.0 82.5h0M218.5 82.5h0M227.0 82.5h0M235.5 82.5h0M244.0 82.5h0M252.5 82.5h0M261.0 82.5h0M269.5 82.5h0M278.0 82.5h0M286.5 82.5h0M295.0 82.5h0M303.5 82.5h0M312.0 82.5h0M346.0 82.5h0M354.5 82.5h0M388.5 82.5h0M397.0 82.5h0M405.5 82.5h0M456.5 82.5h0M524.5 82.5h0M533.0 82.5h0M541.5 82.5h0M550.0 82.5h0M558.5 82.5h0M567.0 82.5h0M575.5 82.5h0M584.0 82.5h0M592.5 82.5h0M601.0 82.5h0M609.5 82.5h0M618.0 82.5h0M626.5 82.5h0M635.0 82.5h0M643.5 82.5h0M652.0 82.5h0M660.5 82.5h0M669.0 82.5h0M677.5 82.5h0M686.0 82.5h0M694.5 82.5h0M703.0 82.5h0M711.5 82.5h0M720.0 82.5h0M728.5 82.5h0M737.0 82.5h0M745.5 82.5h0M754.0 82.5h0M762.5 82.5h0M771.0 82.5h0M779.5 82.5h0M788.0 82.5h0M796.5 82.5h0M805.0 82.5h0M813.5 82.5h0M822.0 82.5h0M830.5 82.5h0M839.0 82.5h0M847.5 82.5h0M856.0 82.5h0M864.5 82.5h0M873.0 82.5h0M881.5 82.5h0M932.5 82.5h0M941.0 82.5h0M949.5 82.5h0M958.0 82.5h0M966.5 82.5h0M975.0 82.5h0M983.5 82.5h0M992.0 82.5h0M6.0 91.0h0M14.5 91.0h0M23.0 91.0h0M31.5 91.0h0M40.0 91.0h0M57.0 91.0h0M65.5 91.0h0M74.0 91.0h0M133.5 91.0h0M142.0 91.0h0M150.5 91.0h0M159.0 91.0h0M167.5 91.0h0M176.0 91.0h0M184.5 91.0h0M193.0 91.0h0M201.5 91.0h0M210.0 91.0h0M218.5 91.0h0M227.0 91.0h0M235.5 91.0h0M244.0 91.0h0M252.5 91.0h0M261.0 91.0h0M269.5 91.0h0M278.0 91.0h0M286.5 91.0h0M329.0 91.0h0M337.5 91.0h0M516.0 91.0h0M524.5 91.0h0M533.0 91.0h0M550.0 91.0h0M558.5 91.0h0M567.0 91.0h0M575.5 91.0h0M584.0 91.0h0M592.5 91.0h0M601.0 91.0h0M609.5 91.0h0M618.0 91.0h0M626.5 91.0h0M635.0 91.0h0M643.5 91.0h0M652.0 91.0h0M660.5 91.0h0M669.0 91.0h0M677.5 91.0h0M686.0 91.0h0M694.5 91.0h0M703.0 91.0h0M711.5 91.0h0M720.0 91.0h0M728.5 91.0h0M737.0 91.0h0M745.5 91.0h0M754.0 91.0h0M762.5 91.0h0M771.0 91.0h0M779.5 91.0h0M788.0 91.0h0M796.5 91.0h0M805.0 91.0h0M813.5 91.0h0M822.0 91.0h0M830.5 91.0h0M839.0 91.0h0M864.5 91.0h0M873.0 91.0h0M932.5 91.0h0M941.0 91.0h0M949.5 91.0h0M958.0 91.0h0M966.5 91.0h0M975.0 91.0h0M983.5 91.0h0M992.0 91.0h0M40.0 99.5h0M48.5 99.5h0M201.5 99.5h0M210.0 99.5h0M218.5 99.5h0M227.0 99.5h0M235.5 99.5h0M244.0 99.5h0M252.5 99.5h0M261.0 99.5h0M269.5 99.5h0M278.0 99.5h0M286.5 99.5h0M329.0 99.5h0M337.5 99.5h0M346.0 99.5h0M354.5 99.5h0M490.5 99.5h0M533.0 99.5h0M558.5 99.5h0M567.0 99.5h0M575.5 99.5h0M584.0 99.5h0M592.5 99.5h0M601.0 99.5h0M609.5 99.5h0M618.0 99.5h0M626.5 99.5h0M635.0 99.5h0M643.5 99.5h0M652.0 99.5h0M660.5 99.5h0M669.0 99.5h0M677.5 99.5h0M686.0 99.5h0M694.5 99.5h0M703.0 99.5h0M711.5 99.5h0M720.0 99.5h0M728.5 99.5h0M737.0 99.5h0M745.5 99.5h0M754.0 99.5h0M762.5 99.5h0M771.0 99.5h0M779.5 99.5h0M788.0 99.5h0M796.5 99.5h0M805.0 99.5h0M813.5 99.5h0M856.0 99.5h0M864.5 99.5h0M31.5 108.0h0M40.0 108.0h0M201.5 108.0h0M210.0 108.0h0M218.5 108.0h0M227.0 108.0h0M235.5 108.0h0M244.0 108.0h0M252.5 108.0h0M261.0 108.0h0M269.5 108.0h0M278.0 108.0h0M286.5 108.0h0M295.0 108.0h0M303.5 108.0h0M320.5 108.0h0M329.0 108.0h0M337.5 108.0h0M346.0 108.0h0M354.5 108.0h0M363.0 108.0h0M482.0 108.0h0M490.5 108.0h0M550.0 108.0h0M558.5 108.0h0M567.0 108.0h0M575.5 108.0h0M584.0 108.0h0M592.5 108.0h0M601.0 108.0h0M609.5 108.0h0M618.0 108.0h0M626.5 108.0h0M635.0 108.0h0M643.5 108.0h0M652.0 108.0h0M660.5 108.0h0M669.0 108.0h0M677.5 108.0h0M686.0 108.0h0M694.5 108.0h0M703.0 108.0h0M711.5 108.0h0M720.0 108.0h0M728.5 108.0h0M737.0 108.0h0M745.5 108.0h0M754.0 108.0h0M762.5 108.0h0M771.0 108.0h0M779.5 108.0h0M788.0 108.0h0M796.5 108.0h0M805.0 108.0h0M864.5 108.0h0M873.0 108.0h0M23.0 116.5h0M201.5 116.5h0M210.0 116.5h0M218.5 116.5h0M227.0 116.5h0M235.5 116.5h0M244.0 116.5h0M252.5 116.5h0M261.0 116.5h0M269.5 116.5h0M278.0 116.5h0M286.5 116.5h0M295.0 116.5h0M303.5 116.5h0M320.5 116.5h0M329.0 116.5h0M337.5 116.5h0M346.0 116.5h0M354.5 116.5h0M363.0 116.5h0M482.0 116.5h0M490.5 116.5h0M499.0 116.5h0M516.0 116.5h0M524.5 116.5h0M533.0 116.5h0M541.5 116.5h0M550.0 116.5h0M558.5 116.5h0M567.0 116.5h0M575.5 116.5h0M584.0 116.5h0M592.5 116.5h0M601.0 116.5h0M609.5 116.5h0M618.0 116.5h0M626.5 116.5h0M635.0 116.5h0M643.5 116.5h0M652.0 116.5h0M660.5 116.5h0M669.0 116.5h0M677.5 116.5h0M686.0 116.5h0M694.5 116.5h0M703.0 116.5h0M711.5 116.5h0M720.0 116.5h0M728.5 116.5h0M737.0 116.5h0M745.5 116.5h0M754.0 116.5h0M762.5 116.5h0M771.0 116.5h0M779.5 116.5h0M788.0 116.5h0M796.5 116.5h0M805.0 116.5h0M813.5 116.5h0M822.0 116.5h0M830.5 116.5h0M201.5 125.0h0M210.0 125.0h0M218.5 125.0h0M227.0 125.0h0M235.5 125.0h0M244.0 125.0h0M252.5 125.0h0M261.0 125.0h0M269.5 125.0h0M278.0 125.0h0M286.5 125.0h0M295.0 125.0h0M303.5 125.0h0M312.0 125.0h0M320.5 125.0h0M329.0 125.0h0M363.0 125.0h0M371.5 125.0h0M499.0 125.0h0M507.5 125.0h0M516.0 125.0h0M524.5 125.0h0M533.0 125.0h0M541.5 125.0h0M550.0 125.0h0M558.5 125.0h0M567.0 125.0h0M575.5 125.0h0M584.0 125.0h0M592.5 125.0h0M601.0 125.0h0M609.5 125.0h0M618.0 125.0h0M626.5 125.0h0M635.0 125.0h0M643.5 125.0h0M652.0 125.0h0M660.5 125.0h0M669.0 125.0h0M677.5 125.0h0M686.0 125.0h0M694.5 125.0h0M703.0 125.0h0M711.5 125.0h0M720.0 125.0h0M728.5 125.0h0M737.0 125.0h0M745.5 125.0h0M754.0 125.0h0M762.5 125.0h0M771.0 125.0h0M779.5 125.0h0M788.0 125.0h0M796.5 125.0h0M805.0 125.0h0M813.5 125.0h0M822.0 125.0h0M830.5 125.0h0M201.5 133.5h0M210.0 133.5h0M218.5 133.5h0M227.0 133.5h0M235.5 133.5h0M244.0 133.5h0M252.5 133.5h0M261.0 133.5h0M269.5 133.5h0M278.0 133.5h0M286.5 133.5h0M295.0 133.5h0M303.5 133.5h0M312.0 133.5h0M320.5 133.5h0M329.0 133.5h0M337.5 133.5h0M346.0 133.5h0M499.0 133.5h0M507.5 133.5h0M516.0 133.5h0M524.5 133.5h0M533.0 133.5h0M541.5 133.5h0M550.0 133.5h0M558.5 133.5h0M567.0 133.5h0M584.0 133.5h0M592.5 133.5h0M601.0 133.5h0M609.5 133.5h0M618.0 133.5h0M635.0 133.5h0M643.5 133.5h0M652.0 133.5h0M660.5 133.5h0M669.0 133.5h0M677.5 133.5h0M686.0 133.5h0M694.5 133.5h0M703.0 133.5h0M711.5 133.5h0M720.0 133.5h0M728.5 133.5h0M737.0 133.5h0M745.5 133.5h0M754.0 133.5h0M762.5 133.5h0M771.0 133.5h0M779.5 133.5h0M788.0 133.5h0M796.5 133.5h0M805.0 133.5h0M813.5 133.5h0M822.0 133.5h0M830.5 133.5h0M201.5 142.0h0M210.0 142.0h0M218.5 142.0h0M227.0 142.0h0M235.5 142.0h0M244.0 142.0h0M252.5 142.0h0M261.0 142.0h0M269.5 142.0h0M278.0 142.0h0M286.5 142.0h0M295.0 142.0h0M303.5 142.0h0M312.0 142.0h0M320.5 142.0h0M337.5 142.0h0M499.0 142.0h0M507.5 142.0h0M516.0 142.0h0M541.5 142.0h0M550.0 142.0h0M558.5 142.0h0M567.0 142.0h0M601.0 142.0h0M609.5 142.0h0M626.5 142.0h0M635.0 142.0h0M643.5 142.0h0M652.0 142.0h0M660.5 142.0h0M669.0 142.0h0M677.5 142.0h0M686.0 142.0h0M694.5 142.0h0M703.0 142.0h0M711.5 142.0h0M720.0 142.0h0M728.5 142.0h0M737.0 142.0h0M745.5 142.0h0M754.0 142.0h0M762.5 142.0h0M771.0 142.0h0M779.5 142.0h0M788.0 142.0h0M796.5 142.0h0M805.0 142.0h0M813.5 142.0h0M822.0 142.0h0M830.5 142.0h0M856.0 142.0h0M193.0 150.5h0M201.5 150.5h0M210.0 150.5h0M218.5 150.5h0M227.0 150.5h0M235.5 150.5h0M244.0 150.5h0M252.5 150.5h0M261.0 150.5h0M269.5 150.5h0M278.0 150.5h0M286.5 150.5h0M295.0 150.5h0M303.5 150.5h0M312.0 150.5h0M482.0 150.5h0M490.5 150.5h0M499.0 150.5h0M541.5 150.5h0M550.0 150.5h0M558.5 150.5h0M567.0 150.5h0M575.5 150.5h0M584.0 150.5h0M592.5 150.5h0M601.0 150.5h0M609.5 150.5h0M618.0 150.5h0M643.5 150.5h0M652.0 150.5h0M660.5 150.5h0M669.0 150.5h0M677.5 150.5h0M686.0 150.5h0M694.5 150.5h0M703.0 150.5h0M711.5 150.5h0M720.0 150.5h0M728.5 150.5h0M737.0 150.5h0M745.5 150.5h0M754.0 150.5h0M762.5 150.5h0M771.0 150.5h0M779.5 150.5h0M788.0 150.5h0M796.5 150.5h0M805.0 150.5h0M813.5 150.5h0M822.0 150.5h0M193.0 159.0h0M201.5 159.0h0M210.0 159.0h0M218.5 159.0h0M227.0 159.0h0M235.5 159.0h0M244.0 159.0h0M252.5 159.0h0M261.0 159.0h0M269.5 159.0h0M278.0 159.0h0M286.5 159.0h0M295.0 159.0h0M303.5 159.0h0M482.0 159.0h0M490.5 159.0h0M558.5 159.0h0M567.0 159.0h0M575.5 159.0h0M584.0 159.0h0M592.5 159.0h0M601.0 159.0h0M609.5 159.0h0M618.0 159.0h0M643.5 159.0h0M652.0 159.0h0M660.5 159.0h0M669.0 159.0h0M677.5 159.0h0M686.0 159.0h0M694.5 159.0h0M703.0 159.0h0M711.5 159.0h0M720.0 159.0h0M728.5 159.0h0M737.0 159.0h0M745.5 159.0h0M754.0 159.0h0M762.5 159.0h0M771.0 159.0h0M779.5 159.0h0M788.0 159.0h0M796.5 159.0h0M822.0 159.0h0M856.0 159.0h0M193.0 167.5h0M201.5 167.5h0M210.0 167.5h0M218.5 167.5h0M227.0 167.5h0M235.5 167.5h0M244.0 167.5h0M252.5 167.5h0M261.0 167.5h0M269.5 167.5h0M278.0 167.5h0M286.5 167.5h0M295.0 167.5h0M303.5 167.5h0M499.0 167.5h0M507.5 167.5h0M516.0 167.5h0M524.5 167.5h0M592.5 167.5h0M601.0 167.5h0M609.5 167.5h0M618.0 167.5h0M626.5 167.5h0M635.0 167.5h0M643.5 167.5h0M652.0 167.5h0M660.5 167.5h0M669.0 167.5h0M677.5 167.5h0M686.0 167.5h0M694.5 167.5h0M703.0 167.5h0M711.5 167.5h0M720.0 167.5h0M728.5 167.5h0M737.0 167.5h0M745.5 167.5h0M754.0 167.5h0M762.5 167.5h0M771.0 167.5h0M779.5 167.5h0M788.0 167.5h0M796.5 167.5h0M805.0 167.5h0M830.5 167.5h0M847.5 167.5h0M856.0 167.5h0M201.5 176.0h0M210.0 176.0h0M218.5 176.0h0M227.0 176.0h0M235.5 176.0h0M244.0 176.0h0M252.5 176.0h0M261.0 176.0h0M269.5 176.0h0M278.0 176.0h0M286.5 176.0h0M482.0 176.0h0M490.5 176.0h0M499.0 176.0h0M507.5 176.0h0M516.0 176.0h0M524.5 176.0h0M592.5 176.0h0M601.0 176.0h0M609.5 176.0h0M618.0 176.0h0M626.5 176.0h0M635.0 176.0h0M643.5 176.0h0M652.0 176.0h0M660.5 176.0h0M669.0 176.0h0M677.5 176.0h0M686.0 176.0h0M694.5 176.0h0M703.0 176.0h0M711.5 176.0h0M720.0 176.0h0M728.5 176.0h0M737.0 176.0h0M745.5 176.0h0M754.0 176.0h0M762.5 176.0h0M771.0 176.0h0M779.5 176.0h0M788.0 176.0h0M796.5 176.0h0M805.0 176.0h0M839.0 176.0h0M210.0 184.5h0M218.5 184.5h0M227.0 184.5h0M235.5 184.5h0M244.0 184.5h0M252.5 184.5h0M261.0 184.5h0M278.0 184.5h0M286.5 184.5h0M482.0 184.5h0M490.5 184.5h0M499.0 184.5h0M507.5 184.5h0M516.0 184.5h0M524.5 184.5h0M533.0 184.5h0M541.5 184.5h0M550.0 184.5h0M558.5 184.5h0M567.0 184.5h0M575.5 184.5h0M584.0 184.5h0M592.5 184.5h0M601.0 184.5h0M609.5 184.5h0M618.0 184.5h0M626.5 184.5h0M635.0 184.5h0M643.5 184.5h0M652.0 184.5h0M660.5 184.5h0M669.0 184.5h0M677.5 184.5h0M686.0 184.5h0M694.5 184.5h0M703.0 184.5h0M711.5 184.5h0M720.0 184.5h0M728.5 184.5h0M737.0 184.5h0M745.5 184.5h0M754.0 184.5h0M762.5 184.5h0M771.0 184.5h0M779.5 184.5h0M788.0 184.5h0M796.5 184.5h0M805.0 184.5h0M813.5 184.5h0M201.5 193.0h0M210.0 193.0h0M218.5 193.0h0M227.0 193.0h0M235.5 193.0h0M244.0 193.0h0M286.5 193.0h0M473.5 193.0h0M482.0 193.0h0M490.5 193.0h0M499.0 193.0h0M507.5 193.0h0M516.0 193.0h0M524.5 193.0h0M533.0 193.0h0M541.5 193.0h0M550.0 193.0h0M558.5 193.0h0M567.0 193.0h0M575.5 193.0h0M584.0 193.0h0M601.0 193.0h0M609.5 193.0h0M618.0 193.0h0M626.5 193.0h0M643.5 193.0h0M652.0 193.0h0M660.5 193.0h0M669.0 193.0h0M677.5 193.0h0M686.0 193.0h0M694.5 193.0h0M703.0 193.0h0M711.5 193.0h0M720.0 193.0h0M728.5 193.0h0M737.0 193.0h0M745.5 193.0h0M754.0 193.0h0M762.5 193.0h0M771.0 193.0h0M779.5 193.0h0M788.0 193.0h0M796.5 193.0h0M805.0 193.0h0M813.5 193.0h0M218.5 201.5h0M227.0 201.5h0M235.5 201.5h0M465.0 201.5h0M473.5 201.5h0M482.0 201.5h0M490.5 201.5h0M499.0 201.5h0M507.5 201.5h0M516.0 201.5h0M524.5 201.5h0M533.0 201.5h0M541.5 201.5h0M550.0 201.5h0M558.5 201.5h0M567.0 201.5h0M575.5 201.5h0M584.0 201.5h0M601.0 201.5h0M609.5 201.5h0M618.0 201.5h0M626.5 201.5h0M635.0 201.5h0M677.5 201.5h0M686.0 201.5h0M694.5 201.5h0M703.0 201.5h0M711.5 201.5h0M720.0 201.5h0M728.5 201.5h0M737.0 201.5h0M745.5 201.5h0M754.0 201.5h0M762.5 201.5h0M771.0 201.5h0M779.5 201.5h0M788.0 201.5h0M796.5 201.5h0M805.0 201.5h0M813.5 201.5h0M822.0 201.5h0M227.0 210.0h0M235.5 210.0h0M278.0 210.0h0M286.5 210.0h0M456.5 210.0h0M465.0 210.0h0M473.5 210.0h0M482.0 210.0h0M490.5 210.0h0M499.0 210.0h0M507.5 210.0h0M516.0 210.0h0M524.5 210.0h0M533.0 210.0h0M541.5 210.0h0M550.0 210.0h0M558.5 210.0h0M567.0 210.0h0M575.5 210.0h0M584.0 210.0h0M592.5 210.0h0M609.5 210.0h0M618.0 210.0h0M626.5 210.0h0M635.0 210.0h0M643.5 210.0h0M652.0 210.0h0M686.0 210.0h0M694.5 210.0h0M703.0 210.0h0M711.5 210.0h0M720.0 210.0h0M728.5 210.0h0M737.0 210.0h0M745.5 210.0h0M754.0 210.0h0M762.5 210.0h0M771.0 210.0h0M779.5 210.0h0M788.0 210.0h0M796.5 210.0h0M227.0 218.5h0M235.5 218.5h0M261.0 218.5h0M312.0 218.5h0M456.5 218.5h0M465.0 218.5h0M473.5 218.5h0M482.0 218.5h0M490.5 218.5h0M499.0 218.5h0M507.5 218.5h0M516.0 218.5h0M524.5 218.5h0M533.0 218.5h0M541.5 218.5h0M550.0 218.5h0M558.5 218.5h0M567.0 218.5h0M575.5 218.5h0M584.0 218.5h0M592.5 218.5h0M609.5 218.5h0M618.0 218.5h0M626.5 218.5h0M635.0 218.5h0M643.5 218.5h0M652.0 218.5h0M703.0 218.5h0M711.5 218.5h0M720.0 218.5h0M754.0 218.5h0M762.5 218.5h0M771.0 218.5h0M779.5 218.5h0M235.5 227.0h0M244.0 227.0h0M252.5 227.0h0M261.0 227.0h0M456.5 227.0h0M465.0 227.0h0M473.5 227.0h0M482.0 227.0h0M490.5 227.0h0M499.0 227.0h0M507.5 227.0h0M516.0 227.0h0M524.5 227.0h0M533.0 227.0h0M541.5 227.0h0M550.0 227.0h0M558.5 227.0h0M567.0 227.0h0M575.5 227.0h0M584.0 227.0h0M592.5 227.0h0M601.0 227.0h0M618.0 227.0h0M626.5 227.0h0M635.0 227.0h0M643.5 227.0h0M703.0 227.0h0M711.5 227.0h0M720.0 227.0h0M754.0 227.0h0M762.5 227.0h0M771.0 227.0h0M779.5 227.0h0M788.0 227.0h0M261.0 235.5h0M269.5 235.5h0M456.5 235.5h0M465.0 235.5h0M473.5 235.5h0M482.0 235.5h0M490.5 235.5h0M499.0 235.5h0M507.5 235.5h0M516.0 235.5h0M524.5 235.5h0M533.0 235.5h0M541.5 235.5h0M550.0 235.5h0M558.5 235.5h0M567.0 235.5h0M575.5 235.5h0M584.0 235.5h0M592.5 235.5h0M601.0 235.5h0M609.5 235.5h0M618.0 235.5h0M626.5 235.5h0M703.0 235.5h0M711.5 235.5h0M771.0 235.5h0M779.5 235.5h0M788.0 235.5h0M830.5 235.5h0M269.5 244.0h0M303.5 244.0h0M312.0 244.0h0M465.0 244.0h0M473.5 244.0h0M482.0 244.0h0M490.5 244.0h0M499.0 244.0h0M507.5 244.0h0M516.0 244.0h0M524.5 244.0h0M533.0 244.0h0M541.5 244.0h0M550.0 244.0h0M558.5 244.0h0M567.0 244.0h0M575.5 244.0h0M584.0 244.0h0M592.5 244.0h0M601.0 244.0h0M609.5 244.0h0M635.0 244.0h0M711.5 244.0h0M779.5 244.0h0M788.0 244.0h0M830.5 244.0h0M839.0 244.0h0M278.0 252.5h0M295.0 252.5h0M303.5 252.5h0M312.0 252.5h0M320.5 252.5h0M329.0 252.5h0M465.0 252.5h0M473.5 252.5h0M482.0 252.5h0M490.5 252.5h0M499.0 252.5h0M507.5 252.5h0M516.0 252.5h0M524.5 252.5h0M533.0 252.5h0M541.5 252.5h0M550.0 252.5h0M558.5 252.5h0M567.0 252.5h0M575.5 252.5h0M584.0 252.5h0M592.5 252.5h0M601.0 252.5h0M609.5 252.5h0M618.0 252.5h0M626.5 252.5h0M635.0 252.5h0M711.5 252.5h0M720.0 252.5h0M771.0 252.5h0M839.0 252.5h0M295.0 261.0h0M303.5 261.0h0M312.0 261.0h0M320.5 261.0h0M329.0 261.0h0M337.5 261.0h0M473.5 261.0h0M482.0 261.0h0M490.5 261.0h0M499.0 261.0h0M516.0 261.0h0M524.5 261.0h0M533.0 261.0h0M541.5 261.0h0M550.0 261.0h0M558.5 261.0h0M567.0 261.0h0M575.5 261.0h0M584.0 261.0h0M592.5 261.0h0M601.0 261.0h0M609.5 261.0h0M618.0 261.0h0M626.5 261.0h0M839.0 261.0h0M295.0 269.5h0M303.5 269.5h0M312.0 269.5h0M320.5 269.5h0M329.0 269.5h0M337.5 269.5h0M346.0 269.5h0M354.5 269.5h0M533.0 269.5h0M541.5 269.5h0M550.0 269.5h0M558.5 269.5h0M567.0 269.5h0M575.5 269.5h0M584.0 269.5h0M592.5 269.5h0M601.0 269.5h0M609.5 269.5h0M618.0 269.5h0M626.5 269.5h0M779.5 269.5h0M813.5 269.5h0M286.5 278.0h0M295.0 278.0h0M303.5 278.0h0M312.0 278.0h0M320.5 278.0h0M329.0 278.0h0M337.5 278.0h0M346.0 278.0h0M354.5 278.0h0M363.0 278.0h0M533.0 278.0h0M541.5 278.0h0M550.0 278.0h0M558.5 278.0h0M567.0 278.0h0M575.5 278.0h0M584.0 278.0h0M592.5 278.0h0M601.0 278.0h0M609.5 278.0h0M618.0 278.0h0M771.0 278.0h0M779.5 278.0h0M805.0 278.0h0M813.5 278.0h0M830.5 278.0h0M839.0 278.0h0M847.5 278.0h0M286.5 286.5h0M295.0 286.5h0M303.5 286.5h0M312.0 286.5h0M320.5 286.5h0M329.0 286.5h0M337.5 286.5h0M346.0 286.5h0M354.5 286.5h0M363.0 286.5h0M371.5 286.5h0M533.0 286.5h0M541.5 286.5h0M550.0 286.5h0M558.5 286.5h0M567.0 286.5h0M575.5 286.5h0M584.0 286.5h0M592.5 286.5h0M601.0 286.5h0M609.5 286.5h0M779.5 286.5h0M805.0 286.5h0M813.5 286.5h0M830.5 286.5h0M864.5 286.5h0M873.0 286.5h0M286.5 295.0h0M295.0 295.0h0M303.5 295.0h0M312.0 295.0h0M320.5 295.0h0M329.0 295.0h0M337.5 295.0h0M346.0 295.0h0M354.5 295.0h0M363.0 295.0h0M371.5 295.0h0M380.0 295.0h0M388.5 295.0h0M397.0 295.0h0M533.0 295.0h0M541.5 295.0h0M550.0 295.0h0M558.5 295.0h0M567.0 295.0h0M575.5 295.0h0M584.0 295.0h0M592.5 295.0h0M601.0 295.0h0M873.0 295.0h0M881.5 295.0h0M890.0 295.0h0M286.5 303.5h0M295.0 303.5h0M303.5 303.5h0M312.0 303.5h0M320.5 303.5h0M329.0 303.5h0M337.5 303.5h0M346.0 303.5h0M354.5 303.5h0M363.0 303.5h0M371.5 303.5h0M380.0 303.5h0M388.5 303.5h0M397.0 303.5h0M405.5 303.5h0M541.5 303.5h0M550.0 303.5h0M558.5 303.5h0M567.0 303.5h0M575.5 303.5h0M584.0 303.5h0M592.5 303.5h0M601.0 303.5h0M796.5 303.5h0M805.0 303.5h0M881.5 303.5h0M890.0 303.5h0M898.5 303.5h0M295.0 312.0h0M303.5 312.0h0M312.0 312.0h0M320.5 312.0h0M329.0 312.0h0M337.5 312.0h0M346.0 312.0h0M354.5 312.0h0M363.0 312.0h0M371.5 312.0h0M380.0 312.0h0M388.5 312.0h0M397.0 312.0h0M541.5 312.0h0M550.0 312.0h0M558.5 312.0h0M567.0 312.0h0M575.5 312.0h0M584.0 312.0h0M592.5 312.0h0M601.0 312.0h0M907.0 312.0h0M295.0 320.5h0M303.5 320.5h0M312.0 320.5h0M320.5 320.5h0M329.0 320.5h0M337.5 320.5h0M346.0 320.5h0M354.5 320.5h0M363.0 320.5h0M371.5 320.5h0M380.0 320.5h0M388.5 320.5h0M541.5 320.5h0M550.0 320.5h0M558.5 320.5h0M567.0 320.5h0M575.5 320.5h0M584.0 320.5h0M592.5 320.5h0M601.0 320.5h0M609.5 320.5h0M856.0 320.5h0M864.5 320.5h0M303.5 329.0h0M312.0 329.0h0M320.5 329.0h0M329.0 329.0h0M337.5 329.0h0M346.0 329.0h0M354.5 329.0h0M363.0 329.0h0M371.5 329.0h0M380.0 329.0h0M388.5 329.0h0M533.0 329.0h0M541.5 329.0h0M550.0 329.0h0M558.5 329.0h0M567.0 329.0h0M575.5 329.0h0M584.0 329.0h0M592.5 329.0h0M601.0 329.0h0M626.5 329.0h0M635.0 329.0h0M839.0 329.0h0M847.5 329.0h0M856.0 329.0h0M864.5 329.0h0M881.5 329.0h0M890.0 329.0h0M949.5 329.0h0M312.0 337.5h0M320.5 337.5h0M329.0 337.5h0M337.5 337.5h0M346.0 337.5h0M354.5 337.5h0M363.0 337.5h0M371.5 337.5h0M380.0 337.5h0M388.5 337.5h0M533.0 337.5h0M541.5 337.5h0M550.0 337.5h0M558.5 337.5h0M567.0 337.5h0M575.5 337.5h0M584.0 337.5h0M592.5 337.5h0M626.5 337.5h0M830.5 337.5h0M839.0 337.5h0M847.5 337.5h0M856.0 337.5h0M864.5 337.5h0M873.0 337.5h0M881.5 337.5h0M890.0 337.5h0M320.5 346.0h0M329.0 346.0h0M337.5 346.0h0M346.0 346.0h0M354.5 346.0h0M363.0 346.0h0M371.5 346.0h0M380.0 346.0h0M388.5 346.0h0M541.5 346.0h0M550.0 346.0h0M558.5 346.0h0M567.0 346.0h0M575.5 346.0h0M584.0 346.0h0M592.5 346.0h0M618.0 346.0h0M626.5 346.0h0M813.5 346.0h0M822.0 346.0h0M830.5 346.0h0M839.0 346.0h0M847.5 346.0h0M856.0 346.0h0M864.5 346.0h0M873.0 346.0h0M881.5 346.0h0M890.0 346.0h0M941.0 346.0h0M320.5 354.5h0M329.0 354.5h0M337.5 354.5h0M346.0 354.5h0M354.5 354.5h0M363.0 354.5h0M371.5 354.5h0M380.0 354.5h0M541.5 354.5h0M550.0 354.5h0M558.5 354.5h0M567.0 354.5h0M575.5 354.5h0M584.0 354.5h0M592.5 354.5h0M618.0 354.5h0M805.0 354.5h0M813.5 354.5h0M822.0 354.5h0M830.5 354.5h0M839.0 354.5h0M847.5 354.5h0M856.0 354.5h0M864.5 354.5h0M873.0 354.5h0M881.5 354.5h0M890.0 354.5h0M898.5 354.5h0M320.5 363.0h0M329.0 363.0h0M337.5 363.0h0M346.0 363.0h0M354.5 363.0h0M363.0 363.0h0M371.5 363.0h0M541.5 363.0h0M550.0 363.0h0M558.5 363.0h0M567.0 363.0h0M575.5 363.0h0M584.0 363.0h0M805.0 363.0h0M813.5 363.0h0M822.0 363.0h0M830.5 363.0h0M839.0 363.0h0M847.5 363.0h0M856.0 363.0h0M864.5 363.0h0M873.0 363.0h0M881.5 363.0h0M890.0 363.0h0M898.5 363.0h0M320.5 371.5h0M329.0 371.5h0M337.5 371.5h0M346.0 371.5h0M354.5 371.5h0M363.0 371.5h0M550.0 371.5h0M558.5 371.5h0M567.0 371.5h0M575.5 371.5h0M805.0 371.5h0M813.5 371.5h0M822.0 371.5h0M830.5 371.5h0M839.0 371.5h0M847.5 371.5h0M856.0 371.5h0M864.5 371.5h0M873.0 371.5h0M881.5 371.5h0M890.0 371.5h0M898.5 371.5h0M320.5 380.0h0M329.0 380.0h0M337.5 380.0h0M346.0 380.0h0M354.5 380.0h0M363.0 380.0h0M550.0 380.0h0M558.5 380.0h0M567.0 380.0h0M575.5 380.0h0M805.0 380.0h0M813.5 380.0h0M822.0 380.0h0M830.5 380.0h0M847.5 380.0h0M856.0 380.0h0M864.5 380.0h0M873.0 380.0h0M881.5 380.0h0M890.0 380.0h0M320.5 388.5h0M329.0 388.5h0M337.5 388.5h0M346.0 388.5h0M354.5 388.5h0M550.0 388.5h0M796.5 388.5h0M805.0 388.5h0M847.5 388.5h0M856.0 388.5h0M864.5 388.5h0M873.0 388.5h0M881.5 388.5h0M31.5 397.0h0M320.5 397.0h0M329.0 397.0h0M337.5 397.0h0M346.0 397.0h0M354.5 397.0h0M856.0 397.0h0M864.5 397.0h0M873.0 397.0h0M320.5 405.5h0M329.0 405.5h0M337.5 405.5h0M941.0 405.5h0M31.5 414.0h0M320.5 414.0h0M329.0 414.0h0M337.5 414.0h0M864.5 414.0h0M31.5 422.5h0M320.5 422.5h0M329.0 422.5h0M915.5 422.5h0M320.5 431.0h0M329.0 431.0h0M337.5 431.0h0M329.0 439.5h0M329.0 448.0h0M337.5 448.0h0"/>
 <path class="atlas__arr" d="M505.6 126Q412.9 75.5 320.1 136.4"/>
@@ -491,9 +536,6 @@
               <span class="ac__tags">DJ · Producteur · Afro · Latin · Disco · House</span>
             </button>
           </li>
-          <li class="agrid__call">
-            <a href="#contact"><b>Tu veux jouer à la viLLLa&nbsp;?</b><span>DJ, musicien, chanteuse, artiste visuel ou numérique : envoie-nous ton travail.</span><em>Écrire à la viLLLa →</em></a>
-          </li>
         </ul>
       </div>
     </section>
@@ -557,8 +599,8 @@
 
     <section id="contact" class="contact">
       <div class="wrap">
-        <h2>Viens danser,<br><em>ou viens jouer.</em></h2>
-        <p class="contact__lede">Une soirée à organiser, un lieu à proposer, un artiste à présenter, une liste d'invités : écris à la viLLLa.</p>
+        <h2>Viens danser<br><em>avec nous.</em></h2>
+        <p class="contact__lede">Une soirée à organiser, un lieu à proposer, une place sur la liste d'invités : écris à la viLLLa.</p>
         <a class="contact__mail" href="mailto:lavillla.club@gmail.com">lavillla.club@gmail.com</a>
         <ul class="socials">
           <li><a href="https://www.instagram.com/la.villla/" rel="noopener">Instagram @la.villla</a></li>
@@ -669,6 +711,25 @@
       document.querySelectorAll('dialog.ad').forEach(function (d) {
         d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('[data-close]')) { d.close(); } });
       });
+    })();
+
+    // Jour / nuit
+    (function () {
+      var H = document.documentElement, meta = document.querySelector('meta[name="theme-color"]');
+      var btns = document.querySelectorAll('[data-mode]');
+      function show() {
+        var jour = H.classList.contains('jour');
+        btns.forEach(function (b) { b.setAttribute('aria-pressed', (b.dataset.mode === 'jour') === jour ? 'true' : 'false'); });
+        if (meta) { meta.setAttribute('content', jour ? '#dcf14a' : '#0b0a0a'); }
+      }
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          H.classList.toggle('jour', b.dataset.mode === 'jour');
+          try { sessionStorage.setItem('lv-mode', b.dataset.mode); } catch (e) {}
+          show();
+        });
+      });
+      show();
     })();
   </script>
 </body>
