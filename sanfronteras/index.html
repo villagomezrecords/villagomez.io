@@ -198,7 +198,7 @@ a.val:hover{color:#FF6B5E}
 .theme-jour .author{border-top:3px solid #151515;border-bottom:1px solid #151515;padding-left:0;padding-right:0}
 .theme-nuit .author{background:#1E1E1E;border-radius:16px}
 .av{flex:none;position:relative;overflow:hidden;width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
-.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.av img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block}
 .theme-jour .av{background:#E6F53F;color:#151515;border:2px solid #151515}
 .theme-nuit .av{background:#FF2E93;color:#151515}
 .au-t{min-width:0}
@@ -372,7 +372,7 @@ nav.rubs a{text-decoration:none}
           <div class="cell"><span class="lab">Le morceau de la nuit</span><a class="val" href="https://mastersatwork.bandcamp.com/track/shout-n-out" target="_blank" rel="noopener">Shout-N-Out (The DJ Dub) — Lood avec Donell Rush ↗</a></div>
       </div>
       <div class="prose">
-        <aside class="side-au" aria-label="À propos de l'auteur"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ et producteur, Montréal</p><p><a href="#auteur-fr" onclick="event.preventDefault();document.getElementById('auteur-fr').scrollIntoView({behavior:'smooth'})">À propos ↓</a></p></div></aside>
+        <aside class="side-au" aria-label="À propos de l'auteur"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ et producteur, Montréal</p><p><a href="#auteur-fr" onclick="event.preventDefault();document.getElementById('auteur-fr').scrollIntoView({behavior:'smooth'})">À propos ↓</a></p></div></aside>
         <p>Sur la photo avec Kerri Chandler, j'ai les yeux rouges. Je veux les garder comme ça. Ils montrent à quel point j'ai pleuré, mais surtout le bonheur que j'ai vécu cette nuit-là. Même aujourd'hui, en regardant cette image, l'émotion revient.</p>
         <p>C'est un rêve qui est devenu réalité. Pendant la soirée, j'étais tellement débordé par les émotions que parfois j'avais de la difficulté à comprendre ce qui était en train de m'arriver. Ça faisait longtemps que je n'avais pas ressenti autant de choses à la fois.</p>
         <p>Pour expliquer ce qu'il y avait derrière ce merci, il faut remonter un peu.</p>
@@ -442,7 +442,7 @@ nav.rubs a{text-decoration:none}
         </section>
         <p class="merci">Merci à <a href="https://www.instagram.com/samuellaflammecomposer/" rel="noopener" target="_blank">Samuel Laflamme</a>, compositeur, de m'avoir ouvert son studio et sa Studer.</p>
         <aside class="author" id="auteur-fr" aria-label="À propos de l'auteur">
-          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div>
           <div class="au-t">
             <p class="au-h">À propos de l'auteur</p>
             <p class="au-b">Samuel Villagomez est DJ, producteur et ingénieur du son à Montréal. Il a fondé le label Villagomez Records et le collectif la viLLLa. Formé au violon et au violoncelle dès l'enfance, il mixe depuis l'âge de quatorze ans et a étudié en Sonic Arts &amp; Composition à l'Université de Huddersfield, en Angleterre. Il a été DJ résident et directeur technique au Soubois de 2016 à 2019, et il a ouvert pour Black Coffee et Claptone. Avec san_fronteras, il raconte la musique comme il la vit : sans frontières.</p>
@@ -469,7 +469,7 @@ nav.rubs a{text-decoration:none}
           <div class="cell"><span class="lab">Track of the night</span><a class="val" href="https://mastersatwork.bandcamp.com/track/shout-n-out" target="_blank" rel="noopener">Shout-N-Out (The DJ Dub) — Lood feat. Donell Rush ↗</a></div>
       </div>
       <div class="prose">
-        <aside class="side-au" aria-label="About the author"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ and producer, Montreal</p><p><a href="#auteur-en" onclick="event.preventDefault();document.getElementById('auteur-en').scrollIntoView({behavior:'smooth'})">About ↓</a></p></div></aside>
+        <aside class="side-au" aria-label="About the author"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ and producer, Montreal</p><p><a href="#auteur-en" onclick="event.preventDefault();document.getElementById('auteur-en').scrollIntoView({behavior:'smooth'})">About ↓</a></p></div></aside>
         <p>In the photo with Kerri Chandler, my eyes are red. I want to keep them that way. They show how much I cried, but above all how happy I was that night. Even now, looking at that picture, the emotion comes back.</p>
         <p>It was a dream come true. During the night, I was so overwhelmed with emotion that I sometimes struggled to grasp everything that was happening to me. It had been a long time since I'd felt so many things at once.</p>
         <p>To explain what was behind that thank-you, I have to go back a little.</p>
@@ -539,7 +539,7 @@ nav.rubs a{text-decoration:none}
         </section>
         <p class="merci">Thanks to composer <a href="https://www.instagram.com/samuellaflammecomposer/" rel="noopener" target="_blank">Samuel Laflamme</a> for opening his studio and his Studer to me.</p>
         <aside class="author" id="auteur-en" aria-label="About the author">
-          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div>
           <div class="au-t">
             <p class="au-h">About the author</p>
             <p class="au-b">Samuel Villagomez is a DJ, producer and sound engineer based in Montreal. He founded the label Villagomez Records and the collective la viLLLa. Trained on violin and cello from childhood, he has been mixing since he was fourteen and studied Sonic Arts &amp; Composition at the University of Huddersfield in England. He was resident DJ and technical director at Soubois from 2016 to 2019, and he has opened for Black Coffee and Claptone. With san_fronteras, he writes about music the way he lives it: without borders.</p>
@@ -567,7 +567,7 @@ nav.rubs a{text-decoration:none}
           <div class="cell"><span class="lab">El tema de la noche</span><a class="val" href="https://mastersatwork.bandcamp.com/track/shout-n-out" target="_blank" rel="noopener">Shout-N-Out (The DJ Dub) — Lood con Donell Rush ↗</a></div>
       </div>
       <div class="prose">
-        <aside class="side-au" aria-label="Sobre el autor"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ y productor, Montreal</p><p><a href="#auteur-es" onclick="event.preventDefault();document.getElementById('auteur-es').scrollIntoView({behavior:'smooth'})">Sobre el autor ↓</a></p></div></aside>
+        <aside class="side-au" aria-label="Sobre el autor"><div class="in"><div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div><p class="sa-n">Samuel Villagomez</p><p class="sa-r">DJ y productor, Montreal</p><p><a href="#auteur-es" onclick="event.preventDefault();document.getElementById('auteur-es').scrollIntoView({behavior:'smooth'})">Sobre el autor ↓</a></p></div></aside>
         <p>En la foto con Kerri Chandler, tengo los ojos rojos. Quiero dejarlos así. Muestran cuánto lloré, pero sobre todo la felicidad que viví esa noche. Incluso hoy, al mirar esa imagen, la emoción vuelve.</p>
         <p>Fue un sueño hecho realidad. Durante la noche, estaba tan desbordado por las emociones que a veces me costaba entender todo lo que me estaba pasando. Hacía mucho tiempo que no sentía tantas cosas a la vez.</p>
         <p>Para explicar lo que había detrás de ese gracias, tengo que retroceder un poco.</p>
@@ -637,7 +637,7 @@ nav.rubs a{text-decoration:none}
         </section>
         <p class="merci">Gracias al compositor <a href="https://www.instagram.com/samuellaflammecomposer/" rel="noopener" target="_blank">Samuel Laflamme</a> por abrirme su estudio y su Studer.</p>
         <aside class="author" id="auteur-es" aria-label="Sobre el autor">
-          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+          <div class="av" aria-hidden="true">SV<img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" width="480" height="480" decoding="async" onerror="this.remove()"></div>
           <div class="au-t">
             <p class="au-h">Sobre el autor</p>
             <p class="au-b">Samuel Villagomez es DJ, productor e ingeniero de sonido en Montreal. Fundó el sello Villagomez Records y el colectivo la viLLLa. Formado en violín y violonchelo desde niño, mezcla desde los catorce años y estudió Sonic Arts &amp; Composition en la Universidad de Huddersfield, en Inglaterra. Fue DJ residente y director técnico en Soubois de 2016 a 2019, y ha abierto para Black Coffee y Claptone. Con san_fronteras, cuenta la música como la vive: sin fronteras.</p>
