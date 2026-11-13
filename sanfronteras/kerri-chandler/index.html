@@ -124,7 +124,9 @@ a.val:hover{color:#FF6B5E}
 .share-t{font-weight:800;margin-right:6px}
 .theme-jour .share-t{font-size:13px;letter-spacing:.12em;text-transform:uppercase}
 .theme-nuit .share-t{font-family:'La Villla Display','Arial Black',sans-serif;font-size:16px;text-transform:uppercase}
-.sh{min-height:44px;padding:0 18px;background:transparent;font:600 15px 'Inter',Helvetica,Arial,sans-serif;cursor:pointer}
+.sh{display:inline-flex;align-items:center;box-sizing:border-box;min-height:44px;padding:0 18px;background:transparent;font:600 15px 'Inter',Helvetica,Arial,sans-serif;text-decoration:none;cursor:pointer}
+.sh[hidden]{display:none}
+.sh-ok{font-weight:700;font-size:14px}
 .theme-jour .sh{border:2px solid #151515;color:#151515}
 .theme-jour .sh.primary{background:#151515;color:#F6F2E8}
 .theme-nuit .sh{border:1px solid #F0EADF;color:#F0EADF;border-radius:999px;padding:0 20px}
@@ -631,26 +633,8 @@ nav.rubs a{text-decoration:none}
     <div class="sharewrap">
       <div class="share">
         <span class="share-t" data-t="share">Partager</span>
-        <button type="button" class="sh primary" id="sharebtn" aria-expanded="false" aria-controls="sharepanel" data-t="shareBtn">Partager…</button>
-      </div>
-      <div id="sharepanel" hidden>
-        <div class="sharepanel">
-          <div class="shrow" role="group" aria-label="Langue du partage">
-            <span class="lab" data-t="shareIn">Partager en</span>
-            <div class="seg2">
-              <button type="button" class="sh" data-sl="fr">FR</button><button type="button" class="sh" data-sl="en">EN</button><button type="button" class="sh" data-sl="es">ES</button>
-            </div>
-          </div>
-          <div class="pv">
-            <img src="/images/sanfronteras/kerri-chandler-apercu.jpg" alt="" aria-hidden="true">
-            <div class="pv-t">
-              <span class="pv-site">villagomez.io/sanfronteras/kerri-chandler</span>
-              <span class="pv-title" id="pvtitle"></span>
-              <span class="pv-desc" id="pvdesc"></span>
-            </div>
-          </div>
-          <div class="shbtns"><button type="button" class="sh primary" id="sh-copy" data-t="copy">Copier le lien</button><a class="sh" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a><a class="sh" id="sh-fb" target="_blank" rel="noopener">Facebook</a><a class="sh" id="sh-li" target="_blank" rel="noopener">LinkedIn</a><a class="sh" id="sh-sms" data-t="messages">Messages</a><span class="sh-ok" id="sh-ok" role="status" aria-live="polite"></span></div>
-        </div>
+        <button type="button" class="sh primary" id="sh-copy" data-t="copy">Copier le lien</button><a class="sh" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a><a class="sh" id="sh-fb" target="_blank" rel="noopener">Facebook</a><a class="sh" id="sh-x" target="_blank" rel="noopener">X</a><a class="sh" id="sh-li" target="_blank" rel="noopener">LinkedIn</a><button type="button" class="sh" id="sh-native" hidden data-t="shareBtn">Plus…</button>
+        <span class="sh-ok" id="sh-ok" role="status" aria-live="polite"></span>
       </div>
     </div>
   </div>
@@ -670,9 +654,9 @@ nav.rubs a{text-decoration:none}
 <script>
 var BASE = 'https://villagomez.io/sanfronteras/kerri-chandler/';
 var T = {
-      fr: { about: 'À propos', share: 'Partager', shareBtn: 'Partager…', shareIn: 'Partager en', copy: 'Copier le lien', messages: 'Messages', night: 'Nuit', day: 'Jour', toNight: 'Passer en mode nuit', toDay: 'Passer en mode jour' },
-      en: { about: 'About', share: 'Share', shareBtn: 'Share…', shareIn: 'Share in', copy: 'Copy link', messages: 'Messages', night: 'Night', day: 'Day', toNight: 'Switch to night mode', toDay: 'Switch to day mode' },
-      es: { about: 'Acerca de', share: 'Compartir', shareBtn: 'Compartir…', shareIn: 'Compartir en', copy: 'Copiar enlace', messages: 'Mensajes', night: 'Noche', day: 'Día', toNight: 'Cambiar a modo noche', toDay: 'Cambiar a modo día' }
+      fr: { about: 'À propos', share: 'Partager', shareBtn: 'Plus…', shareIn: 'Partager en', copy: 'Copier le lien', messages: 'Messages', night: 'Nuit', day: 'Jour', toNight: 'Passer en mode nuit', toDay: 'Passer en mode jour' },
+      en: { about: 'About', share: 'Share', shareBtn: 'More…', shareIn: 'Share in', copy: 'Copy link', messages: 'Messages', night: 'Night', day: 'Day', toNight: 'Switch to night mode', toDay: 'Switch to day mode' },
+      es: { about: 'Acerca de', share: 'Compartir', shareBtn: 'Más…', shareIn: 'Compartir en', copy: 'Copiar enlace', messages: 'Mensajes', night: 'Noche', day: 'Día', toNight: 'Cambiar a modo noche', toDay: 'Cambiar a modo día' }
     };
 var PV = {
       fr: { title: 'Devant Kerri Chandler, je me suis senti à ma place', desc: "J'ai dansé et j'ai pleuré pendant une heure et demie au milieu d'inconnus." },
@@ -748,7 +732,7 @@ var ABOUT = {
     es: { h: 'El boletín DIRÈK llega pronto', p: 'Los nuevos artículos, las noticias de la viLLLa y las próximas noches, pronto en tu correo. Mientras tanto, síguenos en Instagram.', btn: 'Seguir @san_fronteras' }
   };
   var COPIED = { fr: 'Lien copié', en: 'Link copied', es: 'Enlace copiado' };
-  var lang = H.getAttribute('data-l'), shareLang = null;
+  var lang = H.getAttribute('data-l');
   function $(id){ return document.getElementById(id); }
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function store(k, v){ try { sessionStorage.setItem(k, v); } catch(e){} }
@@ -770,16 +754,17 @@ var ABOUT = {
       + '<h2>'+esc(A.contactH)+'</h2><p class="ab-contact"><a href="mailto:info.sanfronteras@gmail.com">info.sanfronteras@gmail.com</a> · <a href="https://www.instagram.com/san_fronteras/" target="_blank" rel="noopener">@san_fronteras</a> · <a href="https://www.youtube.com/@SanFronteras" target="_blank" rel="noopener">YouTube @SanFronteras</a></p></div>'
       + '<p class="backp"><a href="#" class="back">'+esc(A.back)+'</a></p>';
   }
-  function shareUrl(){ return BASE + '?lang=' + (shareLang || lang); }
+  function shareUrl(){ return lang === 'fr' ? BASE + '?lang=fr' : BASE + lang + '/'; }
   function renderShare(){
-    var sl = shareLang || lang, pv = PV[sl], u = shareUrl(), msg = pv.title + ' — ' + u;
-    $('pvtitle').textContent = pv.title; $('pvdesc').textContent = pv.desc;
-    [].forEach.call(document.querySelectorAll('[data-sl]'), function(b){ var on = b.getAttribute('data-sl') === sl; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+    var pv = PV[lang], u = shareUrl(), msg = pv.title + ' — ' + u;
     $('sh-wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
     $('sh-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(u);
+    $('sh-x').href = 'https://x.com/intent/post?text=' + encodeURIComponent(pv.title) + '&url=' + encodeURIComponent(u);
     $('sh-li').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(u);
-    $('sh-sms').href = 'sms:?&body=' + encodeURIComponent(msg);
+    if (navigator.share) $('sh-native').removeAttribute('hidden');
   }
+  function copied(){ $('sh-ok').textContent = COPIED[lang]; setTimeout(function(){ $('sh-ok').textContent = ''; }, 2500); }
+  function copyOld(u){ var t = document.createElement('textarea'); t.value = u; t.setAttribute('readonly',''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); copied(); } catch(e){} document.body.removeChild(t); }
   function render(){
     var t = T[lang], nuit = H.classList.contains('nuit'), v = view();
     H.setAttribute('data-v', v); H.lang = lang;
@@ -797,20 +782,15 @@ var ABOUT = {
   }
   document.addEventListener('click', function(e){
     var b = e.target.closest('[data-setlang]');
-    if (b){ lang = b.getAttribute('data-setlang'); shareLang = null; H.setAttribute('data-l', lang); store('sf-lang', lang); render(); return; }
+    if (b){ lang = b.getAttribute('data-setlang'); H.setAttribute('data-l', lang); store('sf-lang', lang); render(); return; }
     if (e.target.closest('#themebtn')){ var n = !H.classList.contains('nuit'); H.classList.toggle('nuit', n); store('sf-theme', n ? 'nuit' : 'jour'); render(); return; }
     if (e.target.closest('.back, [data-nav="article"]')){ e.preventDefault(); history.pushState(null, '', location.pathname + location.search); render(); window.scrollTo(0,0); return; }
-    var sl = e.target.closest('[data-sl]');
-    if (sl){ shareLang = sl.getAttribute('data-sl'); renderShare(); return; }
-    if (e.target.closest('#sharebtn')){
-      var p = $('sharepanel'), open = p.hasAttribute('hidden');
-      if (open) p.removeAttribute('hidden'); else p.setAttribute('hidden','');
-      $('sharebtn').setAttribute('aria-expanded', String(open)); return;
-    }
     if (e.target.closest('#sh-copy')){
-      var u = shareUrl(), done = function(){ $('sh-ok').textContent = COPIED[lang]; setTimeout(function(){ $('sh-ok').textContent = ''; }, 2500); };
-      if (navigator.clipboard) navigator.clipboard.writeText(u).then(done, function(){ prompt('', u); }); else prompt('', u);
+      var u = shareUrl();
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u).then(copied, function(){ copyOld(u); }); else copyOld(u);
+      return;
     }
+    if (e.target.closest('#sh-native')){ navigator.share({ title: PV[lang].title, url: shareUrl() }).catch(function(){}); return; }
   });
   window.addEventListener('hashchange', function(){ render(); window.scrollTo(0,0); });
   function mastH(){ var m=document.querySelector('.mast'); if(m) H.style.setProperty('--mast-h',(m.offsetHeight+24)+'px'); }
