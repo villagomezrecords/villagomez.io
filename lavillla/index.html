@@ -164,6 +164,83 @@
     .eco__list [aria-current] b { color: var(--rose); }
     .eco__credits { margin: 2rem 0 0; color: var(--dim); font-size: .8rem; }
     @media (max-width: 640px) { .eco__list { grid-template-columns: 1fr; } }
+
+    /* Air Villagomez : la carte d'ouverture */
+    .hero { align-items: stretch; grid-template-rows: 1fr auto; padding-top: 5rem; }
+    .hero__bg { background: radial-gradient(70% 60% at 32% 30%, #2a0d1d 0%, var(--night) 70%); }
+    .hero__map { position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; }
+    .atlas { width: 100%; max-width: 78rem; height: auto; max-height: 54svh; display: block; overflow: visible; flex-shrink: 0; }
+    .atlas__land { fill: none; stroke: rgba(244,239,232,.22); stroke-width: 3.2; stroke-linecap: round; }
+    .atlas__arr { fill: none; stroke: var(--rose); stroke-width: 1.6; }
+    .atlas__city { fill: var(--rose); }
+    .atlas__dep { fill: none; stroke-width: 1.8; stroke-dasharray: 3 6; animation: flow 1.6s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -18; } }
+    .atlas__q { font: 700 14px var(--meta); fill: rgba(198,221,54,.55); animation: blink 2.4s ease-in-out infinite; }
+    @keyframes blink { 50% { fill-opacity: .25; } }
+    .atlas__hq { fill: var(--lime); }
+    .atlas__ping { fill: none; stroke: var(--lime); stroke-width: 1.5; transform-origin: center; transform-box: fill-box; animation: ping 2.4s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: 1; } to { transform: scale(5); opacity: 0; } }
+    .atlas__lbl { font: 600 11px var(--meta); letter-spacing: .14em; fill: var(--dim); }
+    .atlas__lbl--hq { fill: var(--white); font-size: 12px; }
+    @media (prefers-reduced-motion: reduce) { .atlas__dep, .atlas__q, .atlas__ping { animation: none; } }
+    .hero h1 img { width: min(26rem, 64vw); }
+    .hero .kicker { margin-bottom: 1rem; }
+    .hero__slogan { margin-top: .9rem; }
+    .hero__air { position: absolute; top: 5.2rem; right: var(--gutter); margin: 0; text-align: right; font: 600 .82rem/1.5 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--dim); }
+    .hero__air b { display: block; color: var(--lime); font-size: 1rem; }
+    @media (max-width: 760px) {
+      .hero__map { overflow: hidden; margin-inline: calc(var(--gutter) * -1); }
+      .hero__map { justify-content: flex-start; }
+      .atlas { width: 210%; max-width: none; max-height: none; margin-left: -22%; }
+      .hero__air { top: 4.6rem; }
+    }
+
+    /* Tableau des vols */
+    .board { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2.5rem); }
+    .board h3 { margin: 0 0 .8rem; font: 700 1rem/1 var(--meta); letter-spacing: .24em; text-transform: uppercase; display: flex; gap: .6rem; align-items: center; }
+    .board h3 span { color: var(--night); background: var(--white); padding: .3rem .5rem; }
+    .board ol { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--white); }
+    .board li { display: grid; grid-template-columns: 5.2rem 1fr auto; gap: .2rem 1rem; padding: .85rem 0; border-bottom: 1px solid var(--line); font: 600 1.05rem/1.2 var(--meta); letter-spacing: .1em; text-transform: uppercase; }
+    .board .fl { color: var(--lime); }
+    .board .who { grid-column: 2; color: var(--dim); font-size: .9rem; letter-spacing: .12em; }
+    .board .st { grid-row: 1 / span 2; grid-column: 3; align-self: center; font-size: .8rem; padding: .35rem .55rem; border: 1px solid currentColor; white-space: nowrap; }
+    .board .st--ok { color: var(--dim); }
+    .board .st--soon { color: var(--lime); animation: blink 2.4s ease-in-out infinite; }
+    .board .redact { background: var(--white); color: transparent; border-radius: 1px; user-select: none; }
+    @media (prefers-reduced-motion: reduce) { .board .st--soon { animation: none; } }
+    @media (max-width: 860px) { .board { grid-template-columns: 1fr; } }
+
+    /* la viLLLa Radio, façon GTA */
+    .radio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .wheel { position: relative; width: min(30rem, 100%); aspect-ratio: 1; margin-inline: auto; border-radius: 50%; background: radial-gradient(circle, rgba(11,10,10,.2) 34%, rgba(255,255,255,.04) 35%, rgba(255,255,255,.04) 64%, transparent 65%); }
+    .wheel::before { content: ""; position: absolute; inset: 17%; border-radius: 50%; border: 1px solid var(--line); }
+    .st-btn { position: absolute; width: 26%; aspect-ratio: 1; border-radius: 50%; border: 2px solid transparent; transform: translate(-50%, -50%); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; font: 400 clamp(.62rem, 1.6vw, .8rem)/1 var(--head); text-transform: uppercase; color: var(--night); transition: transform .25s, box-shadow .25s, border-color .25s, filter .25s; filter: saturate(.7) brightness(.8); }
+    .st-btn small { display: block; margin-top: .25rem; font: 700 .7em/1 var(--meta); letter-spacing: .14em; }
+    .st-btn:hover, .st-btn[aria-pressed="true"] { transform: translate(-50%, -50%) scale(1.12); filter: none; border-color: var(--white); box-shadow: 0 0 0 6px rgba(244,239,232,.08), 0 0 40px var(--glow); }
+    .st-btn:nth-of-type(1) { top: 15%; left: 50%; background: var(--rose); --glow: rgba(255,46,147,.55); }
+    .st-btn:nth-of-type(2) { top: 50%; left: 85%; background: #f4efe8; --glow: rgba(244,239,232,.4); }
+    .st-btn:nth-of-type(3) { top: 85%; left: 50%; background: #ff8a3d; --glow: rgba(255,138,61,.5); }
+    .st-btn:nth-of-type(4) { top: 50%; left: 15%; background: var(--lime); --glow: rgba(198,221,54,.5); }
+    .wheel__core { position: absolute; inset: 31%; border-radius: 50%; display: grid; place-content: center; text-align: center; gap: .35rem; padding: .5rem; }
+    .wheel__core img { width: 70%; margin: 0 auto; height: auto; }
+    .wheel__now { font: 700 clamp(.7rem, 1.8vw, .9rem)/1.1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    .wheel__eq { display: flex; gap: 3px; justify-content: center; height: 14px; align-items: flex-end; }
+    .wheel__eq i { width: 3px; background: var(--lime); height: 30%; animation: eq 1s ease-in-out infinite; }
+    .wheel__eq i:nth-child(2) { animation-delay: -.3s; } .wheel__eq i:nth-child(3) { animation-delay: -.6s; } .wheel__eq i:nth-child(4) { animation-delay: -.15s; } .wheel__eq i:nth-child(5) { animation-delay: -.45s; }
+    @keyframes eq { 50% { height: 100%; } }
+    @media (prefers-reduced-motion: reduce) { .wheel__eq i { animation: none; height: 60%; } }
+    .radio__info h3 { margin: 0; font: 400 clamp(1.6rem, 3.6vw, 2.6rem)/1 var(--head); text-transform: uppercase; }
+    .radio__freq { margin: .6rem 0 0; font: 700 1rem/1 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--lime); }
+    .radio__desc { color: #d6cfc6; margin: 1rem 0 0; max-width: 30rem; }
+    .radio__air { display: inline-block; margin-top: 1.4rem; font: 700 .85rem/1 var(--meta); letter-spacing: .2em; text-transform: uppercase; color: var(--night); background: var(--lime); padding: .5rem .7rem; }
+    .radio__links { margin: 1.2rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font: 600 .95rem/1 var(--meta); letter-spacing: .14em; text-transform: uppercase; }
+    .radio__links a { color: var(--dim); text-decoration: none; } .radio__links a:hover { color: var(--lime); }
+    .prog { margin-top: clamp(2.5rem, 5vw, 4rem); }
+    @media (max-width: 860px) { .radio { grid-template-columns: 1fr; } }
+
+    .collective-photo { margin: 0 0 clamp(1.5rem, 3vw, 2.5rem); aspect-ratio: 3 / 1.25; overflow: hidden; background: #1a1717; }
+    .collective-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+    .collective-photo figcaption { display: none; }
   </style>
 </head>
 <body>
@@ -171,24 +248,77 @@
   <header class="top">
     <a class="top__logo" href="/lavillla/" aria-label="la viLLLa, accueil"><img src="/images/la-villla-logo-rose.svg" alt="" width="2042" height="840"></a>
     <nav aria-label="Sections">
+      <a href="#vols">Vols</a>
       <a href="#agenda">Agenda</a>
       <a href="#soirees">Soirées</a>
       <a href="#artistes">Artistes</a>
-      <a href="#sets">Sets</a>
+      <a href="#radio">Radio</a>
       <a class="top__cta" href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="titre">
-      <div class="hero__bg"><img src="/images/collectif.jpg" alt="" onerror="this.remove()"></div>
+      <div class="hero__bg"></div>
+      <p class="hero__air"><b>Air Villagomez</b>Départ : Montréal · YUL</p>
+      <div class="hero__map">
+<svg class="atlas" viewBox="0 0 1000 480" role="img" aria-labelledby="atlas-t"><title id="atlas-t">Carte du monde Air Villagomez : Montréal au centre, des invités arrivés de New York et de France, et des vols à venir qui partent de Montréal vers des destinations encore secrètes.</title>
+<defs>
+<linearGradient id="fade0" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="401" y2="185.2"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade1" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="338.0" y2="214.0"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade2" gradientUnits="userSpaceOnUse" x1="320.1" y1="136.4" x2="120.1" y2="159.9"><stop offset="0" stop-color="#c6dd36"/><stop offset=".55" stop-color="#c6dd36" stop-opacity=".7"/><stop offset="1" stop-color="#c6dd36" stop-opacity="0"/></linearGradient>
+</defs>
+<path class="atlas__land" d="M14.5 6.0h0M329.0 6.0h0M337.5 6.0h0M346.0 6.0h0M354.5 6.0h0M371.5 6.0h0M380.0 6.0h0M388.5 6.0h0M397.0 6.0h0M405.5 6.0h0M414.0 6.0h0M422.5 6.0h0M431.0 6.0h0M439.5 6.0h0M448.0 6.0h0M456.5 6.0h0M524.5 6.0h0M533.0 6.0h0M694.5 6.0h0M966.5 6.0h0M983.5 6.0h0M992.0 6.0h0M14.5 40.0h0M329.0 40.0h0M337.5 40.0h0M354.5 40.0h0M363.0 40.0h0M380.0 40.0h0M388.5 40.0h0M397.0 40.0h0M405.5 40.0h0M414.0 40.0h0M422.5 40.0h0M431.0 40.0h0M439.5 40.0h0M448.0 40.0h0M456.5 40.0h0M533.0 40.0h0M541.5 40.0h0M669.0 40.0h0M677.5 40.0h0M992.0 40.0h0M6.0 48.5h0M14.5 48.5h0M23.0 48.5h0M269.5 48.5h0M320.5 48.5h0M329.0 48.5h0M337.5 48.5h0M346.0 48.5h0M371.5 48.5h0M380.0 48.5h0M388.5 48.5h0M397.0 48.5h0M405.5 48.5h0M414.0 48.5h0M422.5 48.5h0M431.0 48.5h0M439.5 48.5h0M448.0 48.5h0M456.5 48.5h0M626.5 48.5h0M694.5 48.5h0M703.0 48.5h0M711.5 48.5h0M958.0 48.5h0M6.0 57.0h0M14.5 57.0h0M31.5 57.0h0M252.5 57.0h0M261.0 57.0h0M286.5 57.0h0M303.5 57.0h0M312.0 57.0h0M337.5 57.0h0M346.0 57.0h0M397.0 57.0h0M405.5 57.0h0M414.0 57.0h0M422.5 57.0h0M431.0 57.0h0M439.5 57.0h0M448.0 57.0h0M609.5 57.0h0M660.5 57.0h0M669.0 57.0h0M677.5 57.0h0M686.0 57.0h0M694.5 57.0h0M703.0 57.0h0M711.5 57.0h0M720.0 57.0h0M728.5 57.0h0M745.5 57.0h0M754.0 57.0h0M975.0 57.0h0M6.0 65.5h0M14.5 65.5h0M23.0 65.5h0M31.5 65.5h0M40.0 65.5h0M48.5 65.5h0M57.0 65.5h0M65.5 65.5h0M74.0 65.5h0M82.5 65.5h0M167.5 65.5h0M176.0 65.5h0M184.5 65.5h0M193.0 65.5h0M201.5 65.5h0M244.0 65.5h0M261.0 65.5h0M269.5 65.5h0M278.0 65.5h0M286.5 65.5h0M303.5 65.5h0M329.0 65.5h0M346.0 65.5h0M354.5 65.5h0M388.5 65.5h0M397.0 65.5h0M405.5 65.5h0M414.0 65.5h0M422.5 65.5h0M431.0 65.5h0M439.5 65.5h0M448.0 65.5h0M541.5 65.5h0M550.0 65.5h0M558.5 65.5h0M643.5 65.5h0M652.0 65.5h0M660.5 65.5h0M669.0 65.5h0M677.5 65.5h0M686.0 65.5h0M694.5 65.5h0M703.0 65.5h0M711.5 65.5h0M720.0 65.5h0M728.5 65.5h0M737.0 65.5h0M745.5 65.5h0M754.0 65.5h0M762.5 65.5h0M771.0 65.5h0M779.5 65.5h0M788.0 65.5h0M796.5 65.5h0M805.0 65.5h0M813.5 65.5h0M822.0 65.5h0M907.0 65.5h0M915.5 65.5h0M924.0 65.5h0M932.5 65.5h0M941.0 65.5h0M975.0 65.5h0M6.0 74.0h0M14.5 74.0h0M23.0 74.0h0M31.5 74.0h0M40.0 74.0h0M48.5 74.0h0M57.0 74.0h0M65.5 74.0h0M74.0 74.0h0M82.5 74.0h0M91.0 74.0h0M99.5 74.0h0M108.0 74.0h0M116.5 74.0h0M125.0 74.0h0M133.5 74.0h0M159.0 74.0h0M167.5 74.0h0M176.0 74.0h0M184.5 74.0h0M193.0 74.0h0M201.5 74.0h0M210.0 74.0h0M218.5 74.0h0M227.0 74.0h0M235.5 74.0h0M244.0 74.0h0M252.5 74.0h0M261.0 74.0h0M269.5 74.0h0M278.0 74.0h0M286.5 74.0h0M295.0 74.0h0M303.5 74.0h0M312.0 74.0h0M320.5 74.0h0M346.0 74.0h0M354.5 74.0h0M363.0 74.0h0M388.5 74.0h0M397.0 74.0h0M405.5 74.0h0M414.0 74.0h0M422.5 74.0h0M533.0 74.0h0M541.5 74.0h0M550.0 74.0h0M558.5 74.0h0M567.0 74.0h0M575.5 74.0h0M584.0 74.0h0M601.0 74.0h0M609.5 74.0h0M618.0 74.0h0M626.5 74.0h0M635.0 74.0h0M643.5 74.0h0M660.5 74.0h0M669.0 74.0h0M677.5 74.0h0M686.0 74.0h0M694.5 74.0h0M703.0 74.0h0M711.5 74.0h0M720.0 74.0h0M728.5 74.0h0M737.0 74.0h0M745.5 74.0h0M754.0 74.0h0M762.5 74.0h0M771.0 74.0h0M779.5 74.0h0M788.0 74.0h0M796.5 74.0h0M805.0 74.0h0M813.5 74.0h0M822.0 74.0h0M830.5 74.0h0M839.0 74.0h0M847.5 74.0h0M856.0 74.0h0M864.5 74.0h0M873.0 74.0h0M881.5 74.0h0M890.0 74.0h0M924.0 74.0h0M932.5 74.0h0M941.0 74.0h0M949.5 74.0h0M958.0 74.0h0M966.5 74.0h0M975.0 74.0h0M983.5 74.0h0M992.0 74.0h0M6.0 82.5h0M14.5 82.5h0M23.0 82.5h0M31.5 82.5h0M40.0 82.5h0M48.5 82.5h0M57.0 82.5h0M65.5 82.5h0M74.0 82.5h0M82.5 82.5h0M91.0 82.5h0M99.5 82.5h0M159.0 82.5h0M167.5 82.5h0M176.0 82.5h0M184.5 82.5h0M193.0 82.5h0M201.5 82.5h0M210.0 82.5h0M218.5 82.5h0M227.0 82.5h0M235.5 82.5h0M244.0 82.5h0M252.5 82.5h0M261.0 82.5h0M269.5 82.5h0M278.0 82.5h0M286.5 82.5h0M295.0 82.5h0M303.5 82.5h0M312.0 82.5h0M346.0 82.5h0M354.5 82.5h0M388.5 82.5h0M397.0 82.5h0M405.5 82.5h0M456.5 82.5h0M524.5 82.5h0M533.0 82.5h0M541.5 82.5h0M550.0 82.5h0M558.5 82.5h0M567.0 82.5h0M575.5 82.5h0M584.0 82.5h0M592.5 82.5h0M601.0 82.5h0M609.5 82.5h0M618.0 82.5h0M626.5 82.5h0M635.0 82.5h0M643.5 82.5h0M652.0 82.5h0M660.5 82.5h0M669.0 82.5h0M677.5 82.5h0M686.0 82.5h0M694.5 82.5h0M703.0 82.5h0M711.5 82.5h0M720.0 82.5h0M728.5 82.5h0M737.0 82.5h0M745.5 82.5h0M754.0 82.5h0M762.5 82.5h0M771.0 82.5h0M779.5 82.5h0M788.0 82.5h0M796.5 82.5h0M805.0 82.5h0M813.5 82.5h0M822.0 82.5h0M830.5 82.5h0M839.0 82.5h0M847.5 82.5h0M856.0 82.5h0M864.5 82.5h0M873.0 82.5h0M881.5 82.5h0M932.5 82.5h0M941.0 82.5h0M949.5 82.5h0M958.0 82.5h0M966.5 82.5h0M975.0 82.5h0M983.5 82.5h0M992.0 82.5h0M6.0 91.0h0M14.5 91.0h0M23.0 91.0h0M31.5 91.0h0M40.0 91.0h0M57.0 91.0h0M65.5 91.0h0M74.0 91.0h0M133.5 91.0h0M142.0 91.0h0M150.5 91.0h0M159.0 91.0h0M167.5 91.0h0M176.0 91.0h0M184.5 91.0h0M193.0 91.0h0M201.5 91.0h0M210.0 91.0h0M218.5 91.0h0M227.0 91.0h0M235.5 91.0h0M244.0 91.0h0M252.5 91.0h0M261.0 91.0h0M269.5 91.0h0M278.0 91.0h0M286.5 91.0h0M329.0 91.0h0M337.5 91.0h0M516.0 91.0h0M524.5 91.0h0M533.0 91.0h0M550.0 91.0h0M558.5 91.0h0M567.0 91.0h0M575.5 91.0h0M584.0 91.0h0M592.5 91.0h0M601.0 91.0h0M609.5 91.0h0M618.0 91.0h0M626.5 91.0h0M635.0 91.0h0M643.5 91.0h0M652.0 91.0h0M660.5 91.0h0M669.0 91.0h0M677.5 91.0h0M686.0 91.0h0M694.5 91.0h0M703.0 91.0h0M711.5 91.0h0M720.0 91.0h0M728.5 91.0h0M737.0 91.0h0M745.5 91.0h0M754.0 91.0h0M762.5 91.0h0M771.0 91.0h0M779.5 91.0h0M788.0 91.0h0M796.5 91.0h0M805.0 91.0h0M813.5 91.0h0M822.0 91.0h0M830.5 91.0h0M839.0 91.0h0M864.5 91.0h0M873.0 91.0h0M932.5 91.0h0M941.0 91.0h0M949.5 91.0h0M958.0 91.0h0M966.5 91.0h0M975.0 91.0h0M983.5 91.0h0M992.0 91.0h0M40.0 99.5h0M48.5 99.5h0M201.5 99.5h0M210.0 99.5h0M218.5 99.5h0M227.0 99.5h0M235.5 99.5h0M244.0 99.5h0M252.5 99.5h0M261.0 99.5h0M269.5 99.5h0M278.0 99.5h0M286.5 99.5h0M329.0 99.5h0M337.5 99.5h0M346.0 99.5h0M354.5 99.5h0M490.5 99.5h0M533.0 99.5h0M558.5 99.5h0M567.0 99.5h0M575.5 99.5h0M584.0 99.5h0M592.5 99.5h0M601.0 99.5h0M609.5 99.5h0M618.0 99.5h0M626.5 99.5h0M635.0 99.5h0M643.5 99.5h0M652.0 99.5h0M660.5 99.5h0M669.0 99.5h0M677.5 99.5h0M686.0 99.5h0M694.5 99.5h0M703.0 99.5h0M711.5 99.5h0M720.0 99.5h0M728.5 99.5h0M737.0 99.5h0M745.5 99.5h0M754.0 99.5h0M762.5 99.5h0M771.0 99.5h0M779.5 99.5h0M788.0 99.5h0M796.5 99.5h0M805.0 99.5h0M813.5 99.5h0M856.0 99.5h0M864.5 99.5h0M31.5 108.0h0M40.0 108.0h0M201.5 108.0h0M210.0 108.0h0M218.5 108.0h0M227.0 108.0h0M235.5 108.0h0M244.0 108.0h0M252.5 108.0h0M261.0 108.0h0M269.5 108.0h0M278.0 108.0h0M286.5 108.0h0M295.0 108.0h0M303.5 108.0h0M320.5 108.0h0M329.0 108.0h0M337.5 108.0h0M346.0 108.0h0M354.5 108.0h0M363.0 108.0h0M482.0 108.0h0M490.5 108.0h0M550.0 108.0h0M558.5 108.0h0M567.0 108.0h0M575.5 108.0h0M584.0 108.0h0M592.5 108.0h0M601.0 108.0h0M609.5 108.0h0M618.0 108.0h0M626.5 108.0h0M635.0 108.0h0M643.5 108.0h0M652.0 108.0h0M660.5 108.0h0M669.0 108.0h0M677.5 108.0h0M686.0 108.0h0M694.5 108.0h0M703.0 108.0h0M711.5 108.0h0M720.0 108.0h0M728.5 108.0h0M737.0 108.0h0M745.5 108.0h0M754.0 108.0h0M762.5 108.0h0M771.0 108.0h0M779.5 108.0h0M788.0 108.0h0M796.5 108.0h0M805.0 108.0h0M864.5 108.0h0M873.0 108.0h0M23.0 116.5h0M201.5 116.5h0M210.0 116.5h0M218.5 116.5h0M227.0 116.5h0M235.5 116.5h0M244.0 116.5h0M252.5 116.5h0M261.0 116.5h0M269.5 116.5h0M278.0 116.5h0M286.5 116.5h0M295.0 116.5h0M303.5 116.5h0M320.5 116.5h0M329.0 116.5h0M337.5 116.5h0M346.0 116.5h0M354.5 116.5h0M363.0 116.5h0M482.0 116.5h0M490.5 116.5h0M499.0 116.5h0M516.0 116.5h0M524.5 116.5h0M533.0 116.5h0M541.5 116.5h0M550.0 116.5h0M558.5 116.5h0M567.0 116.5h0M575.5 116.5h0M584.0 116.5h0M592.5 116.5h0M601.0 116.5h0M609.5 116.5h0M618.0 116.5h0M626.5 116.5h0M635.0 116.5h0M643.5 116.5h0M652.0 116.5h0M660.5 116.5h0M669.0 116.5h0M677.5 116.5h0M686.0 116.5h0M694.5 116.5h0M703.0 116.5h0M711.5 116.5h0M720.0 116.5h0M728.5 116.5h0M737.0 116.5h0M745.5 116.5h0M754.0 116.5h0M762.5 116.5h0M771.0 116.5h0M779.5 116.5h0M788.0 116.5h0M796.5 116.5h0M805.0 116.5h0M813.5 116.5h0M822.0 116.5h0M830.5 116.5h0M201.5 125.0h0M210.0 125.0h0M218.5 125.0h0M227.0 125.0h0M235.5 125.0h0M244.0 125.0h0M252.5 125.0h0M261.0 125.0h0M269.5 125.0h0M278.0 125.0h0M286.5 125.0h0M295.0 125.0h0M303.5 125.0h0M312.0 125.0h0M320.5 125.0h0M329.0 125.0h0M363.0 125.0h0M371.5 125.0h0M499.0 125.0h0M507.5 125.0h0M516.0 125.0h0M524.5 125.0h0M533.0 125.0h0M541.5 125.0h0M550.0 125.0h0M558.5 125.0h0M567.0 125.0h0M575.5 125.0h0M584.0 125.0h0M592.5 125.0h0M601.0 125.0h0M609.5 125.0h0M618.0 125.0h0M626.5 125.0h0M635.0 125.0h0M643.5 125.0h0M652.0 125.0h0M660.5 125.0h0M669.0 125.0h0M677.5 125.0h0M686.0 125.0h0M694.5 125.0h0M703.0 125.0h0M711.5 125.0h0M720.0 125.0h0M728.5 125.0h0M737.0 125.0h0M745.5 125.0h0M754.0 125.0h0M762.5 125.0h0M771.0 125.0h0M779.5 125.0h0M788.0 125.0h0M796.5 125.0h0M805.0 125.0h0M813.5 125.0h0M822.0 125.0h0M830.5 125.0h0M201.5 133.5h0M210.0 133.5h0M218.5 133.5h0M227.0 133.5h0M235.5 133.5h0M244.0 133.5h0M252.5 133.5h0M261.0 133.5h0M269.5 133.5h0M278.0 133.5h0M286.5 133.5h0M295.0 133.5h0M303.5 133.5h0M312.0 133.5h0M320.5 133.5h0M329.0 133.5h0M337.5 133.5h0M346.0 133.5h0M499.0 133.5h0M507.5 133.5h0M516.0 133.5h0M524.5 133.5h0M533.0 133.5h0M541.5 133.5h0M550.0 133.5h0M558.5 133.5h0M567.0 133.5h0M584.0 133.5h0M592.5 133.5h0M601.0 133.5h0M609.5 133.5h0M618.0 133.5h0M635.0 133.5h0M643.5 133.5h0M652.0 133.5h0M660.5 133.5h0M669.0 133.5h0M677.5 133.5h0M686.0 133.5h0M694.5 133.5h0M703.0 133.5h0M711.5 133.5h0M720.0 133.5h0M728.5 133.5h0M737.0 133.5h0M745.5 133.5h0M754.0 133.5h0M762.5 133.5h0M771.0 133.5h0M779.5 133.5h0M788.0 133.5h0M796.5 133.5h0M805.0 133.5h0M813.5 133.5h0M822.0 133.5h0M830.5 133.5h0M201.5 142.0h0M210.0 142.0h0M218.5 142.0h0M227.0 142.0h0M235.5 142.0h0M244.0 142.0h0M252.5 142.0h0M261.0 142.0h0M269.5 142.0h0M278.0 142.0h0M286.5 142.0h0M295.0 142.0h0M303.5 142.0h0M312.0 142.0h0M320.5 142.0h0M337.5 142.0h0M499.0 142.0h0M507.5 142.0h0M516.0 142.0h0M541.5 142.0h0M550.0 142.0h0M558.5 142.0h0M567.0 142.0h0M601.0 142.0h0M609.5 142.0h0M626.5 142.0h0M635.0 142.0h0M643.5 142.0h0M652.0 142.0h0M660.5 142.0h0M669.0 142.0h0M677.5 142.0h0M686.0 142.0h0M694.5 142.0h0M703.0 142.0h0M711.5 142.0h0M720.0 142.0h0M728.5 142.0h0M737.0 142.0h0M745.5 142.0h0M754.0 142.0h0M762.5 142.0h0M771.0 142.0h0M779.5 142.0h0M788.0 142.0h0M796.5 142.0h0M805.0 142.0h0M813.5 142.0h0M822.0 142.0h0M830.5 142.0h0M856.0 142.0h0M193.0 150.5h0M201.5 150.5h0M210.0 150.5h0M218.5 150.5h0M227.0 150.5h0M235.5 150.5h0M244.0 150.5h0M252.5 150.5h0M261.0 150.5h0M269.5 150.5h0M278.0 150.5h0M286.5 150.5h0M295.0 150.5h0M303.5 150.5h0M312.0 150.5h0M482.0 150.5h0M490.5 150.5h0M499.0 150.5h0M541.5 150.5h0M550.0 150.5h0M558.5 150.5h0M567.0 150.5h0M575.5 150.5h0M584.0 150.5h0M592.5 150.5h0M601.0 150.5h0M609.5 150.5h0M618.0 150.5h0M643.5 150.5h0M652.0 150.5h0M660.5 150.5h0M669.0 150.5h0M677.5 150.5h0M686.0 150.5h0M694.5 150.5h0M703.0 150.5h0M711.5 150.5h0M720.0 150.5h0M728.5 150.5h0M737.0 150.5h0M745.5 150.5h0M754.0 150.5h0M762.5 150.5h0M771.0 150.5h0M779.5 150.5h0M788.0 150.5h0M796.5 150.5h0M805.0 150.5h0M813.5 150.5h0M822.0 150.5h0M193.0 159.0h0M201.5 159.0h0M210.0 159.0h0M218.5 159.0h0M227.0 159.0h0M235.5 159.0h0M244.0 159.0h0M252.5 159.0h0M261.0 159.0h0M269.5 159.0h0M278.0 159.0h0M286.5 159.0h0M295.0 159.0h0M303.5 159.0h0M482.0 159.0h0M490.5 159.0h0M558.5 159.0h0M567.0 159.0h0M575.5 159.0h0M584.0 159.0h0M592.5 159.0h0M601.0 159.0h0M609.5 159.0h0M618.0 159.0h0M643.5 159.0h0M652.0 159.0h0M660.5 159.0h0M669.0 159.0h0M677.5 159.0h0M686.0 159.0h0M694.5 159.0h0M703.0 159.0h0M711.5 159.0h0M720.0 159.0h0M728.5 159.0h0M737.0 159.0h0M745.5 159.0h0M754.0 159.0h0M762.5 159.0h0M771.0 159.0h0M779.5 159.0h0M788.0 159.0h0M796.5 159.0h0M822.0 159.0h0M856.0 159.0h0M193.0 167.5h0M201.5 167.5h0M210.0 167.5h0M218.5 167.5h0M227.0 167.5h0M235.5 167.5h0M244.0 167.5h0M252.5 167.5h0M261.0 167.5h0M269.5 167.5h0M278.0 167.5h0M286.5 167.5h0M295.0 167.5h0M303.5 167.5h0M499.0 167.5h0M507.5 167.5h0M516.0 167.5h0M524.5 167.5h0M592.5 167.5h0M601.0 167.5h0M609.5 167.5h0M618.0 167.5h0M626.5 167.5h0M635.0 167.5h0M643.5 167.5h0M652.0 167.5h0M660.5 167.5h0M669.0 167.5h0M677.5 167.5h0M686.0 167.5h0M694.5 167.5h0M703.0 167.5h0M711.5 167.5h0M720.0 167.5h0M728.5 167.5h0M737.0 167.5h0M745.5 167.5h0M754.0 167.5h0M762.5 167.5h0M771.0 167.5h0M779.5 167.5h0M788.0 167.5h0M796.5 167.5h0M805.0 167.5h0M830.5 167.5h0M847.5 167.5h0M856.0 167.5h0M201.5 176.0h0M210.0 176.0h0M218.5 176.0h0M227.0 176.0h0M235.5 176.0h0M244.0 176.0h0M252.5 176.0h0M261.0 176.0h0M269.5 176.0h0M278.0 176.0h0M286.5 176.0h0M482.0 176.0h0M490.5 176.0h0M499.0 176.0h0M507.5 176.0h0M516.0 176.0h0M524.5 176.0h0M592.5 176.0h0M601.0 176.0h0M609.5 176.0h0M618.0 176.0h0M626.5 176.0h0M635.0 176.0h0M643.5 176.0h0M652.0 176.0h0M660.5 176.0h0M669.0 176.0h0M677.5 176.0h0M686.0 176.0h0M694.5 176.0h0M703.0 176.0h0M711.5 176.0h0M720.0 176.0h0M728.5 176.0h0M737.0 176.0h0M745.5 176.0h0M754.0 176.0h0M762.5 176.0h0M771.0 176.0h0M779.5 176.0h0M788.0 176.0h0M796.5 176.0h0M805.0 176.0h0M839.0 176.0h0M210.0 184.5h0M218.5 184.5h0M227.0 184.5h0M235.5 184.5h0M244.0 184.5h0M252.5 184.5h0M261.0 184.5h0M278.0 184.5h0M286.5 184.5h0M482.0 184.5h0M490.5 184.5h0M499.0 184.5h0M507.5 184.5h0M516.0 184.5h0M524.5 184.5h0M533.0 184.5h0M541.5 184.5h0M550.0 184.5h0M558.5 184.5h0M567.0 184.5h0M575.5 184.5h0M584.0 184.5h0M592.5 184.5h0M601.0 184.5h0M609.5 184.5h0M618.0 184.5h0M626.5 184.5h0M635.0 184.5h0M643.5 184.5h0M652.0 184.5h0M660.5 184.5h0M669.0 184.5h0M677.5 184.5h0M686.0 184.5h0M694.5 184.5h0M703.0 184.5h0M711.5 184.5h0M720.0 184.5h0M728.5 184.5h0M737.0 184.5h0M745.5 184.5h0M754.0 184.5h0M762.5 184.5h0M771.0 184.5h0M779.5 184.5h0M788.0 184.5h0M796.5 184.5h0M805.0 184.5h0M813.5 184.5h0M201.5 193.0h0M210.0 193.0h0M218.5 193.0h0M227.0 193.0h0M235.5 193.0h0M244.0 193.0h0M286.5 193.0h0M473.5 193.0h0M482.0 193.0h0M490.5 193.0h0M499.0 193.0h0M507.5 193.0h0M516.0 193.0h0M524.5 193.0h0M533.0 193.0h0M541.5 193.0h0M550.0 193.0h0M558.5 193.0h0M567.0 193.0h0M575.5 193.0h0M584.0 193.0h0M601.0 193.0h0M609.5 193.0h0M618.0 193.0h0M626.5 193.0h0M643.5 193.0h0M652.0 193.0h0M660.5 193.0h0M669.0 193.0h0M677.5 193.0h0M686.0 193.0h0M694.5 193.0h0M703.0 193.0h0M711.5 193.0h0M720.0 193.0h0M728.5 193.0h0M737.0 193.0h0M745.5 193.0h0M754.0 193.0h0M762.5 193.0h0M771.0 193.0h0M779.5 193.0h0M788.0 193.0h0M796.5 193.0h0M805.0 193.0h0M813.5 193.0h0M218.5 201.5h0M227.0 201.5h0M235.5 201.5h0M465.0 201.5h0M473.5 201.5h0M482.0 201.5h0M490.5 201.5h0M499.0 201.5h0M507.5 201.5h0M516.0 201.5h0M524.5 201.5h0M533.0 201.5h0M541.5 201.5h0M550.0 201.5h0M558.5 201.5h0M567.0 201.5h0M575.5 201.5h0M584.0 201.5h0M601.0 201.5h0M609.5 201.5h0M618.0 201.5h0M626.5 201.5h0M635.0 201.5h0M677.5 201.5h0M686.0 201.5h0M694.5 201.5h0M703.0 201.5h0M711.5 201.5h0M720.0 201.5h0M728.5 201.5h0M737.0 201.5h0M745.5 201.5h0M754.0 201.5h0M762.5 201.5h0M771.0 201.5h0M779.5 201.5h0M788.0 201.5h0M796.5 201.5h0M805.0 201.5h0M813.5 201.5h0M822.0 201.5h0M227.0 210.0h0M235.5 210.0h0M278.0 210.0h0M286.5 210.0h0M456.5 210.0h0M465.0 210.0h0M473.5 210.0h0M482.0 210.0h0M490.5 210.0h0M499.0 210.0h0M507.5 210.0h0M516.0 210.0h0M524.5 210.0h0M533.0 210.0h0M541.5 210.0h0M550.0 210.0h0M558.5 210.0h0M567.0 210.0h0M575.5 210.0h0M584.0 210.0h0M592.5 210.0h0M609.5 210.0h0M618.0 210.0h0M626.5 210.0h0M635.0 210.0h0M643.5 210.0h0M652.0 210.0h0M686.0 210.0h0M694.5 210.0h0M703.0 210.0h0M711.5 210.0h0M720.0 210.0h0M728.5 210.0h0M737.0 210.0h0M745.5 210.0h0M754.0 210.0h0M762.5 210.0h0M771.0 210.0h0M779.5 210.0h0M788.0 210.0h0M796.5 210.0h0M227.0 218.5h0M235.5 218.5h0M261.0 218.5h0M312.0 218.5h0M456.5 218.5h0M465.0 218.5h0M473.5 218.5h0M482.0 218.5h0M490.5 218.5h0M499.0 218.5h0M507.5 218.5h0M516.0 218.5h0M524.5 218.5h0M533.0 218.5h0M541.5 218.5h0M550.0 218.5h0M558.5 218.5h0M567.0 218.5h0M575.5 218.5h0M584.0 218.5h0M592.5 218.5h0M609.5 218.5h0M618.0 218.5h0M626.5 218.5h0M635.0 218.5h0M643.5 218.5h0M652.0 218.5h0M703.0 218.5h0M711.5 218.5h0M720.0 218.5h0M754.0 218.5h0M762.5 218.5h0M771.0 218.5h0M779.5 218.5h0M235.5 227.0h0M244.0 227.0h0M252.5 227.0h0M261.0 227.0h0M456.5 227.0h0M465.0 227.0h0M473.5 227.0h0M482.0 227.0h0M490.5 227.0h0M499.0 227.0h0M507.5 227.0h0M516.0 227.0h0M524.5 227.0h0M533.0 227.0h0M541.5 227.0h0M550.0 227.0h0M558.5 227.0h0M567.0 227.0h0M575.5 227.0h0M584.0 227.0h0M592.5 227.0h0M601.0 227.0h0M618.0 227.0h0M626.5 227.0h0M635.0 227.0h0M643.5 227.0h0M703.0 227.0h0M711.5 227.0h0M720.0 227.0h0M754.0 227.0h0M762.5 227.0h0M771.0 227.0h0M779.5 227.0h0M788.0 227.0h0M261.0 235.5h0M269.5 235.5h0M456.5 235.5h0M465.0 235.5h0M473.5 235.5h0M482.0 235.5h0M490.5 235.5h0M499.0 235.5h0M507.5 235.5h0M516.0 235.5h0M524.5 235.5h0M533.0 235.5h0M541.5 235.5h0M550.0 235.5h0M558.5 235.5h0M567.0 235.5h0M575.5 235.5h0M584.0 235.5h0M592.5 235.5h0M601.0 235.5h0M609.5 235.5h0M618.0 235.5h0M626.5 235.5h0M703.0 235.5h0M711.5 235.5h0M771.0 235.5h0M779.5 235.5h0M788.0 235.5h0M830.5 235.5h0M269.5 244.0h0M303.5 244.0h0M312.0 244.0h0M465.0 244.0h0M473.5 244.0h0M482.0 244.0h0M490.5 244.0h0M499.0 244.0h0M507.5 244.0h0M516.0 244.0h0M524.5 244.0h0M533.0 244.0h0M541.5 244.0h0M550.0 244.0h0M558.5 244.0h0M567.0 244.0h0M575.5 244.0h0M584.0 244.0h0M592.5 244.0h0M601.0 244.0h0M609.5 244.0h0M635.0 244.0h0M711.5 244.0h0M779.5 244.0h0M788.0 244.0h0M830.5 244.0h0M839.0 244.0h0M278.0 252.5h0M295.0 252.5h0M303.5 252.5h0M312.0 252.5h0M320.5 252.5h0M329.0 252.5h0M465.0 252.5h0M473.5 252.5h0M482.0 252.5h0M490.5 252.5h0M499.0 252.5h0M507.5 252.5h0M516.0 252.5h0M524.5 252.5h0M533.0 252.5h0M541.5 252.5h0M550.0 252.5h0M558.5 252.5h0M567.0 252.5h0M575.5 252.5h0M584.0 252.5h0M592.5 252.5h0M601.0 252.5h0M609.5 252.5h0M618.0 252.5h0M626.5 252.5h0M635.0 252.5h0M711.5 252.5h0M720.0 252.5h0M771.0 252.5h0M839.0 252.5h0M295.0 261.0h0M303.5 261.0h0M312.0 261.0h0M320.5 261.0h0M329.0 261.0h0M337.5 261.0h0M473.5 261.0h0M482.0 261.0h0M490.5 261.0h0M499.0 261.0h0M516.0 261.0h0M524.5 261.0h0M533.0 261.0h0M541.5 261.0h0M550.0 261.0h0M558.5 261.0h0M567.0 261.0h0M575.5 261.0h0M584.0 261.0h0M592.5 261.0h0M601.0 261.0h0M609.5 261.0h0M618.0 261.0h0M626.5 261.0h0M839.0 261.0h0M295.0 269.5h0M303.5 269.5h0M312.0 269.5h0M320.5 269.5h0M329.0 269.5h0M337.5 269.5h0M346.0 269.5h0M354.5 269.5h0M533.0 269.5h0M541.5 269.5h0M550.0 269.5h0M558.5 269.5h0M567.0 269.5h0M575.5 269.5h0M584.0 269.5h0M592.5 269.5h0M601.0 269.5h0M609.5 269.5h0M618.0 269.5h0M626.5 269.5h0M779.5 269.5h0M813.5 269.5h0M286.5 278.0h0M295.0 278.0h0M303.5 278.0h0M312.0 278.0h0M320.5 278.0h0M329.0 278.0h0M337.5 278.0h0M346.0 278.0h0M354.5 278.0h0M363.0 278.0h0M533.0 278.0h0M541.5 278.0h0M550.0 278.0h0M558.5 278.0h0M567.0 278.0h0M575.5 278.0h0M584.0 278.0h0M592.5 278.0h0M601.0 278.0h0M609.5 278.0h0M618.0 278.0h0M771.0 278.0h0M779.5 278.0h0M805.0 278.0h0M813.5 278.0h0M830.5 278.0h0M839.0 278.0h0M847.5 278.0h0M286.5 286.5h0M295.0 286.5h0M303.5 286.5h0M312.0 286.5h0M320.5 286.5h0M329.0 286.5h0M337.5 286.5h0M346.0 286.5h0M354.5 286.5h0M363.0 286.5h0M371.5 286.5h0M533.0 286.5h0M541.5 286.5h0M550.0 286.5h0M558.5 286.5h0M567.0 286.5h0M575.5 286.5h0M584.0 286.5h0M592.5 286.5h0M601.0 286.5h0M609.5 286.5h0M779.5 286.5h0M805.0 286.5h0M813.5 286.5h0M830.5 286.5h0M864.5 286.5h0M873.0 286.5h0M286.5 295.0h0M295.0 295.0h0M303.5 295.0h0M312.0 295.0h0M320.5 295.0h0M329.0 295.0h0M337.5 295.0h0M346.0 295.0h0M354.5 295.0h0M363.0 295.0h0M371.5 295.0h0M380.0 295.0h0M388.5 295.0h0M397.0 295.0h0M533.0 295.0h0M541.5 295.0h0M550.0 295.0h0M558.5 295.0h0M567.0 295.0h0M575.5 295.0h0M584.0 295.0h0M592.5 295.0h0M601.0 295.0h0M873.0 295.0h0M881.5 295.0h0M890.0 295.0h0M286.5 303.5h0M295.0 303.5h0M303.5 303.5h0M312.0 303.5h0M320.5 303.5h0M329.0 303.5h0M337.5 303.5h0M346.0 303.5h0M354.5 303.5h0M363.0 303.5h0M371.5 303.5h0M380.0 303.5h0M388.5 303.5h0M397.0 303.5h0M405.5 303.5h0M541.5 303.5h0M550.0 303.5h0M558.5 303.5h0M567.0 303.5h0M575.5 303.5h0M584.0 303.5h0M592.5 303.5h0M601.0 303.5h0M796.5 303.5h0M805.0 303.5h0M881.5 303.5h0M890.0 303.5h0M898.5 303.5h0M295.0 312.0h0M303.5 312.0h0M312.0 312.0h0M320.5 312.0h0M329.0 312.0h0M337.5 312.0h0M346.0 312.0h0M354.5 312.0h0M363.0 312.0h0M371.5 312.0h0M380.0 312.0h0M388.5 312.0h0M397.0 312.0h0M541.5 312.0h0M550.0 312.0h0M558.5 312.0h0M567.0 312.0h0M575.5 312.0h0M584.0 312.0h0M592.5 312.0h0M601.0 312.0h0M907.0 312.0h0M295.0 320.5h0M303.5 320.5h0M312.0 320.5h0M320.5 320.5h0M329.0 320.5h0M337.5 320.5h0M346.0 320.5h0M354.5 320.5h0M363.0 320.5h0M371.5 320.5h0M380.0 320.5h0M388.5 320.5h0M541.5 320.5h0M550.0 320.5h0M558.5 320.5h0M567.0 320.5h0M575.5 320.5h0M584.0 320.5h0M592.5 320.5h0M601.0 320.5h0M609.5 320.5h0M856.0 320.5h0M864.5 320.5h0M303.5 329.0h0M312.0 329.0h0M320.5 329.0h0M329.0 329.0h0M337.5 329.0h0M346.0 329.0h0M354.5 329.0h0M363.0 329.0h0M371.5 329.0h0M380.0 329.0h0M388.5 329.0h0M533.0 329.0h0M541.5 329.0h0M550.0 329.0h0M558.5 329.0h0M567.0 329.0h0M575.5 329.0h0M584.0 329.0h0M592.5 329.0h0M601.0 329.0h0M626.5 329.0h0M635.0 329.0h0M839.0 329.0h0M847.5 329.0h0M856.0 329.0h0M864.5 329.0h0M881.5 329.0h0M890.0 329.0h0M949.5 329.0h0M312.0 337.5h0M320.5 337.5h0M329.0 337.5h0M337.5 337.5h0M346.0 337.5h0M354.5 337.5h0M363.0 337.5h0M371.5 337.5h0M380.0 337.5h0M388.5 337.5h0M533.0 337.5h0M541.5 337.5h0M550.0 337.5h0M558.5 337.5h0M567.0 337.5h0M575.5 337.5h0M584.0 337.5h0M592.5 337.5h0M626.5 337.5h0M830.5 337.5h0M839.0 337.5h0M847.5 337.5h0M856.0 337.5h0M864.5 337.5h0M873.0 337.5h0M881.5 337.5h0M890.0 337.5h0M320.5 346.0h0M329.0 346.0h0M337.5 346.0h0M346.0 346.0h0M354.5 346.0h0M363.0 346.0h0M371.5 346.0h0M380.0 346.0h0M388.5 346.0h0M541.5 346.0h0M550.0 346.0h0M558.5 346.0h0M567.0 346.0h0M575.5 346.0h0M584.0 346.0h0M592.5 346.0h0M618.0 346.0h0M626.5 346.0h0M813.5 346.0h0M822.0 346.0h0M830.5 346.0h0M839.0 346.0h0M847.5 346.0h0M856.0 346.0h0M864.5 346.0h0M873.0 346.0h0M881.5 346.0h0M890.0 346.0h0M941.0 346.0h0M320.5 354.5h0M329.0 354.5h0M337.5 354.5h0M346.0 354.5h0M354.5 354.5h0M363.0 354.5h0M371.5 354.5h0M380.0 354.5h0M541.5 354.5h0M550.0 354.5h0M558.5 354.5h0M567.0 354.5h0M575.5 354.5h0M584.0 354.5h0M592.5 354.5h0M618.0 354.5h0M805.0 354.5h0M813.5 354.5h0M822.0 354.5h0M830.5 354.5h0M839.0 354.5h0M847.5 354.5h0M856.0 354.5h0M864.5 354.5h0M873.0 354.5h0M881.5 354.5h0M890.0 354.5h0M898.5 354.5h0M320.5 363.0h0M329.0 363.0h0M337.5 363.0h0M346.0 363.0h0M354.5 363.0h0M363.0 363.0h0M371.5 363.0h0M541.5 363.0h0M550.0 363.0h0M558.5 363.0h0M567.0 363.0h0M575.5 363.0h0M584.0 363.0h0M805.0 363.0h0M813.5 363.0h0M822.0 363.0h0M830.5 363.0h0M839.0 363.0h0M847.5 363.0h0M856.0 363.0h0M864.5 363.0h0M873.0 363.0h0M881.5 363.0h0M890.0 363.0h0M898.5 363.0h0M320.5 371.5h0M329.0 371.5h0M337.5 371.5h0M346.0 371.5h0M354.5 371.5h0M363.0 371.5h0M550.0 371.5h0M558.5 371.5h0M567.0 371.5h0M575.5 371.5h0M805.0 371.5h0M813.5 371.5h0M822.0 371.5h0M830.5 371.5h0M839.0 371.5h0M847.5 371.5h0M856.0 371.5h0M864.5 371.5h0M873.0 371.5h0M881.5 371.5h0M890.0 371.5h0M898.5 371.5h0M320.5 380.0h0M329.0 380.0h0M337.5 380.0h0M346.0 380.0h0M354.5 380.0h0M363.0 380.0h0M550.0 380.0h0M558.5 380.0h0M567.0 380.0h0M575.5 380.0h0M805.0 380.0h0M813.5 380.0h0M822.0 380.0h0M830.5 380.0h0M847.5 380.0h0M856.0 380.0h0M864.5 380.0h0M873.0 380.0h0M881.5 380.0h0M890.0 380.0h0M320.5 388.5h0M329.0 388.5h0M337.5 388.5h0M346.0 388.5h0M354.5 388.5h0M550.0 388.5h0M796.5 388.5h0M805.0 388.5h0M847.5 388.5h0M856.0 388.5h0M864.5 388.5h0M873.0 388.5h0M881.5 388.5h0M31.5 397.0h0M320.5 397.0h0M329.0 397.0h0M337.5 397.0h0M346.0 397.0h0M354.5 397.0h0M856.0 397.0h0M864.5 397.0h0M873.0 397.0h0M320.5 405.5h0M329.0 405.5h0M337.5 405.5h0M941.0 405.5h0M31.5 414.0h0M320.5 414.0h0M329.0 414.0h0M337.5 414.0h0M864.5 414.0h0M31.5 422.5h0M320.5 422.5h0M329.0 422.5h0M915.5 422.5h0M320.5 431.0h0M329.0 431.0h0M337.5 431.0h0M329.0 439.5h0M329.0 448.0h0M337.5 448.0h0"/>
+<path class="atlas__arr" d="M314.8 151.3Q317.5 136.7 320.1 136.4"/>
+<circle class="atlas__city" cx="314.8" cy="151.3" r="3.2"/>
+<path class="atlas__arr" d="M505.6 126Q412.9 75.5 320.1 136.4"/>
+<circle class="atlas__city" cx="505.6" cy="126" r="3.2"/>
+<path class="atlas__dep" stroke="url(#fade0)" d="M320.1 136.4Q360.6 134.3 401 185.2" style="animation-delay:-0.0s"/>
+<text class="atlas__q" x="401" y="189.2" text-anchor="middle">?</text>
+<path class="atlas__dep" stroke="url(#fade1)" d="M320.1 136.4Q329.1 152.9 338.0 214.0" style="animation-delay:-1.3s"/>
+<text class="atlas__q" x="338.0" y="218.0" text-anchor="middle">?</text>
+<path class="atlas__dep" stroke="url(#fade2)" d="M320.1 136.4Q220.1 91.8 120.1 159.9" style="animation-delay:-2.6s"/>
+<text class="atlas__q" x="120.1" y="163.9" text-anchor="middle">?</text>
+<circle class="atlas__ping" cx="320.1" cy="136.4" r="5"/><circle class="atlas__hq" cx="320.1" cy="136.4" r="5"/>
+<text class="atlas__lbl atlas__lbl--hq" x="330.1" y="127.4">MONTRÉAL · YUL</text>
+<text class="atlas__lbl" x="513.6" y="118">FRANCE</text>
+<text class="atlas__lbl" x="306.8" y="167.3" text-anchor="end">NEW YORK</text>
+</svg>
+      </div>
       <div class="wrap">
-        <p class="kicker">Collectif de la nuit · Montréal</p>
+        <p class="kicker">Collectif de la nuit · Montréal · sans frontières</p>
         <h1 id="titre"><img src="/images/la-villla-logo-rose.svg" alt="la viLLLa" width="2042" height="840"></h1>
         <p class="hero__slogan">Latin Lime Lovers</p>
         <p class="hero__lede">Des DJ, des musiciens et des chanteurs réunis autour de la diversité, de l'inclusion et des voyages sonores. Quatre formats de soirées, un invité chaque fois : la vie live.</p>
       </div>
-      <p class="hero__credit">Photo : <a href="https://www.instagram.com/philippemanh/" rel="noopener">Philippe Manh Nguyen</a></p>
+    </section>
+
+    <!-- Tableau des vols : arrivées = invités déjà publics ; départs = à annoncer, ne rien dévoiler avant l'annonce -->
+    <section id="vols">
+      <div class="wrap">
+        <header class="head">
+          <span class="head__num" aria-hidden="true">00</span>
+          <h2>Air Villagomez</h2>
+          <p>Les invités qui ont atterri à Montréal, et les prochains vols de la viLLLa. Les destinations sont dévoilées à l'embarquement.</p>
+        </header>
+        <div class="board">
+          <div>
+            <h3><span>Arrivées</span></h3>
+            <ol>
+              <li><span class="fl">AV-A01</span><span>New York → Montréal</span><span class="who">Roman Martinez · Disco 2025</span><span class="st st--ok">Atterri</span></li>
+              <li><span class="fl">AV-A02</span><span>France → Montréal</span><span class="who">Antho Decks · Disco 2025</span><span class="st st--ok">Atterri</span></li>
+            </ol>
+          </div>
+          <div>
+            <h3><span>Départs</span></h3>
+            <ol>
+              <li><span class="fl">AV-<span class="redact">000</span></span><span>Montréal → <span class="redact">Destination</span></span><span class="who">À annoncer</span><span class="st st--soon">Embarquement bientôt</span></li>
+              <li><span class="fl">AV-<span class="redact">000</span></span><span>Montréal → <span class="redact">Destination</span></span><span class="who">À annoncer</span><span class="st st--soon">En préparation</span></li>
+              <li><span class="fl">AV-<span class="redact">000</span></span><span>Montréal → <span class="redact">Destination</span></span><span class="who">À annoncer</span><span class="st st--soon">En préparation</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Agenda : à remplir à chaque annonce, la plus proche en premier -->
@@ -235,6 +365,8 @@
           <h2>Les soirées</h2>
           <p>Quatre formats, quatre façons de vivre la nuit.</p>
         </header>
+
+        <figure class="collective-photo"><img src="/images/collectif.jpg" alt="Le collectif la viLLLa réuni autour des platines sur un toit de Montréal" loading="lazy" onerror="this.remove()"><figcaption>Photo : Philippe Manh Nguyen</figcaption></figure>
 
         <div class="formats">
           <article class="format">
@@ -308,14 +440,38 @@
       </div>
     </section>
 
-    <section id="sets">
+    <section id="radio">
       <div class="wrap">
         <header class="head">
           <span class="head__num" aria-hidden="true">04</span>
-          <h2>Les sets</h2>
-          <p>Des sets filmés à la viLLLa, archives et nouveautés mélangées. Un nouvel épisode chaque vendredi sur YouTube, SoundCloud et Mixcloud.</p>
+          <h2>la viLLLa Radio</h2>
+          <p>Quatre stations, une par soirée. Un nouveau mix chaque semaine, sur YouTube, SoundCloud et Mixcloud.</p>
         </header>
 
+        <div class="radio">
+          <div class="wheel" role="group" aria-label="Choisir une station">
+            <button type="button" class="st-btn" aria-pressed="true" data-name="Disco FM" data-freq="105.3 · Disco, funk, house" data-desc="Les classiques et les perles disco, du funk qui roule et de la house qui monte, comme aux soirées la viLLLa Disco.">Disco<small>FM</small></button>
+            <button type="button" class="st-btn" aria-pressed="false" data-name="Vinyl 33" data-freq="33.3 · 100 % vinyle" data-desc="Des sets tout en vinyle, plus lents et plus intimes. Pour écouter autant que pour danser.">Vinyl<small>33</small></button>
+            <button type="button" class="st-btn" aria-pressed="false" data-name="Rooftop FM" data-freq="98.6 · Coucher de soleil" data-desc="DJ et musiciens live sur un toit de Montréal, du coucher du soleil jusqu'à la nuit.">Rooftop<small>FM</small></button>
+            <button type="button" class="st-btn" aria-pressed="false" data-name="Gomez Radio" data-freq="126 · Le gros party" data-desc="Percussions, musiciens live et invités : l'énergie du gros party de l'année.">Gomez<small>Radio</small></button>
+            <div class="wheel__core" aria-hidden="true">
+              <img src="/images/la-villla-logo-rose.svg" alt="" width="2042" height="840">
+              <span class="wheel__now" data-now>Disco FM</span>
+              <span class="wheel__eq"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+          </div>
+
+          <div class="radio__info" aria-live="polite">
+            <h3 data-name>Disco FM</h3>
+            <p class="radio__freq" data-freq>105.3 · Disco, funk, house</p>
+            <p class="radio__desc" data-desc>Les classiques et les perles disco, du funk qui roule et de la house qui monte, comme aux soirées la viLLLa Disco.</p>
+            <span class="radio__air">En ondes bientôt · un mix chaque semaine</span>
+            <p class="radio__links"><a href="https://www.youtube.com/@VillagomezRecords" rel="noopener">YouTube</a><a href="https://www.instagram.com/la.villla/" rel="noopener">Suivre @la.villla</a></p>
+          </div>
+        </div>
+
+        <div class="prog">
+          <h3 class="subhead" style="margin:0 0 1.2rem">Au programme</h3>
         <ul class="sets">
           <li class="set">
             <figure><img src="/images/set-rooftop-2021.jpg" alt="Villagomez de dos aux platines, bras levés devant la foule, sur un toit de Montréal la nuit" loading="lazy" onerror="this.remove()"></figure>
@@ -332,9 +488,10 @@
           <li class="set">
             <figure><img src="/images/set-03.jpg" alt="Set la viLLLa" loading="lazy" onerror="this.remove()"></figure>
             <h3>Prochain épisode</h3>
-            <p>Chaque vendredi · <a href="https://www.youtube.com/@VillagomezRecords" rel="noopener">S'abonner sur YouTube</a></p>
+            <p>Chaque semaine · <a href="https://www.youtube.com/@VillagomezRecords" rel="noopener">S'abonner sur YouTube</a></p>
           </li>
         </ul>
+        </div>
       </div>
     </section>
 
@@ -372,5 +529,23 @@
     </div>
   </footer>
 
+
+  <script>
+    // la viLLLa Radio : choisir une station dans la roue
+    (function () {
+      var btns = document.querySelectorAll('.st-btn');
+      var info = document.querySelector('.radio__info');
+      var now = document.querySelector('[data-now]');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+          info.querySelector('[data-name]').textContent = b.dataset.name;
+          info.querySelector('[data-freq]').textContent = b.dataset.freq;
+          info.querySelector('[data-desc]').textContent = b.dataset.desc;
+          now.textContent = b.dataset.name;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
