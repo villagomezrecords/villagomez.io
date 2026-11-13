@@ -16,7 +16,7 @@ Photos : JPG, sRGB, ~2400 px côté long, < 500 Ko. Tant qu'un fichier manque, u
 | `disco.jpg`, `vinyl.jpg`, `rooftop.jpg`, `gomez.jpg` | Les quatre soirées LA VILLLA | vertical 4:5 |
 | `soiree-01.jpg` à `-05` | Bande photo sous les soirées (LA VILLLA ROOFTOP) | vertical 4:5 |
 | `soiree-07.jpg` | Bande photo : grande photo à côté de `soiree-05` | horizontal 3:2 |
-| `set-rooftop-2021.jpg`, `set-vinyl-01.jpg`, `set-03.jpg` | Vignettes des sets filmés | carré |
+| `set-rooftop-2021.jpg`, `set-03.jpg` | Vignettes des sets filmés | carré |
 | `sessions-01.jpg` à `sessions-07.jpg` | Studio : sessions d'enregistrement (une seule série) | 01 et 02-03 en haut, 04-07 en rangée de quatre photos verticales 4:5 | 
 | `sessions-voix-01.jpg`, `sessions-voix-02.jpg` | Studio : session de voix, sous la photo de la cabine | horizontal 4:3 et vertical 3:4 |
 | `studio-01.jpg` à `-03` | Studio : Studio Villagomez | 01 large, 02-03 libres |
