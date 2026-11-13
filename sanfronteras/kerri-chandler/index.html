@@ -159,6 +159,7 @@ a.val:hover{color:#FF6B5E}
 /* panneau de partage */
 .sharewrap{max-width:720px;margin:0 auto;padding-bottom:8px}
 .sharewrap .share{margin-top:8px}
+.sharewrap .shbtns{margin-top:12px}
 .sharepanel{margin-top:16px;padding:20px;display:flex;flex-direction:column;gap:18px}
 .theme-jour .sharepanel{border:2px solid #151515;background:#FFFDF7}
 .theme-nuit .sharepanel{background:#1E1E1E;border-radius:16px}
@@ -632,7 +633,10 @@ nav.rubs a{text-decoration:none}
   <div class="wrap">
     <div class="sharewrap">
       <div class="share">
-        <span class="share-t" data-t="share">Partager</span>
+        <span class="share-t" data-t="shareIn">Partager en</span>
+        <span class="seg2" role="group" aria-label="Langue du lien"><button type="button" class="sh" data-sl="fr">FR</button><button type="button" class="sh" data-sl="en">EN</button><button type="button" class="sh" data-sl="es">ES</button></span>
+      </div>
+      <div class="share shbtns">
         <button type="button" class="sh primary" id="sh-copy" data-t="copy">Copier le lien</button><a class="sh" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a><a class="sh" id="sh-fb" target="_blank" rel="noopener">Facebook</a><a class="sh" id="sh-x" target="_blank" rel="noopener">X</a><a class="sh" id="sh-li" target="_blank" rel="noopener">LinkedIn</a><button type="button" class="sh" id="sh-native" hidden data-t="shareBtn">Plus…</button>
         <span class="sh-ok" id="sh-ok" role="status" aria-live="polite"></span>
       </div>
@@ -732,7 +736,7 @@ var ABOUT = {
     es: { h: 'El boletín DIRÈK llega pronto', p: 'Los nuevos artículos, las noticias de la viLLLa y las próximas noches, pronto en tu correo. Mientras tanto, síguenos en Instagram.', btn: 'Seguir @san_fronteras' }
   };
   var COPIED = { fr: 'Lien copié', en: 'Link copied', es: 'Enlace copiado' };
-  var lang = H.getAttribute('data-l');
+  var lang = H.getAttribute('data-l'), shareLang = null;
   function $(id){ return document.getElementById(id); }
   function esc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function store(k, v){ try { sessionStorage.setItem(k, v); } catch(e){} }
@@ -754,9 +758,11 @@ var ABOUT = {
       + '<h2>'+esc(A.contactH)+'</h2><p class="ab-contact"><a href="mailto:info.sanfronteras@gmail.com">info.sanfronteras@gmail.com</a> · <a href="https://www.instagram.com/san_fronteras/" target="_blank" rel="noopener">@san_fronteras</a> · <a href="https://www.youtube.com/@SanFronteras" target="_blank" rel="noopener">YouTube @SanFronteras</a></p></div>'
       + '<p class="backp"><a href="#" class="back">'+esc(A.back)+'</a></p>';
   }
-  function shareUrl(){ return lang === 'fr' ? BASE + '?lang=fr' : BASE + lang + '/'; }
+  function sl(){ return shareLang || lang; }
+  function shareUrl(){ var l = sl(); return l === 'fr' ? BASE + '?lang=fr' : BASE + l + '/'; }
   function renderShare(){
-    var pv = PV[lang], u = shareUrl(), msg = pv.title + ' — ' + u;
+    var pv = PV[sl()], u = shareUrl(), msg = pv.title + ' — ' + u;
+    [].forEach.call(document.querySelectorAll('[data-sl]'), function(b){ var on = b.getAttribute('data-sl') === sl(); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     $('sh-wa').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
     $('sh-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(u);
     $('sh-x').href = 'https://x.com/intent/post?text=' + encodeURIComponent(pv.title) + '&url=' + encodeURIComponent(u);
@@ -782,15 +788,17 @@ var ABOUT = {
   }
   document.addEventListener('click', function(e){
     var b = e.target.closest('[data-setlang]');
-    if (b){ lang = b.getAttribute('data-setlang'); H.setAttribute('data-l', lang); store('sf-lang', lang); render(); return; }
+    if (b){ lang = b.getAttribute('data-setlang'); shareLang = null; H.setAttribute('data-l', lang); store('sf-lang', lang); render(); return; }
     if (e.target.closest('#themebtn')){ var n = !H.classList.contains('nuit'); H.classList.toggle('nuit', n); store('sf-theme', n ? 'nuit' : 'jour'); render(); return; }
     if (e.target.closest('.back, [data-nav="article"]')){ e.preventDefault(); history.pushState(null, '', location.pathname + location.search); render(); window.scrollTo(0,0); return; }
+    var sb = e.target.closest('[data-sl]');
+    if (sb){ shareLang = sb.getAttribute('data-sl'); renderShare(); return; }
     if (e.target.closest('#sh-copy')){
       var u = shareUrl();
       if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u).then(copied, function(){ copyOld(u); }); else copyOld(u);
       return;
     }
-    if (e.target.closest('#sh-native')){ navigator.share({ title: PV[lang].title, url: shareUrl() }).catch(function(){}); return; }
+    if (e.target.closest('#sh-native')){ navigator.share({ title: PV[sl()].title, url: shareUrl() }).catch(function(){}); return; }
   });
   window.addEventListener('hashchange', function(){ render(); window.scrollTo(0,0); });
   function mastH(){ var m=document.querySelector('.mast'); if(m) H.style.setProperty('--mast-h',(m.offsetHeight+24)+'px'); }
