@@ -19,13 +19,12 @@
     @font-face { font-family: "Hanken Grotesk"; src: url("/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
     @font-face { font-family: "Instrument Serif"; font-style: italic; src: url("/fonts/instrument-serif-italic.woff2") format("woff2"); font-display: swap; }
     *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; }
     body { margin: 0; background: #0b0a0a; color: #f4efe8; font: 400 1rem/1.5 "Hanken Grotesk", system-ui, sans-serif; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
     a { color: inherit; text-decoration: none; }
     a:focus-visible { outline: 2px solid #f4efe8; outline-offset: -6px; }
     .top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.1rem clamp(1rem, 3vw, 2rem); font: 600 .95rem/1 "Big Shoulders", "Arial Narrow", sans-serif; letter-spacing: .2em; text-transform: uppercase; }
     .top span { color: #9b948c; }
-    .doors { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; min-height: 0; }
+    .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; min-height: 0; }
     .door { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1.2rem, 3vw, 2.2rem); min-height: 70svh; isolation: isolate; }
     .door img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s ease, filter .5s; filter: saturate(.85) brightness(.75); }
     .door::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(11,10,10,0) 30%, rgba(11,10,10,.88) 88%); }
@@ -50,6 +49,39 @@
     .nf svg { width: .55em; height: auto; margin: 0 .02em .06em; }
     footer { padding: 1rem clamp(1rem, 3vw, 2rem); color: #9b948c; font-size: .82rem; display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; justify-content: space-between; }
     footer a:hover { color: #f4efe8; }
+
+    /* Schéma d'ouverture : un signal, trois sorties */
+    .schema { position: relative; min-height: calc(100svh - 3.2rem); display: flex; flex-direction: column; justify-content: center; padding: 1rem clamp(.5rem, 2vw, 2rem) 2.5rem; overflow: hidden; }
+    .schema__intro { position: absolute; top: clamp(.5rem, 3vh, 2rem); left: clamp(1rem, 3vw, 2rem); margin: 0; z-index: 1; }
+    .schema__intro p { margin: 0; font: 600 .85rem/1 "Big Shoulders", "Arial Narrow", sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #9b948c; }
+    .schema__intro h1 { margin: .5rem 0 0; font: italic 400 clamp(1.8rem, 4vw, 3.2rem)/1 "Instrument Serif", Georgia, serif; }
+    .schema svg { width: 100%; height: auto; max-height: 86svh; display: block; margin-inline: auto; }
+    .schema .s-tel { display: none; }
+    @media (max-width: 760px) {
+      .schema { padding-top: 5.5rem; }
+      .schema .s-desk { display: none; }
+      .schema .s-tel { display: block; max-height: none; }
+    }
+    .schema__down { position: absolute; left: 50%; bottom: .8rem; transform: translateX(-50%); font: 600 .8rem/1 "Big Shoulders", sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #9b948c; }
+    .sc text { font-family: "Big Shoulders", "Arial Narrow", sans-serif; font-weight: 600; letter-spacing: .12em; fill: #9b948c; }
+    .sc .tr { fill: none; stroke: rgba(244,239,232,.42); stroke-width: 2; stroke-linejoin: round; transition: stroke .3s, stroke-width .3s; }
+    .sc .sym { fill: none; stroke: #f4efe8; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .sc .mask { fill: #0b0a0a; }
+    .sc .dot { fill: #f4efe8; }
+    .sc .ic { fill: #0b0a0a; stroke: var(--c); stroke-width: 2; transition: fill .3s; }
+    .sc .pin { stroke: var(--c); stroke-width: 2; }
+    .sc .ic-ref { fill: var(--c); }
+    .sc .ic-name { font-family: "Archivo Black", "Arial Black", sans-serif; font-weight: 400; letter-spacing: 0; fill: #f4efe8; }
+    .sc .ic-sub { fill: var(--c); }
+    .sc .pulse { fill: var(--c); }
+    .sc a { cursor: pointer; }
+    .sc a:hover .tr, .sc a:focus-visible .tr { stroke: var(--c); stroke-width: 3; }
+    .sc a:hover .ic, .sc a:focus-visible .ic { fill: color-mix(in srgb, var(--c) 14%, #0b0a0a); }
+    .sc a:focus-visible { outline: none; }
+    .sc .b1 { --c: #f2a33a; } .sc .b2 { --c: #ff2e93; } .sc .b3 { --c: #E6F53F; }
+    .sc .tb rect { fill: none; stroke: rgba(244,239,232,.42); stroke-width: 1.5; }
+    .sc .tb .tb-big { font-family: "Archivo Black", sans-serif; letter-spacing: .02em; fill: #f4efe8; }
+    @media (prefers-reduced-motion: reduce) { .sc .pulse { display: none; } }
     @media (max-width: 860px) {
       .doors { grid-template-columns: 1fr; }
       .door { min-height: 62svh; }
@@ -63,7 +95,187 @@
     <span>Montréal</span>
   </header>
 
-  <main class="doors">
+  <section class="schema" aria-label="Un signal, trois sorties">
+    <div class="schema__intro">
+      <p>Schéma 001</p>
+      <h1>Un signal, trois sorties.</h1>
+    </div>
+    <svg class="sc s-desk" viewBox="0 0 1200 640" role="img" aria-labelledby="sch-t">
+      <title id="sch-t">Schéma de circuit : le signal de Villagomez entre, passe dans un ampli et se divise en trois sorties, Villagomez Records, la viLLLa et San Fronteras.</title>
+      <defs>
+        <pattern id="g1" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(244,239,232,.04)"/></pattern>
+        <pattern id="g2" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="url(#g1)"/><path d="M100 0H0V100" fill="none" stroke="rgba(244,239,232,.08)"/></pattern>
+      </defs>
+      <rect width="1200" height="640" fill="url(#g2)"/>
+
+      <!-- Source -->
+      <path class="tr" d="M110 346V392"/>
+      <path class="sym" d="M92 392H128M98 401H122M105 410H115"/>
+      <circle class="mask" cx="110" cy="320" r="26"/><circle class="sym" cx="110" cy="320" r="26"/>
+      <path class="sym" d="M94 320C99 308 104 308 110 320S121 332 126 320"/>
+      <text x="110" y="276" text-anchor="middle" font-size="14">J1 · SOURCE</text>
+      <text x="110" y="436" text-anchor="middle" font-size="15" fill="#f4efe8" style="fill:#f4efe8">VILLAGOMEZ</text>
+
+      <!-- Entrée, condensateur et ampli -->
+      <path class="tr" d="M136 320H260V300H300"/>
+      <rect class="mask" x="196" y="300" width="24" height="40"/>
+      <path class="sym" d="M203 302V338M214 302V338"/>
+      <text x="208" y="290" text-anchor="middle" font-size="13">C1</text>
+      <path class="tr" d="M300 340H284V240H430V320"/>
+      <rect class="mask" x="320" y="228" width="64" height="24"/>
+      <path class="sym" d="M320 240H328L333 230L341 250L349 230L357 250L365 230L373 250L377 240H384"/>
+      <text x="352" y="220" text-anchor="middle" font-size="13">RF · FEEDBACK</text>
+      <path class="mask" d="M300 268V372L404 320Z"/><path class="sym" d="M300 268V372L404 320Z"/>
+      <text x="312" y="306" font-size="16" style="fill:#f4efe8">+</text>
+      <text x="312" y="348" font-size="16" style="fill:#f4efe8">−</text>
+      <text x="336" y="325" font-size="13">U0</text>
+      <text x="352" y="400" text-anchor="middle" font-size="13">GAIN · PASSION</text>
+      <path class="tr" d="M404 320H460"/>
+      <circle class="dot" cx="430" cy="320" r="4"/>
+      <circle class="dot" cx="460" cy="320" r="5"/>
+
+      <!-- Sortie 1 : le label -->
+      <a class="b1" href="/records/" aria-label="Villagomez Records, le label">
+        <path class="tr" d="M460 320V150H730"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" repeatCount="indefinite" path="M136 320H260V300H300L404 320H460V150H1150"/></circle>
+        <rect class="mask" x="556" y="136" width="88" height="28"/>
+        <path class="sym" d="M556 150H566L572 138L582 162L592 138L602 162L612 138L622 162L628 150H644" style="stroke:var(--c)"/>
+        <text x="600" y="126" text-anchor="middle" font-size="13">R1 · 4,7 kΩ</text>
+        <path class="pin" d="M730 128H750M730 172H750M1090 128H1110M1090 172H1110"/>
+        <path class="pin" d="M730 150H750M1090 150H1150"/><path class="pin" d="M1140 142L1150 150L1140 158" fill="none"/>
+        <rect class="ic" x="750" y="95" width="340" height="110"/>
+        <path class="pin" d="M908 95A12 12 0 0 0 932 95" fill="none"/>
+        <text class="ic-ref" x="766" y="120" font-size="14">U1</text>
+        <text class="ic-name" x="766" y="160" font-size="23">VILLAGOMEZ RECORDS</text>
+        <text class="ic-sub" x="766" y="188" font-size="14">LE LABEL  →  /RECORDS</text>
+        <text x="1150" y="132" text-anchor="end" font-size="12">OUT 1</text>
+      </a>
+
+      <!-- Sortie 2 : le collectif -->
+      <a class="b2" href="/lavillla/" aria-label="la viLLLa, le collectif">
+        <path class="tr" d="M460 320H730"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" begin="-2.15s" repeatCount="indefinite" path="M136 320H260V300H300L404 320H1150"/></circle>
+        <rect class="mask" x="556" y="300" width="88" height="28"/>
+        <path class="sym" d="M556 320H564A10 10 0 0 1 584 320A10 10 0 0 1 604 320A10 10 0 0 1 624 320A10 10 0 0 1 644 320" style="stroke:var(--c)"/>
+        <text x="600" y="296" text-anchor="middle" font-size="13">L1 · GROOVE</text>
+        <path class="pin" d="M730 298H750M730 342H750M1090 298H1110M1090 342H1110"/>
+        <path class="pin" d="M730 320H750M1090 320H1150"/><path class="pin" d="M1140 312L1150 320L1140 328" fill="none"/>
+        <rect class="ic" x="750" y="265" width="340" height="110"/>
+        <path class="pin" d="M908 265A12 12 0 0 0 932 265" fill="none"/>
+        <text class="ic-ref" x="766" y="290" font-size="14">U2</text>
+        <image href="/images/la-villla-logo-rose.svg" x="764" y="296" width="122" height="50"/>
+        <text class="ic-sub" x="902" y="330" font-size="14">LE COLLECTIF</text>
+        <text class="ic-sub" x="766" y="362" font-size="14">→  /LAVILLLA</text>
+        <text x="1150" y="302" text-anchor="end" font-size="12">OUT 2</text>
+      </a>
+
+      <!-- Sortie 3 : le média -->
+      <a class="b3" href="/sanfronteras/" aria-label="San Fronteras, le média">
+        <path class="tr" d="M460 320V490H730"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" begin="-1.1s" repeatCount="indefinite" path="M136 320H260V300H300L404 320H460V490H1150"/></circle>
+        <rect class="mask" x="570" y="470" width="60" height="40"/>
+        <path class="sym" d="M578 476V504L606 490Z M606 476V504" style="stroke:var(--c)"/>
+        <text x="600" y="462" text-anchor="middle" font-size="13">D1 · SANS FRONTIÈRES</text>
+        <path class="pin" d="M730 468H750M730 512H750M1090 468H1110M1090 512H1110"/>
+        <path class="pin" d="M730 490H750M1090 490H1150"/><path class="pin" d="M1140 482L1150 490L1140 498" fill="none"/>
+        <rect class="ic" x="750" y="435" width="340" height="110"/>
+        <path class="pin" d="M908 435A12 12 0 0 0 932 435" fill="none"/>
+        <text class="ic-ref" x="766" y="460" font-size="14">U3</text>
+        <text class="ic-name" x="766" y="500" font-size="23">SAN FRONTERAS</text>
+        <text class="ic-sub" x="766" y="528" font-size="14">LE MÉDIA · SOUND &amp; MINDSET  →  /SANFRONTERAS</text>
+        <text x="1150" y="472" text-anchor="end" font-size="12">OUT 3</text>
+      </a>
+
+      <!-- Cartouche -->
+      <g class="tb">
+        <rect x="40" y="572" width="1120" height="48"/>
+        <path d="M400 572V620M760 572V620M960 572V620" stroke="rgba(244,239,232,.42)" stroke-width="1.5"/>
+        <text class="tb-big" x="56" y="603" font-size="17">VILLAGOMEZ.IO</text>
+        <text x="416" y="602" font-size="13">SCHÉMA 001 · REV. A · UN SIGNAL, TROIS SORTIES</text>
+        <text x="776" y="602" font-size="13">MILE END, MONTRÉAL</text>
+        <text x="976" y="602" font-size="13">CLIQUE SUR UN MODULE</text>
+      </g>
+    </svg>
+    <svg class="sc s-tel" viewBox="0 0 390 860" role="img" aria-labelledby="sch-t2">
+      <title id="sch-t2">Schéma de circuit : le signal de Villagomez entre, passe dans un ampli et se divise en trois sorties, Villagomez Records, la viLLLa et San Fronteras.</title>
+      <rect width="390" height="860" fill="url(#g2)"/>
+      <circle class="mask" cx="195" cy="58" r="24"/><circle class="sym" cx="195" cy="58" r="24"/>
+      <path class="sym" d="M180 58C185 47 190 47 195 58S205 69 210 58"/>
+      <text x="160" y="52" text-anchor="end" font-size="12">J1 · SOURCE</text>
+      <text x="160" y="70" text-anchor="end" font-size="13" style="fill:#f4efe8">VILLAGOMEZ</text>
+      <path class="tr" d="M195 82V150H175V180"/>
+      <rect class="mask" x="175" y="106" width="40" height="20"/>
+      <path class="sym" d="M177 111H213M177 121H213"/>
+      <text x="224" y="120" font-size="12">C1</text>
+      <path class="tr" d="M215 180V150H300V286H195"/>
+      <rect class="mask" x="288" y="186" width="24" height="64"/>
+      <path class="sym" d="M300 186V194L290 199L310 207L290 215L310 223L290 231L310 239L300 244V250"/>
+      <text x="318" y="222" font-size="12">RF</text>
+      <path class="mask" d="M145 180H245L195 262Z"/><path class="sym" d="M145 180H245L195 262Z"/>
+      <text x="170" y="198" font-size="14" style="fill:#f4efe8">+</text>
+      <text x="211" y="198" font-size="14" style="fill:#f4efe8">−</text>
+      <text x="195" y="222" text-anchor="middle" font-size="12">U0</text>
+      <text x="138" y="232" text-anchor="end" font-size="11">GAIN · PASSION</text>
+      <path class="tr" d="M195 262V310"/>
+      <circle class="dot" cx="195" cy="286" r="4"/>
+      <circle class="dot" cx="195" cy="310" r="5"/>
+      <path class="tr" d="M195 310H40V380"/>
+
+      <a class="b1" href="/records/" aria-label="Villagomez Records, le label">
+        <path class="tr" d="M40 380H130"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" repeatCount="indefinite" path="M195 82V150H175V180L195 262V310H40V380H380"/></circle>
+        <rect class="mask" x="58" y="368" width="50" height="24"/>
+        <path class="sym" d="M58 380H62L66 371L72 389L78 371L84 389L90 371L96 389L100 380H108" style="stroke:var(--c)"/>
+        <text x="83" y="362" text-anchor="middle" font-size="11">R1</text>
+        <rect class="ic" x="130" y="325" width="230" height="110"/>
+        <path class="pin" d="M233 325A12 12 0 0 0 257 325" fill="none"/>
+        <path class="pin" d="M360 380H380"/>
+        <text class="ic-ref" x="144" y="348" font-size="13">U1</text>
+        <text class="ic-name" x="144" y="378" font-size="19">VILLAGOMEZ</text>
+        <text class="ic-name" x="144" y="400" font-size="19">RECORDS</text>
+        <text class="ic-sub" x="144" y="423" font-size="12">LE LABEL  →</text>
+      </a>
+
+      <a class="b2" href="/lavillla/" aria-label="la viLLLa, le collectif">
+        <path class="tr" d="M40 380V550H130"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" begin="-2.15s" repeatCount="indefinite" path="M195 82V150H175V180L195 262V310H40V550H380"/></circle>
+        <rect class="mask" x="56" y="536" width="56" height="24"/>
+        <path class="sym" d="M56 550H60A8 8 0 0 1 76 550A8 8 0 0 1 92 550A8 8 0 0 1 108 550H112" style="stroke:var(--c)"/>
+        <text x="84" y="530" text-anchor="middle" font-size="11">L1</text>
+        <rect class="ic" x="130" y="495" width="230" height="110"/>
+        <path class="pin" d="M233 495A12 12 0 0 0 257 495" fill="none"/>
+        <path class="pin" d="M360 550H380"/>
+        <text class="ic-ref" x="144" y="518" font-size="13">U2</text>
+        <image href="/images/la-villla-logo-rose.svg" x="142" y="526" width="112" height="46"/>
+        <text class="ic-sub" x="144" y="593" font-size="12">LE COLLECTIF  →</text>
+      </a>
+
+      <a class="b3" href="/sanfronteras/" aria-label="San Fronteras, le média">
+        <path class="tr" d="M40 550V720H130"/>
+        <circle class="pulse" r="5"><animateMotion dur="3.2s" begin="-1.1s" repeatCount="indefinite" path="M195 82V150H175V180L195 262V310H40V720H380"/></circle>
+        <rect class="mask" x="66" y="704" width="36" height="32"/>
+        <path class="sym" d="M70 710V730L90 720Z M90 710V730" style="stroke:var(--c)"/>
+        <text x="80" y="698" text-anchor="middle" font-size="11">D1</text>
+        <rect class="ic" x="130" y="665" width="230" height="110"/>
+        <path class="pin" d="M233 665A12 12 0 0 0 257 665" fill="none"/>
+        <path class="pin" d="M360 720H380"/>
+        <text class="ic-ref" x="144" y="688" font-size="13">U3</text>
+        <text class="ic-name" x="144" y="718" font-size="19">SAN</text>
+        <text class="ic-name" x="144" y="740" font-size="19">FRONTERAS</text>
+        <text class="ic-sub" x="144" y="763" font-size="12">LE MÉDIA  →</text>
+      </a>
+
+      <g class="tb">
+        <rect x="20" y="806" width="350" height="40"/>
+        <path d="M190 806V846" stroke="rgba(244,239,232,.42)" stroke-width="1.5"/>
+        <text class="tb-big" x="32" y="832" font-size="14">VILLAGOMEZ.IO</text>
+        <text x="202" y="831" font-size="11">SCHÉMA 001 · REV. A</text>
+      </g>
+    </svg>
+    <a class="schema__down" href="#maisons">↓ Les trois maisons</a>
+  </section>
+
+  <main class="doors" id="maisons">
     <a class="door door--records" href="/records/">
       <img class="bg" src="/images/portrait-modulaire.jpg" alt="" onerror="this.remove()">
       <p class="door__what">Le label</p>
