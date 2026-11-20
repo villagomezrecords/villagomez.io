@@ -320,31 +320,43 @@ nav.rubs a{text-decoration:none}
 .theme-nuit .rub{font-size:12px;padding:6px 11px}
 .theme-nuit .chapo{font-size:19px}
 }
-.alist{padding-top:56px;padding-bottom:40px}
-.alist .chapo{margin-bottom:40px}
-.cards{display:flex;flex-direction:column}
-.card{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:32px;align-items:center;text-decoration:none;padding:36px 0}
-.theme-jour .card{border-top:3px solid #151515}
-.theme-nuit .card{border-top:1px solid #3A3631}
-.card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
-.theme-jour .card img{border:3px solid #151515}
-.theme-nuit .card img{border-radius:16px}
-.c-rub{margin:0 0 14px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-.theme-nuit .c-rub{color:#FF2E93}
-.c-t{margin:0 0 14px}
-.theme-jour .c-t{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:40px;line-height:1.08;letter-spacing:-.01em}
-.theme-nuit .c-t{font-family:'La Villla Display','Arial Black',sans-serif;font-weight:700;font-size:40px;line-height:.98;text-transform:uppercase}
-.card:hover .c-t{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
-.c-d{margin:0 0 16px}
-.theme-jour .c-d{font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:20px;line-height:1.45;color:#2B2722}
-.theme-nuit .c-d{font-size:18px;line-height:1.5}
-.c-m{margin:0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
-.theme-jour .c-m{color:#5E574C}.theme-nuit .c-m{color:#B5AC9E;letter-spacing:.06em;text-transform:uppercase}
-.c-go{font-weight:800}
-.theme-jour .c-go{color:#151515}.theme-nuit .c-go{color:#C6DD36}
-.card.first{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
-.theme-jour .card.first .c-t{font-size:52px}.theme-nuit .card.first .c-t{font-size:56px}
-@media (max-width:760px){.card,.card.first{grid-template-columns:1fr;gap:20px;padding:28px 0}.theme-jour .c-t,.theme-jour .card.first .c-t{font-size:32px}.theme-nuit .c-t,.theme-nuit .card.first .c-t{font-size:32px}}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.home{padding-top:28px;padding-bottom:56px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+.pills a{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:600}
+.theme-jour .pills a{border:2px solid #151515}.theme-jour .pills a.on{background:#151515;color:#E6F53F}
+.theme-nuit .pills a{color:#F0EADF}.theme-nuit .pills a.on{background:#2E2B28}
+.theme-nuit .pills a:not(.on):hover{background:#211F1D}
+.ic{width:18px;height:18px;flex:none}
+.alab{margin:0 0 10px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.atit{margin:0 0 12px;font-weight:500;letter-spacing:-.01em}
+.theme-jour .atit{font-family:'Newsreader',Georgia,serif;font-weight:600}
+.theme-nuit .atit{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif}
+.adesc{margin:0 0 16px;font-size:17px;line-height:1.45}
+.theme-jour .adesc{color:#2B2722}.theme-nuit .adesc{color:#D9D2C6}
+.chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px 0 5px;border-radius:999px;font-size:15px;font-weight:500;margin:0 0 6px}
+.chip img{width:28px;height:28px;border-radius:50%;object-fit:cover;display:block}
+.chip.pin{padding-left:14px}
+.theme-jour .chip{border:2px solid #151515}.theme-nuit .chip{border:1px solid #5E574C}
+.aread{display:flex;align-items:center;gap:8px;margin:22px 0 0;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+a.feat,a.row{text-decoration:none;color:inherit}
+a.feat{display:block}
+.feat{position:relative;margin:0 0 28px}
+.feat .fimg{display:block;width:66%;margin-left:auto;aspect-ratio:16/9;object-fit:cover;border-radius:18px}
+.feat .fbox{position:absolute;left:0;top:50%;transform:translateY(-50%);width:42%;box-sizing:border-box;padding:28px 30px;border-radius:18px}
+.theme-nuit .feat .fbox{background:linear-gradient(160deg,#231C1A 0%,#1A1817 100%);border:1px solid #3A3431;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.theme-jour .feat .fbox{background:#F6F2E8;border:3px solid #151515}
+.theme-jour .feat .fimg{border:3px solid #151515}
+.feat .atit{font-size:32px;line-height:1.15}
+.row{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;overflow:hidden;margin:0 0 28px}
+.theme-nuit .row{background:linear-gradient(90deg,#1B1A19,#202020);border:1px solid #34312E}
+.theme-jour .row{border:3px solid #151515;background:#FFFDF7}
+.row .rimg{display:block;width:100%;height:100%;min-height:300px;aspect-ratio:16/10;object-fit:cover}
+.row .rtxt{padding:30px 32px;display:flex;flex-direction:column;justify-content:center}
+.row .atit{font-size:28px;line-height:1.2}
+.feat:hover .atit,.row:hover .atit{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.feat:hover .fimg,.row:hover .rimg{filter:brightness(1.06)}
+@media (max-width:900px){.feat .fimg{width:100%}.feat .fbox{position:relative;top:auto;transform:none;width:auto;margin:-60px 16px 0}.row{grid-template-columns:1fr}.row .rimg{min-height:0}.feat .atit{font-size:26px}.row .atit{font-size:24px}}
 </style>
 </head>
 <body>
@@ -399,81 +411,27 @@ nav.rubs a{text-decoration:none}
 
   <div data-view="article">
   <div data-lang="fr">
-    <section class="wrap alist" lang="fr">
-      <h1 class="h1">Les articles</h1>
-      <p class="chapo">Le son et l&#x27;état d&#x27;esprit : des soirées, des rencontres et la musique, racontées de l&#x27;intérieur.</p>
-      <div class="cards">
-      <a class="card first" href="/sanfronteras/from-the-inside/?lang=fr">
-        <img src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="Vue de derrière le DJ vers la foule qui danse sous la voûte de pierre de Cappella" loading="eager">
-        <div>
-          <p class="c-rub">Histoires &amp; Artistes</p>
-          <h2 class="c-t">De l&#x27;intérieur</h2>
-          <p class="c-d">Un week-end, deux anniversaires, et des petits Boiler Rooms partout où je regardais.</p>
-          <p class="c-m"><time datetime="2026-11-20">20 novembre 2026</time><span>Par Samuel Villagomez</span><span class="c-go">Lire l&#x27;article →</span></p>
-        </div>
-      </a>
-      <a class="card" href="/sanfronteras/kerri-chandler/?lang=fr">
-        <img src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez et Kerri Chandler, côte à côte, après le set" loading="lazy">
-        <div>
-          <p class="c-rub">Histoires &amp; Artistes</p>
-          <h2 class="c-t">Devant Kerri Chandler, je me suis senti à ma place</h2>
-          <p class="c-d">J&#x27;ai dansé et j&#x27;ai pleuré pendant une heure et demie au milieu d&#x27;inconnus.</p>
-          <p class="c-m"><time datetime="2026-11-13">13 novembre 2026</time><span>Par Samuel Villagomez</span><span class="c-go">Lire l&#x27;article →</span></p>
-        </div>
-      </a>
-      </div>
+    <section class="wrap home" lang="fr" aria-label="À la une">
+      <h1 class="vh">san_fronteras — Le son et l&#x27;état d&#x27;esprit : des soirées, des rencontres et la musique, racontées de l&#x27;intérieur.</h1>
+      <nav class="pills" aria-label="À la une"><a class="on" href="/sanfronteras/?lang=fr" aria-current="page">À la une</a><a href="#tech" data-go="tech">Technique &amp; Production</a><a href="#mind" data-go="mind">Mindset &amp; Dépassement</a><a href="#news" data-go="news">Nouvelles de la viLLLa</a><a href="#about" data-go="about">À propos</a></nav>
+      <a class="feat" href="/sanfronteras/from-the-inside/?lang=fr"><img class="fimg" src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="Vue de derrière le DJ vers la foule qui danse sous la voûte de pierre de Cappella" style="object-position:center 60%" loading="eager"><div class="fbox"><p class="alab">Histoires &amp; Artistes</p><h2 class="atit">De l&#x27;intérieur</h2><p class="adesc">Un week-end, deux anniversaires, et des petits Boiler Rooms partout où je regardais.</p><span class="chip"><img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy">Samuel Villagomez</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>À lire · 4 min</p></div></a>
+      <a class="row" href="/sanfronteras/kerri-chandler/?lang=fr"><img class="rimg" src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez et Kerri Chandler, côte à côte, après le set" style="object-position:center 30%" loading="lazy"><div class="rtxt"><p class="alab">Histoires &amp; Artistes</p><h2 class="atit">Devant Kerri Chandler, je me suis senti à ma place</h2><p class="adesc">J&#x27;ai dansé et j&#x27;ai pleuré pendant une heure et demie au milieu d&#x27;inconnus.</p><span class="chip pin"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Montréal</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>À lire · 3 min</p></div></a>
     </section>
   </div>
   <div data-lang="en">
-    <section class="wrap alist" lang="en">
-      <h1 class="h1">Articles</h1>
-      <p class="chapo">Sound and mindset: nights out, encounters and music, told from the inside.</p>
-      <div class="cards">
-      <a class="card first" href="/sanfronteras/from-the-inside/?lang=en">
-        <img src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="View from behind the DJ toward the crowd dancing under the stone vault of Cappella" loading="eager">
-        <div>
-          <p class="c-rub">Stories &amp; Artists</p>
-          <h2 class="c-t">From the Inside</h2>
-          <p class="c-d">One weekend, two birthdays, and little Boiler Rooms everywhere I looked.</p>
-          <p class="c-m"><time datetime="2026-11-20">November 20, 2026</time><span>By Samuel Villagomez</span><span class="c-go">Read the article →</span></p>
-        </div>
-      </a>
-      <a class="card" href="/sanfronteras/kerri-chandler/?lang=en">
-        <img src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez and Kerri Chandler, side by side, after the set" loading="lazy">
-        <div>
-          <p class="c-rub">Stories &amp; Artists</p>
-          <h2 class="c-t">Watching Kerri Chandler, I felt like I belonged</h2>
-          <p class="c-d">I danced and cried for an hour and a half among strangers.</p>
-          <p class="c-m"><time datetime="2026-11-13">November 13, 2026</time><span>By Samuel Villagomez</span><span class="c-go">Read the article →</span></p>
-        </div>
-      </a>
-      </div>
+    <section class="wrap home" lang="en" aria-label="Top stories">
+      <h1 class="vh">san_fronteras — Sound and mindset: nights out, encounters and music, told from the inside.</h1>
+      <nav class="pills" aria-label="Top stories"><a class="on" href="/sanfronteras/?lang=en" aria-current="page">Top stories</a><a href="#tech" data-go="tech">Technique &amp; Production</a><a href="#mind" data-go="mind">Mindset &amp; Growth</a><a href="#news" data-go="news">la viLLLa News</a><a href="#about" data-go="about">About</a></nav>
+      <a class="feat" href="/sanfronteras/from-the-inside/?lang=en"><img class="fimg" src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="View from behind the DJ toward the crowd dancing under the stone vault of Cappella" style="object-position:center 60%" loading="eager"><div class="fbox"><p class="alab">Stories &amp; Artists</p><h2 class="atit">From the Inside</h2><p class="adesc">One weekend, two birthdays, and little Boiler Rooms everywhere I looked.</p><span class="chip"><img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy">Samuel Villagomez</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Read · 4 min</p></div></a>
+      <a class="row" href="/sanfronteras/kerri-chandler/?lang=en"><img class="rimg" src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez and Kerri Chandler, side by side, after the set" style="object-position:center 30%" loading="lazy"><div class="rtxt"><p class="alab">Stories &amp; Artists</p><h2 class="atit">Watching Kerri Chandler, I felt like I belonged</h2><p class="adesc">I danced and cried for an hour and a half among strangers.</p><span class="chip pin"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Montreal</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Read · 3 min</p></div></a>
     </section>
   </div>
   <div data-lang="es">
-    <section class="wrap alist" lang="es">
-      <h1 class="h1">Artículos</h1>
-      <p class="chapo">El sonido y la mentalidad: noches, encuentros y música, contados desde dentro.</p>
-      <div class="cards">
-      <a class="card first" href="/sanfronteras/from-the-inside/?lang=es">
-        <img src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="Vista desde detrás del DJ hacia el público que baila bajo la bóveda de piedra de Cappella" loading="eager">
-        <div>
-          <p class="c-rub">Historias y Artistas</p>
-          <h2 class="c-t">Desde dentro</h2>
-          <p class="c-d">Un fin de semana, dos cumpleaños y pequeños Boiler Rooms por todas partes donde miraba.</p>
-          <p class="c-m"><time datetime="2026-11-20">20 de noviembre de 2026</time><span>Por Samuel Villagomez</span><span class="c-go">Leer el artículo →</span></p>
-        </div>
-      </a>
-      <a class="card" href="/sanfronteras/kerri-chandler/?lang=es">
-        <img src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez y Kerri Chandler, uno al lado del otro, después del set" loading="lazy">
-        <div>
-          <p class="c-rub">Historias y Artistas</p>
-          <h2 class="c-t">Frente a Kerri Chandler, me sentí en mi lugar</h2>
-          <p class="c-d">Bailé y lloré durante una hora y media en medio de desconocidos.</p>
-          <p class="c-m"><time datetime="2026-11-13">13 de noviembre de 2026</time><span>Por Samuel Villagomez</span><span class="c-go">Leer el artículo →</span></p>
-        </div>
-      </a>
-      </div>
+    <section class="wrap home" lang="es" aria-label="Portada">
+      <h1 class="vh">san_fronteras — El sonido y la mentalidad: noches, encuentros y música, contados desde dentro.</h1>
+      <nav class="pills" aria-label="Portada"><a class="on" href="/sanfronteras/?lang=es" aria-current="page">Portada</a><a href="#tech" data-go="tech">Técnica y Producción</a><a href="#mind" data-go="mind">Mindset y Superación</a><a href="#news" data-go="news">Noticias de la viLLLa</a><a href="#about" data-go="about">Acerca de</a></nav>
+      <a class="feat" href="/sanfronteras/from-the-inside/?lang=es"><img class="fimg" src="/images/sanfronteras/derriere-les-dj-capella.jpg" alt="Vista desde detrás del DJ hacia el público que baila bajo la bóveda de piedra de Cappella" style="object-position:center 60%" loading="eager"><div class="fbox"><p class="alab">Historias y Artistas</p><h2 class="atit">Desde dentro</h2><p class="adesc">Un fin de semana, dos cumpleaños y pequeños Boiler Rooms por todas partes donde miraba.</p><span class="chip"><img src="/images/sanfronteras/auteur-samuel-villagomez.jpg" alt="" loading="lazy">Samuel Villagomez</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Para leer · 4 min</p></div></a>
+      <a class="row" href="/sanfronteras/kerri-chandler/?lang=es"><img class="rimg" src="/images/sanfronteras/kerri-chandler-villagomez.jpg" alt="Samuel Villagomez y Kerri Chandler, uno al lado del otro, después del set" style="object-position:center 30%" loading="lazy"><div class="rtxt"><p class="alab">Historias y Artistas</p><h2 class="atit">Frente a Kerri Chandler, me sentí en mi lugar</h2><p class="adesc">Bailé y lloré durante una hora y media en medio de desconocidos.</p><span class="chip pin"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Montreal</span><p class="aread"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>Para leer · 3 min</p></div></a>
     </section>
   </div>
   </div>
