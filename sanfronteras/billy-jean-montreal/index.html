@@ -333,8 +333,27 @@ nav.rubs a{text-decoration:none}
 .theme-jour .trad{color:#5E574C}.theme-nuit .trad{color:#B5AC9E}
 .trad a{font-weight:700;font-style:normal}
 .prose p.signoff{font-family:Inter,Helvetica,Arial,sans-serif !important;font-size:20px !important;margin:0 0 28px}
-.sh-top{margin:18px 0 0}
-.sh-top .sh{min-height:40px;padding:0 16px;font-size:14px}
+.byline{align-items:center}
+.sh-topbtn{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:999px;background:transparent;font:600 13px/1 'Inter',Helvetica,Arial,sans-serif;cursor:pointer;letter-spacing:0;text-transform:none}
+.theme-jour .sh-topbtn{border:1.5px solid #151515;color:#151515}
+.theme-jour .sh-topbtn:hover{background:#151515;color:#E6F53F}
+.theme-nuit .sh-topbtn{border:1px solid #F0EADF;color:#F0EADF}
+.theme-nuit .sh-topbtn:hover{background:#C6DD36;color:#151515;border-color:#C6DD36}
+.sh-wrap{position:relative;display:inline-flex}
+.theme-nuit .byline .sh-wrap,.theme-nuit .byline .sh-topbtn span,.theme-nuit .byline .pop-ok{border:0;padding:0;border-radius:0}
+.theme-nuit .byline .sh-pop{padding:6px;border:1px solid #3A3A3A;border-radius:14px}
+.theme-nuit .byline .pop-ok{padding:0 12px}
+.sh-pop{position:absolute;left:0;top:calc(100% + 10px);z-index:20;display:flex;flex-direction:column;min-width:220px;padding:6px;font:600 15px/1.2 'Inter',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0}
+.sh-pop[hidden]{display:none}
+.sh-pop>a,.sh-pop>button{display:flex;align-items:center;min-height:42px;padding:0 12px;border:0;background:transparent;color:inherit;font:inherit;text-align:left;text-decoration:none;cursor:pointer;border-radius:8px}
+.sh-pop>button[hidden],.sh-pop>a[hidden]{display:none}
+.theme-jour .sh-pop{background:#FFFDF7;color:#151515;border:2px solid #151515;box-shadow:4px 4px 0 #151515}
+.theme-jour .sh-pop>a:hover,.theme-jour .sh-pop>button:hover{background:#E6F53F}
+.theme-nuit .sh-pop{background:#1E1E1E;color:#F0EADF;border:1px solid #3A3A3A;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.theme-nuit .sh-pop>a:hover,.theme-nuit .sh-pop>button:hover{background:#2A2A2A}
+.pop-copy{font-weight:800 !important}
+.pop-ok{padding:0 12px;font-size:13px;min-height:0}
+.pop-ok:empty{display:none}
 .nl.direk{margin-top:40px}
 .nl-btn{display:inline-flex;align-items:center;text-decoration:none}
 .theme-nuit .nl.direk .nl-p{color:#D9D2C6}
@@ -396,8 +415,7 @@ nav.rubs a{text-decoration:none}
       <p class="rub">Histoires &amp; Artistes · Auteur invité</p>
       <h1 class="h1">Un week-end à Montréal</h1>
       <p class="chapo">Billy Jean, photographe de Brooklyn, raconte son dernier week-end à Montréal : les gens, les détours, et une ville qu&#x27;il voit maintenant comme la ville sœur de New York.</p>
-      <p class="byline"><span class="by">Par Billy Jean</span><time datetime="2026-11-26">26 novembre 2026</time><span>Lecture : environ 3 min</span></p>
-      <p class="sh-top"><button type="button" class="sh sh-topbtn" data-t="share">Partager</button></p>
+      <p class="byline"><span class="by">Par Billy Jean</span><time datetime="2026-11-26">26 novembre 2026</time><span>Lecture : environ 3 min</span><span class="sh-wrap"><button type="button" class="sh-topbtn" aria-label="Partager"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg><span data-t="share">Partager</span></button><span class="sh-pop" hidden role="menu"><button type="button" class="pop-copy" role="menuitem" data-t="copy">Copier le lien</button><a class="pop-wa" role="menuitem" target="_blank" rel="noopener">WhatsApp</a><a class="pop-fb" role="menuitem" target="_blank" rel="noopener">Facebook</a><a class="pop-x" role="menuitem" target="_blank" rel="noopener">X</a><a class="pop-li" role="menuitem" target="_blank" rel="noopener">LinkedIn</a><a class="pop-mail" role="menuitem" data-t="mail">Courriel</a><button type="button" class="pop-native" role="menuitem" hidden data-t="shareBtn">Plus…</button><span class="pop-ok" role="status" aria-live="polite"></span></span></span></p>
       <p class="trad">Texte original en anglais, traduit par san_fronteras. <a href="?lang=en" data-setlang="en">Lire l'original</a></p>
       <figure class="hero">
         <img class="wide" src="/images/sanfronteras/billy-jean-roseraie.jpg" alt="Billy Jean accroupi dans une allée de rosiers blancs et roses, une main sur le front, sous un ciel bleu" width="1600" height="1061">
@@ -445,8 +463,7 @@ nav.rubs a{text-decoration:none}
       <p class="rub">Stories &amp; Artists · Guest writer</p>
       <h1 class="h1">A Weekend in Montreal</h1>
       <p class="chapo">Brooklyn photographer Billy Jean on his latest weekend in Montreal: the people, the detours, and a city he&#x27;s come to see as New York&#x27;s sister city.</p>
-      <p class="byline"><span class="by">By Billy Jean</span><time datetime="2026-11-26">November 26, 2026</time><span>About a 3 min read</span></p>
-      <p class="sh-top"><button type="button" class="sh sh-topbtn" data-t="share">Partager</button></p>
+      <p class="byline"><span class="by">By Billy Jean</span><time datetime="2026-11-26">November 26, 2026</time><span>About a 3 min read</span><span class="sh-wrap"><button type="button" class="sh-topbtn" aria-label="Partager"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg><span data-t="share">Partager</span></button><span class="sh-pop" hidden role="menu"><button type="button" class="pop-copy" role="menuitem" data-t="copy">Copier le lien</button><a class="pop-wa" role="menuitem" target="_blank" rel="noopener">WhatsApp</a><a class="pop-fb" role="menuitem" target="_blank" rel="noopener">Facebook</a><a class="pop-x" role="menuitem" target="_blank" rel="noopener">X</a><a class="pop-li" role="menuitem" target="_blank" rel="noopener">LinkedIn</a><a class="pop-mail" role="menuitem" data-t="mail">Courriel</a><button type="button" class="pop-native" role="menuitem" hidden data-t="shareBtn">Plus…</button><span class="pop-ok" role="status" aria-live="polite"></span></span></span></p>
       <figure class="hero">
         <img class="wide" src="/images/sanfronteras/billy-jean-roseraie.jpg" alt="Billy Jean crouching in a path between white and pink rose bushes, one hand on his forehead, under a blue sky" width="1600" height="1061">
         <figcaption class="cap"><strong>BILLY JEAN</strong> · In a rose garden · 📸 Courtesy of Billy Jean</figcaption>
@@ -493,8 +510,7 @@ nav.rubs a{text-decoration:none}
       <p class="rub">Historias y Artistas · Autor invitado</p>
       <h1 class="h1">Un fin de semana en Montreal</h1>
       <p class="chapo">Billy Jean, fotógrafo de Brooklyn, cuenta su último fin de semana en Montreal: la gente, los desvíos y una ciudad que ahora ve como la ciudad hermana de Nueva York.</p>
-      <p class="byline"><span class="by">Por Billy Jean</span><time datetime="2026-11-26">26 de noviembre de 2026</time><span>Lectura: unos 3 min</span></p>
-      <p class="sh-top"><button type="button" class="sh sh-topbtn" data-t="share">Partager</button></p>
+      <p class="byline"><span class="by">Por Billy Jean</span><time datetime="2026-11-26">26 de noviembre de 2026</time><span>Lectura: unos 3 min</span><span class="sh-wrap"><button type="button" class="sh-topbtn" aria-label="Partager"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg><span data-t="share">Partager</span></button><span class="sh-pop" hidden role="menu"><button type="button" class="pop-copy" role="menuitem" data-t="copy">Copier le lien</button><a class="pop-wa" role="menuitem" target="_blank" rel="noopener">WhatsApp</a><a class="pop-fb" role="menuitem" target="_blank" rel="noopener">Facebook</a><a class="pop-x" role="menuitem" target="_blank" rel="noopener">X</a><a class="pop-li" role="menuitem" target="_blank" rel="noopener">LinkedIn</a><a class="pop-mail" role="menuitem" data-t="mail">Courriel</a><button type="button" class="pop-native" role="menuitem" hidden data-t="shareBtn">Plus…</button><span class="pop-ok" role="status" aria-live="polite"></span></span></span></p>
       <p class="trad">Texto original en inglés, traducido por san_fronteras. <a href="?lang=en" data-setlang="en">Leer el original</a></p>
       <figure class="hero">
         <img class="wide" src="/images/sanfronteras/billy-jean-roseraie.jpg" alt="Billy Jean agachado en un sendero entre rosales blancos y rosados, con una mano en la frente, bajo un cielo azul" width="1600" height="1061">
@@ -701,6 +717,17 @@ var ABOUT = {
     document.title = v === 'article' ? PV[lang].title + ' — san_fronteras' : (v === 'about' ? ABOUT[lang].title : SOON[lang][location.hash.slice(1)].title + ' — san_fronteras');
     renderShare();
   }
+  function closePops(){ [].forEach.call(document.querySelectorAll('.sh-pop'), function(p){ p.setAttribute('hidden',''); }); [].forEach.call(document.querySelectorAll('.sh-topbtn'), function(b){ b.setAttribute('aria-expanded','false'); }); }
+  function fillPop(p){
+    var pv = PV[sl()];
+    p.querySelector('.pop-wa').href = 'https://wa.me/?text=' + encodeURIComponent(pv.title + ' — ' + shareUrl('whatsapp'));
+    p.querySelector('.pop-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl('facebook'));
+    p.querySelector('.pop-x').href = 'https://x.com/intent/post?text=' + encodeURIComponent(pv.title) + '&url=' + encodeURIComponent(shareUrl('x')) + '&via=SanFronteras';
+    p.querySelector('.pop-li').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareUrl('linkedin'));
+    p.querySelector('.pop-mail').href = 'mailto:?subject=' + encodeURIComponent(pv.title) + '&body=' + encodeURIComponent(pv.desc + '\n\n' + shareUrl('courriel'));
+    if (navigator.share) p.querySelector('.pop-native').removeAttribute('hidden');
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePops(); });
   document.addEventListener('click', function(e){
     var b = e.target.closest('[data-setlang]');
     if (b){ lang = b.getAttribute('data-setlang'); shareLang = null; H.setAttribute('data-l', lang); store('sf-lang', lang); render(); return; }
@@ -714,11 +741,23 @@ var ABOUT = {
       return;
     }
     if (e.target.closest('#sh-native')){ navigator.share({ title: PV[sl()].title, url: shareUrl('natif') }).catch(function(){}); return; }
-    if (e.target.closest('.sh-topbtn')){
-      if (navigator.share) navigator.share({ title: PV[sl()].title, url: shareUrl('natif') }).catch(function(){});
-      else document.querySelector('.sharewrap').scrollIntoView({ behavior: 'smooth' });
+    var tb = e.target.closest('.sh-topbtn');
+    if (tb){
+      var pop = tb.nextElementSibling, open = pop.hasAttribute('hidden');
+      closePops();
+      if (open){ fillPop(pop); pop.style.left=''; pop.style.right=''; pop.removeAttribute('hidden'); tb.setAttribute('aria-expanded','true'); var r=pop.getBoundingClientRect(); if (r.right > window.innerWidth - 8){ pop.style.left='auto'; pop.style.right='0'; } }
       return;
     }
+    var pc = e.target.closest('.pop-copy');
+    if (pc){
+      var u0 = shareUrl(), ok = pc.parentNode.querySelector('.pop-ok');
+      var done = function(){ ok.textContent = COPIED[lang]; setTimeout(function(){ ok.textContent = ''; closePops(); }, 1400); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(u0).then(done, function(){ copyOld(u0); done(); }); else { copyOld(u0); done(); }
+      return;
+    }
+    if (e.target.closest('.pop-native')){ navigator.share({ title: PV[sl()].title, url: shareUrl('natif') }).catch(function(){}); closePops(); return; }
+    if (e.target.closest('.sh-pop a')){ setTimeout(closePops, 50); return; }
+    if (!e.target.closest('.sh-pop')) closePops();
   });
   window.addEventListener('hashchange', function(){ render(); window.scrollTo(0,0); });
   function mastH(){ var m=document.querySelector('.mast'); if(m) H.style.setProperty('--mast-h',(m.offsetHeight+24)+'px'); }
